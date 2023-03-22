@@ -1,0 +1,204 @@
+.flip-container:hover .flipper,
+.flip-container.flip .flipper {
+  transform: rotateY(180deg);
+}
+
+.flip-container,
+.back,
+.front {
+  height: 200px;
+  width: 145px;
+}
+
+.flipper {
+  transform: rotateY(0);
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  -webkit-backface-visibility: hidden; /*Safari */
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.back {
+  background-image: url(./img/back.svg);
+  background-size: 145px 200px;
+  /* transform: rotateY(180deg); */
+}
+
+.front {
+  /* background-size: 145px 200px; */
+  /* height: 200px;
+  width: 145px; */
+  transform: rotateY(180deg);
+}
+
+.size {
+  background-size: 145px 200px;
+  height: 200px;
+  width: 145px;
+}
+
+.front2C {
+  background-image: url(./img/2C.svg);
+}
+.front2D {
+  background-image: url(./img/2D.svg);
+}
+.front2S {
+  background-image: url(./img/2S.svg);
+}
+.front2H {
+  background-image: url(./img/2H.svg);
+}
+
+.front3C {
+  background-image: url(./img/3C.svg);
+}
+.front3D {
+  background-image: url(./img/3D.svg);
+}
+.front3S {
+  background-image: url(./img/3S.svg);
+}
+.front3H {
+  background-image: url(./img/3H.svg);
+}
+
+.front4C {
+  background-image: url(./img/4C.svg);
+}
+.front4D {
+  background-image: url(./img/4D.svg);
+}
+.front4S {
+  background-image: url(./img/4S.svg);
+}
+.front4H {
+  background-image: url(./img/4H.svg);
+}
+
+.front5C {
+  background-image: url(./img/5C.svg);
+}
+.front5D {
+  background-image: url(./img/5D.svg);
+}
+.front5S {
+  background-image: url(./img/5S.svg);
+}
+.front5H {
+  background-image: url(./img/5H.svg);
+}
+
+.front6C {
+  background-image: url(./img/6C.svg);
+}
+.front6D {
+  background-image: url(./img/6D.svg);
+}
+.front6S {
+  background-image: url(./img/6S.svg);
+}
+.front6H {
+  background-image: url(./img/6H.svg);
+}
+
+.front7C {
+  background-image: url(./img/7C.svg);
+}
+.front7D {
+  background-image: url(./img/7D.svg);
+}
+.front7S {
+  background-image: url(./img/7S.svg);
+}
+.front7H {
+  background-image: url(./img/7H.svg);
+}
+
+.front8C {
+  background-image: url(./img/8C.svg);
+}
+.front8D {
+  background-image: url(./img/8D.svg);
+}
+.front8S {
+  background-image: url(./img/8S.svg);
+}
+.front8H {
+  background-image: url(./img/8H.svg);
+}
+
+.front9C {
+  background-image: url(./img/9C.svg);
+}
+.front9D {
+  background-image: url(./img/9D.svg);
+}
+.front9S {
+  background-image: url(./img/9S.svg);
+}
+.front9H {
+  background-image: url(./img/9H.svg);
+}
+
+.frontAC {
+  background-image: url(./img/AC.svg);
+}
+.frontAD {
+  background-image: url(./img/AD.svg);
+}
+.frontAS {
+  background-image: url(./img/AS.svg);
+}
+.frontAH {
+  background-image: url(./img/AH.svg);
+}
+
+.frontJC {
+  background-image: url(./img/JC.svg);
+}
+.frontJD {
+  background-image: url(./img/JD.svg);
+}
+.frontJS {
+  background-image: url(./img/JS.svg);
+}
+.frontJH {
+  background-image: url(./img/JH.svg);
+}
+
+.frontQC {
+  background-image: url(./img/QC.svg);
+}
+.frontQD {
+  background-image: url(./img/QD.svg);
+}
+.frontQS {
+  background-image: url(./img/QS.svg);
+}
+.frontQH {
+  background-image: url(./img/QH.svg);
+}
+
+.frontKC {
+  background-image: url(./img/KC.svg);
+}
+.frontKD {
+  background-image: url(./img/KD.svg);
+}
+.frontKS {
+  background-image: url(./img/KS.svg);
+}
+.frontKH {
+  background-image: url(./img/KH.svg);
+}

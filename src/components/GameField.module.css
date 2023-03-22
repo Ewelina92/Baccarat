@@ -1,0 +1,19 @@
+.gamefield {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.players {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .playerField {
+    display: flex;
+} */
+
+.cards {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
