@@ -6,60 +6,39 @@ import { Card } from "../cards/Card";
 import styles from "./GameField.module.css";
 
 export const GameField = observer(() => {
-  const store = useMainStore();
-  const {
-    gameRound,
-    playerName,
-    bet,
-    playerCards,
-    bankerCards,
-    playerMoney,
-    winner,
-    playerPoints,
-    bankerPoints
-  } = store;
+  const { game, player, baccarat } = useMainStore();
 
   return (
     <div className={styles.gamefield}>
       <h1>Playing Baccarat</h1>
       <p>
-        Playername: {playerName}
+        Playername: {player.playerName}
         <br />
-        Cash: {playerMoney}
+        Cash: {player.playerMoney}
         <br />
-        Current bet: {bet}
+        Current bet: {game.bet}
       </p>
-      <p>Game round number: {gameRound}</p>
+      <p>Game round number: {game.gameRound}</p>
       <div className={styles.players}>
         <div className={styles.playerField}>
-          {playerName}: {playerPoints} <br />
+          {player.playerName}: {baccarat.playerPoints} <br />
           <div className={styles.cards}>
-            <Card card={playerCards[0]} />
-            <Card card={playerCards[1]} />
-            {/* <Card face={playerCards[0].face} suit={playerCards[0].suit} />
-            <Card face={playerCards[1].face} suit={playerCards[1].suit} /> */}
-            {playerCards[2] && (
-              <Card card={playerCards[2]} />
-              // <Card face={playerCards[2].face} suit={playerCards[2].suit} />
-            )}
+            <Card card={baccarat.playerCards[0]} />
+            <Card card={baccarat.playerCards[1]} />
+            {baccarat.playerCards[2] && <Card card={baccarat.playerCards[2]} />}
           </div>
         </div>
         <div className={styles.playerField}>
-          Banker: {bankerPoints}
+          Banker: {baccarat.bankerPoints}
           <br />
           <div className={styles.cards}>
-            <Card card={bankerCards[0]} />
-            <Card card={bankerCards[1]} />
-            {/* <Card face={bankerCards[0].face} suit={bankerCards[0].suit} />
-            <Card face={bankerCards[1].face} suit={bankerCards[1].suit} /> */}
-            {bankerCards[2] && (
-              <Card card={bankerCards[2]} />
-              // <Card face={bankerCards[2].face} suit={bankerCards[2].suit} />
-            )}
+            <Card card={baccarat.bankerCards[0]} />
+            <Card card={baccarat.bankerCards[1]} />
+            {baccarat.bankerCards[2] && <Card card={baccarat.bankerCards[2]} />}
           </div>
         </div>
       </div>
-      <p>Winner: {winner}</p>
+      <p>Winner: {game.winner}</p>
     </div>
   );
 });

@@ -3,29 +3,27 @@ import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./Overlay.module.css";
 import { useMainStore } from "../../hooks/useMainStore";
-import { GameStage } from "../../stores/MainStore";
+import { GameStage } from "../../stores/gameStore";
 
 export const ContinueOverlay = observer(() => {
-  const store = useMainStore();
-  const {
-    betweenRoundsReset,
-    endGameReset,
-    setGameStage,
-    nextRoundIsPossible
-  } = store;
+  const { game, baccarat, endGameReset } = useMainStore();
 
   const continueGame = () => {
-    setGameStage(GameStage.InitialBet);
+    game.setGameStage(GameStage.InitialBet);
   };
 
   return (
     <Portal>
       <div className={styles.overlay}>
         <div className={styles.overlayButtons}>
-          {nextRoundIsPossible() && (
-            <button onClick={continueGame}>Play next round</button>
+          {baccarat.nextRoundIsPossible() && (
+            <button type="button" onClick={continueGame}>
+              Play next round
+            </button>
           )}
-          <button onClick={endGameReset}>End Game</button>
+          <button type="button" onClick={endGameReset}>
+            End Game
+          </button>
         </div>
       </div>
     </Portal>
