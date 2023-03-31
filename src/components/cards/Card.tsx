@@ -1,12 +1,11 @@
 import React from "react";
-import { useMainStore } from "../../hooks/useMainStore";
 import { Card as CardType } from "../../types";
-import "./Card.css";
+import "./Card.scss";
 
 export type CardProps = {
   card: CardType;
 };
-export function Card({ card }: CardProps): JSX.Element {
+export const Card = ({ card }: CardProps): JSX.Element => {
   const [flipCard, setFlipCard] = React.useState(false);
   const cardCSS = `front${card.face}${card.suit}`;
 
@@ -25,4 +24,4 @@ export function Card({ card }: CardProps): JSX.Element {
       </div>
     </div>
   );
-}
+};

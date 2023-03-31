@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { MainStoreContext, mainStore } from "./stores/mainStore";
 import { GameSetup } from "./components/game-setup/GameSetup";
 

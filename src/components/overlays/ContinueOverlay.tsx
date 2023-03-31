@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Portal } from "./Portal";
-import styles from "./Overlay.module.css";
+import styles from "./Overlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
 

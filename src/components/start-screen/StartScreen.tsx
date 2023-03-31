@@ -1,7 +1,7 @@
 import React from "react";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
-import styles from "./StartMenu.module.css";
+import styles from "./StartMenu.module.scss";
 
 export const StartScreen = () => {
   const [name, setName] = React.useState("");
@@ -59,7 +59,7 @@ export const StartScreen = () => {
         <h3>Rules</h3>
         <p>
           We are gonna play the &#34;Punto banco&#34; version of Baccarat with
-          six carddecks.
+          six card-decks.
         </p>
         <p>
           If neither the player nor the banker is dealt a total of 8 or 9 in the

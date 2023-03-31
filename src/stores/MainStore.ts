@@ -71,12 +71,9 @@ export class MainStore {
               this.baccarat.giveBankerACard();
               setTimeout(() => {
                 this.game.setGameStage(GameStage.SecondBet);
-                // this.setGameStage(GameStage.CheckForThirdCard);
-                // console.log("GAMESTAGE TWO", this.gameStage);
               }, 2000);
               break;
             case GameStage.CheckForThirdCard:
-              // console.log("CHECK FOR CARDS", this.gameStage);
               // if 8 or 9 points check winner
               if (
                 this.baccarat.playerPoints === 8 ||
