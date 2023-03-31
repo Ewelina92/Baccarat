@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import React from "react";
-import { StartScreen } from "../components/StartScreen";
 import { render } from "@testing-library/react";
-import { MainStoreContext, mainStore } from "../stores/MainStore";
+import { StartScreen } from "./StartScreen";
+import { MainStoreContext, mainStore } from "../../stores/mainStore";
 
 describe("StartScreen", () => {
   it("should render", async () => {
