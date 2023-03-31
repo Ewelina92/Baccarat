@@ -1,6 +1,6 @@
 import React from "react";
-import { useMainStore } from "../hooks/useMainStore";
-import { GameStage } from "../stores/MainStore";
+import { useMainStore } from "../../hooks/useMainStore";
+import { GameStage } from "../../stores/MainStore";
 import styles from "./StartMenu.module.css";
 
 export const StartScreen = () => {
@@ -18,7 +18,7 @@ export const StartScreen = () => {
   };
 
   const handleStartGame = () => {
-    setGameStage(GameStage.InitalCards);
+    setGameStage(GameStage.InitialCards);
     setPlayerName(name);
     setCurrentBet(bet);
   };

@@ -1,23 +1,6 @@
 import { shuffle } from "lodash";
 import { Card, suits, cardFaces } from "./types";
 
-// export const createCardDeck48Cards = (): Card[] => {
-//   const cardDeck: Card[] = [];
-
-//   for (const suit of suits) {
-//     Object.entries(cardFaces).forEach(([face, value]) => {
-//       const card = {
-//         face,
-//         suit,
-//         value,
-//         flipped: false
-//       };
-//       cardDeck.push(card);
-//     });
-//   }
-//   return cardDeck;
-// };
-
 export const createCardDeck48Cards = (): Card[] => {
   const cardDeck: Card[] = [];
 
@@ -53,13 +36,6 @@ export const getPoints = (cards: Card[]): number => {
 
   return sum % 10;
 };
-// export const getPoints = (cards: Card[]): number => {
-//   let sum = 0;
-//   for (const card of cards) {
-//     sum += card.value;
-//   }
-//   return sum % 10;
-// };
 
 export const checkWinner = (
   playerPoints: number,
