@@ -25,7 +25,7 @@ export enum GameStage {
   Start,
   InitialBet,
   SecondBet,
-  InitalCards,
+  InitialCards,
   CheckForThirdCard,
   Continue,
   End
@@ -67,7 +67,7 @@ export class BaccaratStore {
   }
 
   betweenRoundsReset() {
-    this.setGameStage(GameStage.InitalCards);
+    this.setGameStage(GameStage.InitialCards);
     this.resetPlayerCards();
     this.resetBankerCards();
     this.winner = "";
@@ -159,7 +159,7 @@ export class BaccaratStore {
       () => this.gameStage,
       () => {
         runInAction(() => {
-          if (this.gameStage === GameStage.InitalCards) {
+          if (this.gameStage === GameStage.InitialCards) {
             this.givePlayerACard();
             this.givePlayerACard();
             this.giveBankerACard();

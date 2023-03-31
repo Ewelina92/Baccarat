@@ -1,9 +1,9 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./Overlay.module.css";
-import { observer } from "mobx-react";
-import { useMainStore } from "../hooks/useMainStore";
-import { GameStage } from "../stores/MainStore";
+import { useMainStore } from "../../hooks/useMainStore";
+import { GameStage } from "../../stores/MainStore";
 
 export const BettingOverlay = observer(() => {
   const [bet, setBet] = React.useState(0);

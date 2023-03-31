@@ -1,11 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { useMainStore } from "../hooks/useMainStore";
-import { GameField } from "./GameField";
-import { StartScreen } from "./StartScreen";
-import { ContinueOverlay } from "./ContinueOverlay";
-import { GameStage } from "../stores/MainStore";
-import { BettingOverlay } from "./BettingOverlay";
+import { useMainStore } from "../../hooks/useMainStore";
+import { GameField } from "../game/GameField";
+import { StartScreen } from "../start-screen/StartScreen";
+import { ContinueOverlay } from "../overlays/ContinueOverlay";
+import { GameStage } from "../../stores/MainStore";
+import { BettingOverlay } from "../overlays/BettingOverlay";
 
 export const GameSetup = observer(() => {
   const mainStore = useMainStore();
