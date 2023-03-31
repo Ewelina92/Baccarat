@@ -159,65 +159,68 @@ export class BaccaratStore {
       () => this.gameStage,
       () => {
         runInAction(() => {
-          if (this.gameStage === GameStage.InitialCards) {
-            this.givePlayerACard();
-            this.givePlayerACard();
-            this.giveBankerACard();
-            this.giveBankerACard();
-            setTimeout(() => {
-              this.setGameStage(GameStage.SecondBet);
-              // this.setGameStage(GameStage.CheckForThirdCard);
-              // console.log("GAMESTAGE TWO", this.gameStage);
-            }, 2000);
-          }
-
-          if (this.gameStage === GameStage.CheckForThirdCard) {
-            // console.log("CHECK FOR CARDS", this.gameStage);
-            // if 8 or 9 points check winner
-            if (
-              this.playerPoints === 8 ||
-              this.playerPoints === 9 ||
-              this.bankerPoints === 8 ||
-              this.bankerPoints === 9
-            ) {
+          switch (this.gameStage) {
+            case GameStage.InitialCards:
+              this.givePlayerACard();
+              this.givePlayerACard();
+              this.giveBankerACard();
+              this.giveBankerACard();
               setTimeout(() => {
-                this.setWinner();
+                this.setGameStage(GameStage.SecondBet);
+                // this.setGameStage(GameStage.CheckForThirdCard);
+                // console.log("GAMESTAGE TWO", this.gameStage);
               }, 2000);
-              // this.setWinner();
-              setTimeout(() => {
-                this.setGameStage(GameStage.Continue);
-              }, 4000);
-              // this.setGameStage(GameStage.Continue);
-            }
-            // otherwise
-            else {
-              // player needs third card?
-              if (needThirdCardPlayerRule(this.playerPoints)) {
-                this.givePlayerACard();
-                if (
-                  // banker according to banker rule
-                  needThirdCardBankersRule(
-                    this.bankerPoints,
-                    this.playerCards[2].face
-                  )
-                ) {
+              break;
+            case GameStage.CheckForThirdCard:
+              // console.log("CHECK FOR CARDS", this.gameStage);
+              // if 8 or 9 points check winner
+              if (
+                this.playerPoints === 8 ||
+                this.playerPoints === 9 ||
+                this.bankerPoints === 8 ||
+                this.bankerPoints === 9
+              ) {
+                setTimeout(() => {
+                  this.setWinner();
+                }, 2000);
+                // this.setWinner();
+                setTimeout(() => {
+                  this.setGameStage(GameStage.Continue);
+                }, 4000);
+                // this.setGameStage(GameStage.Continue);
+              }
+              // otherwise
+              else {
+                // player needs third card?
+                if (needThirdCardPlayerRule(this.playerPoints)) {
+                  this.givePlayerACard();
+                  if (
+                    // banker according to banker rule
+                    needThirdCardBankersRule(
+                      this.bankerPoints,
+                      this.playerCards[2].face
+                    )
+                  ) {
+                    this.giveBankerACard();
+                  }
+                } else if (needThirdCardPlayerRule(this.bankerPoints)) {
+                  // player didn't get third card
+                  // banker third card according to players rule
                   this.giveBankerACard();
                 }
-              } else if (needThirdCardPlayerRule(this.bankerPoints)) {
-                // player didn't get third card
-                // banker third card according to players rule
-                this.giveBankerACard();
+                // check for winner
+                setTimeout(() => {
+                  this.setWinner();
+                }, 2000);
+                // this.setWinner();
+                setTimeout(() => {
+                  this.setGameStage(GameStage.Continue);
+                }, 4000);
+                // this.setGameStage(GameStage.Continue);
               }
-              // check for winner
-              setTimeout(() => {
-                this.setWinner();
-              }, 2000);
-              // this.setWinner();
-              setTimeout(() => {
-                this.setGameStage(GameStage.Continue);
-              }, 4000);
-              // this.setGameStage(GameStage.Continue);
-            }
+              break;
+            default:
+              break;
           }
         });
       }

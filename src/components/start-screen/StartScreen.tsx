@@ -3,7 +3,7 @@ import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/MainStore";
 import styles from "./StartMenu.module.css";
 
-export function StartScreen() {
+export const StartScreen = () => {
   const [name, setName] = React.useState("");
   const [bet, setBet] = React.useState(0);
   const mainStore = useMainStore();
@@ -18,7 +18,7 @@ export function StartScreen() {
   };
 
   const handleStartGame = () => {
-    setGameStage(GameStage.InitalCards);
+    setGameStage(GameStage.InitialCards);
     setPlayerName(name);
     setCurrentBet(bet);
   };
@@ -76,4 +76,4 @@ export function StartScreen() {
       </div>
     </div>
   );
-}
+};
