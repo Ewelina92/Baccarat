@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import { useMainStore } from "../hooks/useMainStore";
 
 import { Card } from "./cards/Card";
-import styles from "./GameField.module.css";
+import styles from "./GameField.module.scss";
 
 export const GameField = observer(() => {
   const store = useMainStore();

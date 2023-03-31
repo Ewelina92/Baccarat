@@ -1,9 +1,9 @@
 import React from "react";
 import { useMainStore } from "../hooks/useMainStore";
 import { GameStage } from "../stores/MainStore";
-import styles from "./StartMenu.module.css";
+import styles from "./StartMenu.module.scss";
 
-export const StartScreen = () => {
+export function StartScreen() {
   const [name, setName] = React.useState("");
   const [bet, setBet] = React.useState(0);
   const mainStore = useMainStore();
@@ -76,4 +76,4 @@ export const StartScreen = () => {
       </div>
     </div>
   );
-};
+}

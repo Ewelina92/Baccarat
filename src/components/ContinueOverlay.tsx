@@ -1,9 +1,10 @@
 import React from "react";
-import { Portal } from "./Portal";
-import styles from "./Overlay.module.css";
 import { observer } from "mobx-react";
+import { Portal } from "./Portal";
+import styles from "./Overlay.module.scss";
 import { useMainStore } from "../hooks/useMainStore";
 import { GameStage } from "../stores/MainStore";
+
 export const ContinueOverlay = observer(() => {
   const store = useMainStore();
   const {

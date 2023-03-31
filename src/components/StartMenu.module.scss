@@ -15,30 +15,30 @@
   border-radius: 2rem;
   background-color: #800020;
   color: #fbfbfb;
-}
 
-.menu form {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-}
+  form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+  }
 
-.menu label {
-  display: flex;
-  /* flex-direction: column; */
-  align-items: baseline;
-  /* padding-bottom: 1rem; */
-}
+  label {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: baseline;
+    /* padding-bottom: 1rem; */
+  }
 
-.menu input {
-  margin: 1rem;
-  padding: 0.75rem 1rem;
-  width: 10rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(251, 251, 251, 0.2);
-  color: #fbfbfb;
+  input {
+    margin: 1rem;
+    padding: 0.75rem 1rem;
+    width: 10rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(251, 251, 251, 0.2);
+    color: #fbfbfb;
+  }
 }
 
 ::placeholder {

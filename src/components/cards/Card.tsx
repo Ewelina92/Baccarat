@@ -1,7 +1,7 @@
 import React from "react";
 import { useMainStore } from "../../hooks/useMainStore";
 import { Card as CardType } from "../../types";
-import "./Card.css";
+import "./Card.scss";
 
 export type CardProps = {
   card: CardType;
