@@ -1,7 +1,7 @@
 import React from "react";
-import { BaccaratStore, MainStoreContext } from "../stores/MainStore";
+import { MainStore, MainStoreContext } from "../stores/mainStore";
 
-export const useMainStore = (): BaccaratStore => {
+export const useMainStore = (): MainStore => {
   const context = React.useContext(MainStoreContext);
   if (!context) {
     throw new Error("whoops, empty context");

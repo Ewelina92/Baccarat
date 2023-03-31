@@ -2,7 +2,8 @@ import "@testing-library/jest-dom";
 import React from "react";
 import { render } from "@testing-library/react";
 import { GameSetup } from "./GameSetup";
-import { MainStoreContext, mainStore, GameStage } from "../../stores/MainStore";
+import { MainStoreContext, mainStore } from "../../stores/mainStore";
+import { GameStage } from "../../stores/gameStore";
 
 describe("StartScreen", () => {
   it("should render the start screen", async () => {
@@ -19,7 +20,7 @@ describe("StartScreen", () => {
 
   it("should render the game field", async () => {
     const store = mainStore;
-    store.setGameStage(GameStage.InitialCards);
+    store.game.setGameStage(GameStage.InitialCards);
     const { getByRole } = render(
       <MainStoreContext.Provider value={store}>
         <GameSetup />
