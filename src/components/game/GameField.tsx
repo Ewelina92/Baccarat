@@ -4,7 +4,15 @@ import { useMainStore } from "../../hooks/useMainStore";
 
 import { Card } from "../cards/Card";
 import styles from "./GameField.module.scss";
+import { BettingChip } from "../betting-chips/BettingChip";
 
+const bettingChipValues = {
+  1: "white",
+  5: "red",
+  25: "green",
+  50: "blue",
+  100: "black"
+};
 export const GameField = observer(() => {
   const { game, player, baccarat } = useMainStore();
 
@@ -38,6 +46,9 @@ export const GameField = observer(() => {
           </div>
         </div>
       </div>
+      {Object.entries(bettingChipValues).map(([value, color]) => (
+        <BettingChip key={value} value={value} color={color} />
+      ))}
       <p>Winner: {game.winner}</p>
     </div>
   );
