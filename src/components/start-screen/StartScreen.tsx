@@ -20,7 +20,7 @@ export const StartScreen = () => {
   const handleStartGame = () => {
     game.setGameStage(GameStage.InitialCards);
     player.setPlayerName(name);
-    game.setCurrentBet(bet);
+    // game.setCurrentBet(bet);
   };
 
   return (

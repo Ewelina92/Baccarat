@@ -39,6 +39,8 @@ export class MainStore {
 
   betweenRoundsReset() {
     this.game.setGameStage(GameStage.InitialCards);
+    // this.game.setGameStage(GameStage.InitialBet);
+    this.game.resetBets();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
     this.game.resetWinner();
@@ -52,7 +54,7 @@ export class MainStore {
     );
     this.game.setWinner(winner);
     if (winner === "player") {
-      this.player.addPlayerMoney(this.game.bet);
+      this.player.addPlayerMoney(this.game.totalBet);
     }
   }
 

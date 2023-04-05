@@ -17,8 +17,8 @@ export const GameSetup = observer(() => {
     <>
       <GameField />
       {game.gameStage === GameStage.Continue && <ContinueOverlay />}
-      {game.gameStage === GameStage.InitialBet && <BettingOverlay />}
-      {game.gameStage === GameStage.SecondBet && <BettingOverlay />}
+      {/* {game.gameStage === GameStage.InitialBet && <BettingOverlay />}
+      {game.gameStage === GameStage.SecondBet && <BettingOverlay />} */}
     </>
   );
 });
