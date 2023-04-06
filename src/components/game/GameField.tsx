@@ -4,16 +4,12 @@ import { useMainStore } from "../../hooks/useMainStore";
 
 import { Card } from "../cards/Card";
 import styles from "./GameField.module.scss";
-// import { BettingChip, BettingChipsValues } from "../betting-chips/BettingChip";
 import { BettingControls } from "../betting-chips/BettingControls";
 import { GameStage } from "../../stores/gameStore";
 import { CardSuit } from "../../types";
 
-// const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
-
 export const GameField = observer(() => {
   const { game, player, baccarat } = useMainStore();
-  console.log("GAMESTAGE = ", game.gameStage);
 
   const fakeCard = {
     face: "fake",
@@ -26,7 +22,7 @@ export const GameField = observer(() => {
     <div className={styles.gamefield}>
       <h1>Playing Baccarat</h1>
       <p>
-        Playername: {player.playerName}
+        Player name: {player.playerName}
         <br />
         Cash: {player.playerMoney}
         <br />

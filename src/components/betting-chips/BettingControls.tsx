@@ -7,7 +7,7 @@ import { BettingChip, BettingChipsValues, BetOnOptions } from "./BettingChip";
 const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
 
 export const BettingControls = observer(() => {
-  const { game, betweenRoundsReset } = useMainStore();
+  const { game } = useMainStore();
   const [bettingChoice, setBettingChoice] = React.useState("");
 
   const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {

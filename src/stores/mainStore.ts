@@ -123,8 +123,10 @@ export class MainStore {
                 // player needs third card?
                 if (needThirdCardPlayerRule(this.baccarat.playerPoints)) {
                   this.baccarat.givePlayerACard();
-                  let timer = setTimeout(() => {
-                    this.baccarat.playerCards[2].flipped = true;
+                  const timer = setTimeout(() => {
+                    if (this.baccarat.playerCards[2]) {
+                      this.baccarat.playerCards[2].flipped = true;
+                    }
                     clearTimeout(timer);
                   }, 500);
                   if (
@@ -135,9 +137,11 @@ export class MainStore {
                     )
                   ) {
                     this.baccarat.giveBankerACard();
-                    timer = setTimeout(() => {
-                      this.baccarat.bankerCards[2].flipped = true;
-                      clearTimeout(timer);
+                    const timer2 = setTimeout(() => {
+                      if (this.baccarat.bankerCards[2]) {
+                        this.baccarat.bankerCards[2].flipped = true;
+                      }
+                      clearTimeout(timer2);
                     }, 500);
                   }
                 } else if (
@@ -147,7 +151,9 @@ export class MainStore {
                   // banker third card according to players rule
                   this.baccarat.giveBankerACard();
                   const timer = setTimeout(() => {
-                    this.baccarat.bankerCards[2].flipped = true;
+                    if (this.baccarat.bankerCards[2]) {
+                      this.baccarat.bankerCards[2].flipped = true;
+                    }
                     clearTimeout(timer);
                   }, 500);
                 }
