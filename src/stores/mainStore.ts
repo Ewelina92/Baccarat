@@ -13,6 +13,7 @@ import {
 import { PlayerStore } from "./playerStore";
 import { BaccaratStore } from "./baccaratStore";
 import { GameStage, GameStore } from "./gameStore";
+import { WinnerOptions } from "../types";
 
 // bet,
 // player + bank 2 cards each
@@ -53,8 +54,14 @@ export class MainStore {
       this.baccarat.bankerPoints
     );
     this.game.setWinner(winner);
-    if (winner === "player") {
-      this.player.addPlayerMoney(this.game.totalBet);
+    if (winner === WinnerOptions.Player) {
+      this.player.addPlayerMoney(this.game.playerBet);
+    }
+    if (winner === WinnerOptions.Tie) {
+      this.player.addPlayerMoney(this.game.tieBet * 5);
+    }
+    if (winner === WinnerOptions.Banker) {
+      this.player.addPlayerMoney(this.game.bankerBet * 0.95);
     }
   }
 

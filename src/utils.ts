@@ -1,5 +1,5 @@
 import { shuffle } from "lodash";
-import { Card, suits, cardFaces } from "./types";
+import { Card, suits, cardFaces, WinnerOptions } from "./types";
 
 export const createCardDeck48Cards = (): Card[] => {
   const cardDeck: Card[] = [];
@@ -40,10 +40,10 @@ export const getPoints = (cards: Card[]): number => {
 export const checkWinner = (
   playerPoints: number,
   bankPoints: number
-): string => {
-  if (playerPoints === bankPoints) return "tie";
-  if (playerPoints > bankPoints) return "player";
-  return "bank";
+): WinnerOptions => {
+  if (playerPoints === bankPoints) return WinnerOptions.Tie;
+  if (playerPoints > bankPoints) return WinnerOptions.Player;
+  return WinnerOptions.Banker;
 };
 
 export const needThirdCardPlayerRule = (points: number): boolean => {
