@@ -18,9 +18,11 @@ export const StartScreen = () => {
   };
 
   const handleStartGame = () => {
-    game.setGameStage(GameStage.InitialCards);
+    // game.setGameStage(GameStage.InitialCards);
+    game.setGameStage(GameStage.InitialBet);
+    console.log("SENDING TO INTIAL BET");
     player.setPlayerName(name);
-    game.setCurrentBet(bet);
+    // game.setCurrentBet(bet);
   };
 
   return (

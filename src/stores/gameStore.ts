@@ -15,7 +15,13 @@ export class GameStore {
 
   gameRound = 1;
 
-  bet = 0;
+  // bet = 0;
+
+  playerBet = 0;
+
+  tieBet = 0;
+
+  bankerBet = 0;
 
   winner = "";
 
@@ -23,17 +29,38 @@ export class GameStore {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
+  get totalBet() {
+    return this.playerBet + this.tieBet + this.bankerBet;
+  }
+
   setGameStage(gameStage: GameStage) {
     this.gameStage = gameStage;
   }
 
-  setCurrentBet(bet: number) {
-    this.bet += bet;
+  addToPlayerBet(bet: number) {
+    this.playerBet += bet;
   }
 
-  setNewBet(bet: number) {
-    this.bet = bet;
+  addToTieBet(bet: number) {
+    this.tieBet += bet;
   }
+
+  addToBankerBet(bet: number) {
+    this.bankerBet += bet;
+  }
+
+  resetBets() {
+    this.playerBet = 0;
+    this.tieBet = 0;
+    this.bankerBet = 0;
+  }
+  // setCurrentBet(bet: number) {
+  //   this.bet += bet;
+  // }
+
+  // setNewBet(bet: number) {
+  //   this.bet = bet;
+  // }
 
   setWinner(winner: string) {
     this.winner = winner;
@@ -50,7 +77,11 @@ export class GameStore {
   resetGame() {
     this.setGameStage(GameStage.Start);
     this.gameRound = 1;
-    this.bet = 0;
+    // this.bet = 0;
+    this.resetBets();
+    this.playerBet = 0;
+    this.tieBet = 0;
+    this.bankerBet = 0;
     this.resetWinner();
   }
 }

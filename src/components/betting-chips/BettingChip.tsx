@@ -5,17 +5,31 @@ import styles from "./BettingChip.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
 
 export type BettingChipsValues = 1 | 5 | 25 | 50 | 100;
+export type BetOnOptions = "player" | "tie" | "bank";
 
 export type BettingChipProps = {
   value: BettingChipsValues;
+  betOn: BetOnOptions;
 };
 
 export const BettingChip = observer((props: BettingChipProps) => {
-  const { value } = props;
+  const { value, betOn } = props;
   const { game } = useMainStore();
 
   const addToBet = () => {
-    game.setCurrentBet(value);
+    switch (betOn) {
+      case "player":
+        game.addToPlayerBet(value);
+        break;
+      case "tie":
+        game.addToTieBet(value);
+        break;
+      case "bank":
+        game.addToBankerBet(value);
+        break;
+      default:
+        break;
+    }
   };
 
   return (

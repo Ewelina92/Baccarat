@@ -15,11 +15,11 @@ export const BettingOverlay = observer(() => {
 
   const handlePlacedBet = () => {
     if (game.gameStage === GameStage.InitialBet) {
-      game.setNewBet(bet);
+      // game.setNewBet(bet);
       betweenRoundsReset();
     }
     if (game.gameStage === GameStage.SecondBet) {
-      game.setCurrentBet(bet);
+      // game.setCurrentBet(bet);
       game.setGameStage(GameStage.CheckForThirdCard);
     }
   };

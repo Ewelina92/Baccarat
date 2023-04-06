@@ -1,3 +1,9 @@
+export enum WinnerOptions {
+  Player = "Player",
+  Tie = "Tie",
+  Banker = "Bank"
+}
+
 export enum CardSuit {
   Clover = "C",
   Diamond = "D",
