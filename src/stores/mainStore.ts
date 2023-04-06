@@ -147,7 +147,7 @@ export class MainStore {
                   // banker third card according to players rule
                   this.baccarat.giveBankerACard();
                   const timer = setTimeout(() => {
-                    this.baccarat.playerCards[2].flipped = true;
+                    this.baccarat.bankerCards[2].flipped = true;
                     clearTimeout(timer);
                   }, 500);
                 }

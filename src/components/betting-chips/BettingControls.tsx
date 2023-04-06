@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
-import { BettingChip, BettingChipsValues } from "./BettingChip";
+import { BettingChip, BettingChipsValues, BetOnOptions } from "./BettingChip";
 
 const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
 
@@ -26,7 +26,11 @@ export const BettingControls = observer(() => {
   return (
     <>
       {bettingChipValues.map((value) => (
-        <BettingChip key={value} value={value} betOn={bettingChoice} />
+        <BettingChip
+          key={value}
+          value={value}
+          betOn={bettingChoice as BetOnOptions}
+        />
       ))}
       <button type="button" onClick={handleDeal}>
         Deal

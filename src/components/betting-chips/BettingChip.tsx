@@ -5,10 +5,11 @@ import styles from "./BettingChip.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
 
 export type BettingChipsValues = 1 | 5 | 25 | 50 | 100;
+export type BetOnOptions = "player" | "tie" | "bank";
 
 export type BettingChipProps = {
   value: BettingChipsValues;
-  betOn: string;
+  betOn: BetOnOptions;
 };
 
 export const BettingChip = observer((props: BettingChipProps) => {
@@ -29,9 +30,6 @@ export const BettingChip = observer((props: BettingChipProps) => {
       default:
         break;
     }
-
-    // game.setCurrentBet(value);
-    // console.log(betOn);
   };
 
   return (
