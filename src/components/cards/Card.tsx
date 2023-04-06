@@ -1,21 +1,18 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Card as CardType } from "../../types";
 import "./Card.scss";
+// import { useMainStore } from "../../hooks/useMainStore";
 
 export type CardProps = {
   card: CardType;
 };
-export const Card = ({ card }: CardProps): JSX.Element => {
-  const [flipCard, setFlipCard] = React.useState(false);
+export const Card = observer(({ card }: CardProps): JSX.Element => {
+  // const { game } = useMainStore();
   const cardCSS = `front${card.face}${card.suit}`;
 
-  const timerId = setTimeout(() => {
-    // card.flipped = true;
-    setFlipCard(true);
-  }, 500);
-
   return (
-    <div className={flipCard ? "flip-container flip" : "flip-container"}>
+    <div className={card.flipped ? "flip-container flip" : "flip-container"}>
       <div className="flipper">
         <div className="front">
           <div className={`${cardCSS} size`} />
@@ -24,4 +21,4 @@ export const Card = ({ card }: CardProps): JSX.Element => {
       </div>
     </div>
   );
-};
+});

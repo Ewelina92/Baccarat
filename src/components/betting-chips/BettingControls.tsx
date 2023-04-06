@@ -14,15 +14,10 @@ export const BettingControls = observer(() => {
     setBettingChoice(e.target.value);
   };
 
-  if (game.gameStage === GameStage.InitialBet) {
-    betweenRoundsReset();
-  }
-
   const handleDeal = () => {
-    // if (game.gameStage === GameStage.InitialBet) {
-    //   game.setGameStage(GameStage.InitialCards);
-    //   // betweenRoundsReset();
-    // }
+    if (game.gameStage === GameStage.InitialBet) {
+      game.setGameStage(GameStage.InitialCards);
+    }
     if (game.gameStage === GameStage.SecondBet) {
       game.setGameStage(GameStage.CheckForThirdCard);
     }

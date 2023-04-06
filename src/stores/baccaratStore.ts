@@ -9,8 +9,6 @@ export class BaccaratStore {
 
   bankerCards: Card[] = [];
 
-  flipCard = false;
-
   setCards() {
     this.cards = getShuffledShoe(6);
   }

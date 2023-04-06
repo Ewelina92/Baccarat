@@ -6,9 +6,10 @@ import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
 
 export const ContinueOverlay = observer(() => {
-  const { game, baccarat, endGameReset } = useMainStore();
+  const { game, baccarat, endGameReset, betweenRoundsReset } = useMainStore();
 
   const continueGame = () => {
+    betweenRoundsReset();
     game.setGameStage(GameStage.InitialBet);
   };
 
