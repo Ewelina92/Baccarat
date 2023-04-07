@@ -14,7 +14,7 @@ export type BettingChipProps = {
 
 export const BettingChip = observer((props: BettingChipProps) => {
   const { value, betOn } = props;
-  const { game } = useMainStore();
+  const { game, player } = useMainStore();
 
   const addToBet = () => {
     switch (betOn) {
@@ -38,6 +38,7 @@ export const BettingChip = observer((props: BettingChipProps) => {
       type="button"
       value={value}
       onClick={addToBet}
+      disabled={value > player.playerMoney}
     >
       {value}
     </button>
