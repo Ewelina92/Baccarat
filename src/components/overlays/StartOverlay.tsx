@@ -8,20 +8,26 @@ export const StartOverlay = observer(() => {
   const { game, player } = useMainStore();
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
+  const [formErrorMessage, setFormErrorMessage] = React.useState("");
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    setName(event.target.value.trim());
   };
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value);
     setMoney(+event.target.value);
   };
 
   const startGame = () => {
-    game.nextRound();
-    player.setPlayerName(name);
-    player.addPlayerMoney(money);
+    if (name !== "" && money !== 0) {
+      game.nextRound();
+      player.setPlayerName(name);
+      player.addPlayerMoney(money);
+    } else {
+      setFormErrorMessage(
+        "Please fill out your name and starting amount to begin."
+      );
+    }
   };
 
   return (
@@ -29,6 +35,7 @@ export const StartOverlay = observer(() => {
       <div className={styles.overlay}>
         <h1>Welcome to Baccarat</h1>
         <form>
+          {formErrorMessage !== "" && `${formErrorMessage}`}
           <div>
             <label htmlFor="player-name">
               What&#39;s your name?
