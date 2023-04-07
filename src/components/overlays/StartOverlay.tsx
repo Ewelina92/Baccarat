@@ -15,7 +15,6 @@ export const StartOverlay = observer(() => {
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value.trim());
-    setName(event.target.value.trim());
   };
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
