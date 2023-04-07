@@ -11,9 +11,9 @@ export enum GameStage {
 }
 
 export class GameStore {
-  gameStage: GameStage = GameStage.Start;
+  gameStage: GameStage = GameStage.InitialBet;
 
-  gameRound = 1;
+  gameRound = 0;
 
   // bet = 0;
 

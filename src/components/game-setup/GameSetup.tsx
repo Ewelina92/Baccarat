@@ -5,7 +5,7 @@ import { GameField } from "../game/GameField";
 import { StartScreen } from "../start-screen/StartScreen";
 import { ContinueOverlay } from "../overlays/ContinueOverlay";
 import { GameStage } from "../../stores/gameStore";
-import { BettingOverlay } from "../overlays/BettingOverlay";
+import { StartOverlay } from "../overlays/StartOverlay";
 
 export const GameSetup = observer(() => {
   const { game } = useMainStore();
@@ -16,9 +16,8 @@ export const GameSetup = observer(() => {
   return (
     <>
       <GameField />
+      {game.gameRound === 0 && <StartOverlay />}
       {game.gameStage === GameStage.Continue && <ContinueOverlay />}
-      {/* {game.gameStage === GameStage.InitialBet && <BettingOverlay />}
-      {game.gameStage === GameStage.SecondBet && <BettingOverlay />} */}
     </>
   );
 });

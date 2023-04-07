@@ -8,20 +8,21 @@ import { GameStage } from "../../stores/gameStore";
 export const StartOverlay = observer(() => {
   const { game, player } = useMainStore();
   const [name, setName] = React.useState("");
-  const [bet, setBet] = React.useState(0);
+  const [money, setMoney] = React.useState(0);
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // setBet(+event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
+    setMoney(+event.target.value);
   };
 
   const startGame = () => {
-    game.setGameStage(GameStage.InitialCards);
+    game.nextRound();
     player.setPlayerName(name);
+    player.addPlayerMoney(money);
   };
 
   return (
@@ -41,12 +42,13 @@ export const StartOverlay = observer(() => {
             </label>
           </div>
           <div>
-            <label htmlFor="bet">
+            <label htmlFor="money">
               How much money are you bringing?
               <input
-                id="bet"
+                id="money"
                 type="number"
                 min={0}
+                max={10000}
                 onChange={handleMoney}
                 placeholder="0"
               />
