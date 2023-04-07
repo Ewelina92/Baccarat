@@ -19,7 +19,7 @@ export const StartOverlay = observer(() => {
   };
 
   const startGame = () => {
-    if (name !== "" && money !== 0) {
+    if (name !== "" && money > 0) {
       game.nextRound();
       player.setPlayerName(name);
       player.addPlayerMoney(money);
