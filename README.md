@@ -19,6 +19,12 @@ Good luck and have fun!
 ### Credits
 SVG:s from [Copyright free SVG and print ready playing cards - by Adrian Kennard (RevK®)](https://www.me.uk/cards/) (22 March 2023)
 
+Betting chip sound
+Sound Effect from <a href=“https://pixabay.com/sound-effects/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=89563”>Pixabay</a>
+
+Place your bets please
+Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=28110">Pixabay</a>
+
 <!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). -->
