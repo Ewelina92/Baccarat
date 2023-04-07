@@ -3,13 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.14",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "mobx": "^6.8.0",
@@ -46,7 +39,14 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
     "@types/lodash": "^4.14.191",
+    "@types/node": "^16.18.14",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
     "eslint": "^8.36.0",
