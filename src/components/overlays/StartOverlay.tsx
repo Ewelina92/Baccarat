@@ -9,8 +9,10 @@ export const StartOverlay = observer(() => {
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
+  const [formErrorMessage, setFormErrorMessage] = React.useState("");
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value.trim());
     setName(event.target.value.trim());
   };
 
