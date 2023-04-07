@@ -26,6 +26,10 @@ export class PlayerStore {
     this.setPlayerMoney(amount);
   }
 
+  removePlayerMoney(amount: number) {
+    this.playerMoney -= amount;
+  }
+
   resetPlayer() {
     this.setPlayerName("");
     this.setPlayerMoney(0);
