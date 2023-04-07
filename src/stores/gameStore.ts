@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
 export enum GameStage {
-  Start,
   InitialBet,
   SecondBet,
   InitialCards,
@@ -75,8 +74,8 @@ export class GameStore {
   }
 
   resetGame() {
-    this.setGameStage(GameStage.Start);
-    this.gameRound = 1;
+    this.setGameStage(GameStage.InitialBet);
+    this.gameRound = 0;
     // this.bet = 0;
     this.resetBets();
     this.playerBet = 0;

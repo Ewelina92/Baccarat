@@ -3,7 +3,6 @@ import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./StartOverlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
-import { GameStage } from "../../stores/gameStore";
 
 export const StartOverlay = observer(() => {
   const { game, player } = useMainStore();
