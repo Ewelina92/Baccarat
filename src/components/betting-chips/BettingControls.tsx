@@ -24,7 +24,6 @@ export const BettingControls = observer(() => {
 
   const handleDeal = () => {
     game.setGameStage(GameStage.InitialCards);
-    game.setGameStage(GameStage.InitialCards);
   };
 
   return (
