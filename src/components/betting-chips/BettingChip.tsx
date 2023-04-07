@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import sound from "./betting-chip-sound.mp3";
 
 import styles from "./BettingChip.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
@@ -14,6 +15,7 @@ export type BettingChipProps = {
 
 export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
   const { game, player } = useMainStore();
+  const bettingChipSound = new Audio(sound);
 
   const addToBet = () => {
     if (value > player.playerMoney) {
@@ -23,18 +25,21 @@ export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
     switch (betOn) {
       case "player":
         if (value <= player.playerMoney) {
+          bettingChipSound.play();
           game.addToPlayerBet(value);
           player.removePlayerMoney(value);
         }
         break;
       case "tie":
         if (value <= player.playerMoney) {
+          bettingChipSound.play();
           game.addToTieBet(value);
           player.removePlayerMoney(value);
         }
         break;
       case "bank":
         if (value <= player.playerMoney) {
+          bettingChipSound.play();
           game.addToBankerBet(value);
           player.removePlayerMoney(value);
         }
