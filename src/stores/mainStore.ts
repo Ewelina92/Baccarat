@@ -98,7 +98,7 @@ export class MainStore {
               // this.baccarat.giveBankerACard();
               // this.baccarat.giveBankerACard();
               setTimeout(() => {
-                this.game.setGameStage(GameStage.SecondBet);
+                this.game.setGameStage(GameStage.CheckForThirdCard);
               }, 2000);
               break;
             case GameStage.CheckForThirdCard:

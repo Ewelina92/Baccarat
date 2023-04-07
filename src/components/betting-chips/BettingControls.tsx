@@ -15,12 +15,7 @@ export const BettingControls = observer(() => {
   };
 
   const handleDeal = () => {
-    if (game.gameStage === GameStage.InitialBet) {
-      game.setGameStage(GameStage.InitialCards);
-    }
-    if (game.gameStage === GameStage.SecondBet) {
-      game.setGameStage(GameStage.CheckForThirdCard);
-    }
+    game.setGameStage(GameStage.InitialCards);
   };
 
   return (
@@ -32,7 +27,11 @@ export const BettingControls = observer(() => {
           betOn={bettingChoice as BetOnOptions}
         />
       ))}
-      <button type="button" onClick={handleDeal}>
+      <button
+        type="button"
+        onClick={handleDeal}
+        disabled={game.gameStage !== GameStage.InitialBet}
+      >
         Deal
       </button>
       <fieldset>

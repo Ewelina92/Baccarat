@@ -2,7 +2,6 @@ import { makeAutoObservable } from "mobx";
 
 export enum GameStage {
   InitialBet,
-  SecondBet,
   InitialCards,
   CheckForThirdCard,
   Continue,
