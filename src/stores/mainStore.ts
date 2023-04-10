@@ -34,6 +34,13 @@ export class MainStore {
 
   disposeReaction: IReactionDisposer;
 
+  doubleBets() {
+    if (this.player.playerMoney >= this.game.totalBet) {
+      this.player.removePlayerMoney(this.game.totalBet);
+      this.game.doubleAllBets();
+    }
+  }
+
   endGameReset() {
     this.game.resetGame();
     this.player.resetPlayer();

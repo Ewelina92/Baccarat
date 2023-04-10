@@ -35,6 +35,12 @@ export class GameStore {
     this.gameStage = gameStage;
   }
 
+  doubleAllBets() {
+    this.playerBet *= 2;
+    this.bankerBet *= 2;
+    this.tieBet *= 2;
+  }
+
   addToPlayerBet(bet: number) {
     this.playerBet += bet;
   }
