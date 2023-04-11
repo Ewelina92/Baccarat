@@ -14,6 +14,7 @@ import { PlayerStore } from "./playerStore";
 import { BaccaratStore } from "./baccaratStore";
 import { GameStage, GameStore } from "./gameStore";
 import { WinnerOptions } from "../types";
+import { Snapshot } from "./snapshotStore";
 
 // bet,
 // player + bank 2 cards each
@@ -34,6 +35,8 @@ export class MainStore {
 
   disposeReaction: IReactionDisposer;
 
+  snapshots: Snapshot[] = [];
+
   doubleBets() {
     if (this.player.playerMoney >= this.game.totalBet) {
       this.player.removePlayerMoney(this.game.totalBet);
@@ -47,6 +50,7 @@ export class MainStore {
     this.baccarat.setCards();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
+    this.snapshots = [];
   }
 
   betweenRoundsReset() {
@@ -55,6 +59,8 @@ export class MainStore {
     this.game.resetBets();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
+    this.snapshots = [];
+    this.createSnapshot();
     this.game.resetWinner();
     this.game.nextRound();
   }
@@ -77,6 +83,27 @@ export class MainStore {
         break;
       default:
         break;
+    }
+  }
+
+  createSnapshot() {
+    const snapshot = new Snapshot(
+      this.game,
+      this.player,
+      this.game.playerBet,
+      this.game.tieBet,
+      this.game.bankerBet,
+      this.player.playerMoney
+    );
+
+    this.snapshots.push(snapshot);
+  }
+
+  undoLastBet() {
+    if (this.snapshots.length > 1) {
+      const snapshotToRestore = this.snapshots.at(-2);
+      snapshotToRestore?.undo();
+      this.snapshots.pop();
     }
   }
 

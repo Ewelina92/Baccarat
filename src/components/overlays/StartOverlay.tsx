@@ -7,7 +7,7 @@ import sound from "../betting-chips/place-bets-please.mp3";
 import { useAudio } from "../../hooks/useAudio";
 
 export const StartOverlay = observer(() => {
-  const { game, player } = useMainStore();
+  const { game, player, createSnapshot } = useMainStore();
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
@@ -25,6 +25,7 @@ export const StartOverlay = observer(() => {
     if (!!name.length && money > 0) {
       game.nextRound();
       player.setInitialData(name, money);
+      createSnapshot();
       audio.play();
     } else {
       setFormErrorMessage(

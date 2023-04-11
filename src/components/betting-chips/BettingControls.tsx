@@ -8,7 +8,7 @@ import sound from "./place-bets-please.mp3";
 const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
 
 export const BettingControls = observer(() => {
-  const { game, doubleBets } = useMainStore();
+  const { game, doubleBets, undoLastBet } = useMainStore();
   const [bettingChoice, setBettingChoice] = React.useState("");
   const audio = new Audio(sound);
 
@@ -35,6 +35,13 @@ export const BettingControls = observer(() => {
           betOn={bettingChoice as BetOnOptions}
         />
       ))}
+      <button
+        type="button"
+        onClick={undoLastBet}
+        disabled={game.gameStage !== GameStage.InitialBet}
+      >
+        Undo
+      </button>
       <button
         type="button"
         onClick={handleDeal}
