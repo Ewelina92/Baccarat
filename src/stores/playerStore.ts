@@ -13,12 +13,21 @@ export class PlayerStore {
     this.playerName = name;
   }
 
+  setPlayerMoney(amount: number) {
+    this.playerMoney = amount;
+  }
+
   addPlayerMoney(amount: number) {
     this.playerMoney += amount;
   }
 
+  setInitialData(name: string, amount: number) {
+    this.setPlayerName(name);
+    this.setPlayerMoney(amount);
+  }
+
   resetPlayer() {
-    this.playerName = "";
-    this.playerMoney = 0;
+    this.setPlayerName("");
+    this.setPlayerMoney(0);
   }
 }
