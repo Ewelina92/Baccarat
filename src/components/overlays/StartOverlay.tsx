@@ -60,12 +60,7 @@ export const StartOverlay = observer(() => {
               />
             </label>
           </div>
-          {/* <button className={styles.btn}>Start New Game</button> */}
-          <button
-            type="button"
-            className={`${styles.glow} ${styles.btn}`}
-            onClick={startGame}
-          >
+          <button type="button" onClick={startGame}>
             Start New Game
           </button>
         </form>
