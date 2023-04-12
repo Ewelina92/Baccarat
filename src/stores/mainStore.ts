@@ -111,11 +111,10 @@ export class MainStore {
                 setTimeout(() => {
                   if (this.player.playerMoney < 1) {
                     this.endGameReset();
-                    this.game.setGameStage(GameStage.InitialBet);
                   } else {
                     this.betweenRoundsReset();
-                    this.game.setGameStage(GameStage.InitialBet);
                   }
+                  this.game.setGameStage(GameStage.InitialBet);
                 }, 4000);
               }
               // otherwise
@@ -165,11 +164,10 @@ export class MainStore {
                 setTimeout(() => {
                   if (this.player.playerMoney < 1) {
                     this.endGameReset();
-                    this.game.setGameStage(GameStage.InitialBet);
                   } else {
                     this.betweenRoundsReset();
-                    this.game.setGameStage(GameStage.InitialBet);
                   }
+                  this.game.setGameStage(GameStage.InitialBet);
                 }, 4000);
               }
               break;
