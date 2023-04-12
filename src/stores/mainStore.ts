@@ -21,6 +21,10 @@ import { WinnerOptions } from "../types";
 // -> winner
 // continue? play again? or end?s
 
+const MULTIPLIER_PLAYER_WIN = 2;
+const MULTIPLIER_TIE_WIN = 6;
+const MULTIPLIER_BANKER_WIN = 1.95;
+
 export class MainStore {
   player: PlayerStore = new PlayerStore();
 
@@ -55,16 +59,13 @@ export class MainStore {
     );
     this.game.setWinner(winner);
     if (winner === WinnerOptions.Player) {
-      this.player.addPlayerMoney(this.game.playerBet * 2);
-      // this.player.removePlayerMoney(this.game.bankerBet + this.game.tieBet);
+      this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
     }
     if (winner === WinnerOptions.Tie) {
-      this.player.addPlayerMoney(this.game.tieBet * 6);
-      // this.player.removePlayerMoney(this.game.bankerBet + this.game.playerBet);
+      this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
     }
     if (winner === WinnerOptions.Banker) {
-      this.player.addPlayerMoney(this.game.bankerBet * 1.95);
-      // this.player.removePlayerMoney(this.game.playerBet + this.game.tieBet);
+      this.player.addPlayerMoney(this.game.bankerBet * MULTIPLIER_BANKER_WIN);
     }
   }
 
