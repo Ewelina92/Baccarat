@@ -35,7 +35,7 @@ export const StartOverlay = observer(() => {
       <div className={styles.overlay}>
         <h1>Welcome to Baccarat</h1>
         <form>
-          {formErrorMessage !== "" && `${formErrorMessage}`}
+          {formErrorMessage}
           <div className={styles.formentry}>
             <label htmlFor="player-name">
               What&#39;s your name?
