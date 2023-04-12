@@ -109,7 +109,7 @@ export class MainStore {
                   this.setWinner();
                 }, 2000);
                 setTimeout(() => {
-                  if (this.player.playerMoney <= 0) {
+                  if (this.player.playerMoney < 1) {
                     this.endGameReset();
                     this.game.setGameStage(GameStage.InitialBet);
                   } else {
@@ -163,7 +163,7 @@ export class MainStore {
                 }, 2000);
                 // this.setWinner();
                 setTimeout(() => {
-                  if (this.player.playerMoney <= 0) {
+                  if (this.player.playerMoney < 1) {
                     this.endGameReset();
                     this.game.setGameStage(GameStage.InitialBet);
                   } else {
