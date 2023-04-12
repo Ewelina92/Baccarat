@@ -7,9 +7,7 @@
   width: 100vw;
   height: 100vh;
   top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  overflow: auto;
   background-color: rgba(0, 0, 0, 0.9);
   text-align: center;
   flex-wrap: wrap;

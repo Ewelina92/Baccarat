@@ -15,11 +15,11 @@ export const StartOverlay = observer(() => {
   };
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMoney(+event.target.value);
+    setMoney(event.target.valueAsNumber);
   };
 
   const startGame = () => {
-    if (name !== "" && money > 0) {
+    if (!!name.length && money > 0) {
       game.nextRound();
       player.setPlayerName(name);
       player.addPlayerMoney(money);
