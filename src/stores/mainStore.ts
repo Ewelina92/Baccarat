@@ -21,6 +21,10 @@ import { WinnerOptions } from "../types";
 // -> winner
 // continue? play again? or end?s
 
+const MULTIPLIER_PLAYER_WIN = 2;
+const MULTIPLIER_TIE_WIN = 6;
+const MULTIPLIER_BANKER_WIN = 1.95;
+
 export class MainStore {
   player: PlayerStore = new PlayerStore();
 
@@ -54,17 +58,18 @@ export class MainStore {
       this.baccarat.bankerPoints
     );
     this.game.setWinner(winner);
-    if (winner === WinnerOptions.Player) {
-      this.player.addPlayerMoney(this.game.playerBet);
-      this.player.removePlayerMoney(this.game.bankerBet + this.game.tieBet);
-    }
-    if (winner === WinnerOptions.Tie) {
-      this.player.addPlayerMoney(this.game.tieBet * 5);
-      this.player.removePlayerMoney(this.game.bankerBet + this.game.playerBet);
-    }
-    if (winner === WinnerOptions.Banker) {
-      this.player.addPlayerMoney(this.game.bankerBet * 0.95);
-      this.player.removePlayerMoney(this.game.playerBet + this.game.tieBet);
+    switch (winner) {
+      case WinnerOptions.Player:
+        this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
+        break;
+      case WinnerOptions.Tie:
+        this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
+        break;
+      case WinnerOptions.Banker:
+        this.player.addPlayerMoney(this.game.bankerBet * MULTIPLIER_BANKER_WIN);
+        break;
+      default:
+        break;
     }
   }
 
@@ -77,10 +82,6 @@ export class MainStore {
         runInAction(() => {
           switch (this.game.gameStage) {
             case GameStage.InitialBet:
-              // this.baccarat.givePlayerACard();
-              // this.baccarat.givePlayerACard();
-              // this.baccarat.giveBankerACard();
-              // this.baccarat.giveBankerACard();
               break;
             case GameStage.InitialCards:
               this.baccarat.givePlayerACard();
@@ -96,10 +97,6 @@ export class MainStore {
                 // eslint-disable-next-line no-param-reassign
                 card.flipped = true;
               });
-              // this.baccarat.givePlayerACard();
-              // this.baccarat.givePlayerACard();
-              // this.baccarat.giveBankerACard();
-              // this.baccarat.giveBankerACard();
               setTimeout(() => {
                 this.game.setGameStage(GameStage.CheckForThirdCard);
               }, 2000);
@@ -115,11 +112,14 @@ export class MainStore {
                 setTimeout(() => {
                   this.setWinner();
                 }, 2000);
-                // this.setWinner();
                 setTimeout(() => {
-                  this.game.setGameStage(GameStage.Continue);
+                  if (this.player.playerMoney < 1) {
+                    this.endGameReset();
+                  } else {
+                    this.betweenRoundsReset();
+                  }
+                  this.game.setGameStage(GameStage.InitialBet);
                 }, 4000);
-                // this.setGameStage(GameStage.Continue);
               }
               // otherwise
               else {
@@ -166,9 +166,13 @@ export class MainStore {
                 }, 2000);
                 // this.setWinner();
                 setTimeout(() => {
-                  this.game.setGameStage(GameStage.Continue);
+                  if (this.player.playerMoney < 1) {
+                    this.endGameReset();
+                  } else {
+                    this.betweenRoundsReset();
+                  }
+                  this.game.setGameStage(GameStage.InitialBet);
                 }, 4000);
-                // this.setGameStage(GameStage.Continue);
               }
               break;
             default:
