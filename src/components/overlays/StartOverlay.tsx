@@ -36,7 +36,7 @@ export const StartOverlay = observer(() => {
         <h1>Welcome to Baccarat</h1>
         <form>
           {formErrorMessage !== "" && `${formErrorMessage}`}
-          <div>
+          <div className={styles.formentry}>
             <label htmlFor="player-name">
               What&#39;s your name?
               <input
@@ -47,7 +47,7 @@ export const StartOverlay = observer(() => {
               />
             </label>
           </div>
-          <div>
+          <div className={styles.formentry}>
             <label htmlFor="money">
               How much money are you bringing?
               <input
