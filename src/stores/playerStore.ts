@@ -27,7 +27,7 @@ export class PlayerStore {
   }
 
   resetPlayer() {
-    this.playerName = "";
-    this.playerMoney = 0;
+    this.setPlayerName("");
+    this.setPlayerMoney(0);
   }
 }
