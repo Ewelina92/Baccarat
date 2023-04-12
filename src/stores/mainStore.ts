@@ -58,14 +58,18 @@ export class MainStore {
       this.baccarat.bankerPoints
     );
     this.game.setWinner(winner);
-    if (winner === WinnerOptions.Player) {
-      this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
-    }
-    if (winner === WinnerOptions.Tie) {
-      this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
-    }
-    if (winner === WinnerOptions.Banker) {
-      this.player.addPlayerMoney(this.game.bankerBet * MULTIPLIER_BANKER_WIN);
+    switch (winner) {
+      case WinnerOptions.Player:
+        this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
+        break;
+      case WinnerOptions.Tie:
+        this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
+        break;
+      case WinnerOptions.Banker:
+        this.player.addPlayerMoney(this.game.bankerBet * MULTIPLIER_BANKER_WIN);
+        break;
+      default:
+        break;
     }
   }
 
