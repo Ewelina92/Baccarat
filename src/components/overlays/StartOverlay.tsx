@@ -21,8 +21,7 @@ export const StartOverlay = observer(() => {
   const startGame = () => {
     if (!!name.length && money > 0) {
       game.nextRound();
-      player.setPlayerName(name);
-      player.addPlayerMoney(money);
+      player.setInitialData(name, money);
     } else {
       setFormErrorMessage(
         "Please fill out your name and starting amount to begin."
