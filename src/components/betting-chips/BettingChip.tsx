@@ -12,11 +12,14 @@ export type BettingChipProps = {
   betOn: BetOnOptions;
 };
 
-export const BettingChip = observer((props: BettingChipProps) => {
-  const { value, betOn } = props;
-  const { game } = useMainStore();
+export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
+  const { game, player } = useMainStore();
 
   const addToBet = () => {
+    if (value > player.playerMoney) {
+      return;
+    }
+
     switch (betOn) {
       case "player":
         game.addToPlayerBet(value);
@@ -28,8 +31,9 @@ export const BettingChip = observer((props: BettingChipProps) => {
         game.addToBankerBet(value);
         break;
       default:
-        break;
+        return;
     }
+    player.removePlayerMoney(value);
   };
 
   return (
@@ -38,6 +42,7 @@ export const BettingChip = observer((props: BettingChipProps) => {
       type="button"
       value={value}
       onClick={addToBet}
+      hidden={value > player.playerMoney}
     >
       {value}
     </button>

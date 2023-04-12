@@ -56,12 +56,15 @@ export class MainStore {
     this.game.setWinner(winner);
     if (winner === WinnerOptions.Player) {
       this.player.addPlayerMoney(this.game.playerBet);
+      this.player.removePlayerMoney(this.game.bankerBet + this.game.tieBet);
     }
     if (winner === WinnerOptions.Tie) {
       this.player.addPlayerMoney(this.game.tieBet * 5);
+      this.player.removePlayerMoney(this.game.bankerBet + this.game.playerBet);
     }
     if (winner === WinnerOptions.Banker) {
       this.player.addPlayerMoney(this.game.bankerBet * 0.95);
+      this.player.removePlayerMoney(this.game.playerBet + this.game.tieBet);
     }
   }
 
@@ -98,7 +101,7 @@ export class MainStore {
               // this.baccarat.giveBankerACard();
               // this.baccarat.giveBankerACard();
               setTimeout(() => {
-                this.game.setGameStage(GameStage.SecondBet);
+                this.game.setGameStage(GameStage.CheckForThirdCard);
               }, 2000);
               break;
             case GameStage.CheckForThirdCard:
