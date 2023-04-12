@@ -42,7 +42,7 @@ export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
       type="button"
       value={value}
       onClick={addToBet}
-      disabled={value > player.playerMoney}
+      hidden={value > player.playerMoney}
     >
       {value}
     </button>

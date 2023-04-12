@@ -30,7 +30,9 @@ export const BettingControls = observer(() => {
       <button
         type="button"
         onClick={handleDeal}
-        disabled={game.gameStage !== GameStage.InitialBet}
+        disabled={
+          game.gameStage !== GameStage.InitialBet || game.totalBet === 0
+        }
       >
         Deal
       </button>
