@@ -37,6 +37,24 @@ export class MainStore {
 
   snapshots: Snapshot[] = [];
 
+  betOnPlayer(amount: number) {
+    this.game.addToPlayerBet(amount);
+    this.player.removePlayerMoney(amount);
+    this.createSnapshot();
+  }
+
+  betOnTie(amount: number) {
+    this.game.addToTieBet(amount);
+    this.player.removePlayerMoney(amount);
+    this.createSnapshot();
+  }
+
+  betOnBanker(amount: number) {
+    this.game.addToBankerBet(amount);
+    this.player.removePlayerMoney(amount);
+    this.createSnapshot();
+  }
+
   doubleBets() {
     if (this.player.playerMoney >= this.game.totalBet) {
       this.player.removePlayerMoney(this.game.totalBet);

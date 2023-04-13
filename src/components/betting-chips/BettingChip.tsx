@@ -15,7 +15,7 @@ export type BettingChipProps = {
 };
 
 export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
-  const { game, player, createSnapshot } = useMainStore();
+  const { player, betOnPlayer, betOnTie, betOnBanker } = useMainStore();
   const audio = useAudio(sound);
 
   const addToBet = () => {
@@ -25,20 +25,18 @@ export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
 
     switch (betOn) {
       case "player":
-        game.addToPlayerBet(value);
+        betOnPlayer(value);
         break;
       case "tie":
-        game.addToTieBet(value);
+        betOnTie(value);
         break;
       case "bank":
-        game.addToBankerBet(value);
+        betOnBanker(value);
         break;
       default:
         return;
     }
     audio.play();
-    player.removePlayerMoney(value);
-    createSnapshot();
   };
 
   return (
