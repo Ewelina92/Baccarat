@@ -16,12 +16,6 @@ import { GameStage, GameStore } from "./gameStore";
 import { WinnerOptions } from "../types";
 import { Snapshot } from "./snapshotStore";
 
-// bet,
-// player + bank 2 cards each
-// -> check who won OR check for third cards
-// -> winner
-// continue? play again? or end?s
-
 const MULTIPLIER_PLAYER_WIN = 2;
 const MULTIPLIER_TIE_WIN = 6;
 const MULTIPLIER_BANKER_WIN = 1.95;
@@ -63,7 +57,7 @@ export class MainStore {
   }
 
   endGameReset() {
-    this.game.resetGame();
+    this.game.fullReset();
     this.player.resetPlayer();
     this.baccarat.setCards();
     this.baccarat.resetPlayerCards();
@@ -72,15 +66,11 @@ export class MainStore {
   }
 
   betweenRoundsReset() {
-    // this.game.setGameStage(GameStage.InitialCards);
-    this.game.setGameStage(GameStage.InitialBet);
-    this.game.resetBets();
+    this.game.betweenRoundsReset();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
     this.snapshots = [];
     this.createSnapshot();
-    this.game.resetWinner();
-    this.game.nextRound();
   }
 
   setWinner() {
@@ -117,6 +107,85 @@ export class MainStore {
     }
   }
 
+  handleInitialCardsStage() {
+    this.baccarat.givePlayerACard();
+    this.baccarat.givePlayerACard();
+    this.baccarat.giveBankerACard();
+    this.baccarat.giveBankerACard();
+
+    this.baccarat.flipPlayerCards();
+    this.baccarat.flipBankerCards();
+
+    const timer = setTimeout(() => {
+      this.game.setGameStage(GameStage.CheckForThirdCard);
+      clearTimeout(timer);
+    }, 2000);
+  }
+
+  handleGameRoundEnd() {
+    const winnerTimer = setTimeout(() => {
+      this.setWinner();
+      clearTimeout(winnerTimer);
+    }, 2000);
+    const timer = setTimeout(() => {
+      if (this.player.playerMoney < 1) {
+        this.endGameReset();
+      } else {
+        this.betweenRoundsReset();
+      }
+      this.game.setGameStage(GameStage.InitialBet);
+      clearTimeout(timer);
+    }, 4000);
+  }
+
+  handleThirdCard(receiver: "player" | "banker") {
+    if (receiver === "player") {
+      this.baccarat.givePlayerACard();
+      const timer = setTimeout(() => {
+        if (this.baccarat.playerCards[2]) {
+          this.baccarat.playerCards[2].flipped = true;
+        }
+        clearTimeout(timer);
+      }, 500);
+    }
+
+    if (receiver === "banker") {
+      this.baccarat.giveBankerACard();
+      const timer = setTimeout(() => {
+        if (this.baccarat.bankerCards[2]) {
+          this.baccarat.bankerCards[2].flipped = true;
+        }
+        clearTimeout(timer);
+      }, 500);
+    }
+  }
+
+  handleThirdCardStage() {
+    // if 8 or 9 points, end of round
+    if (this.baccarat.playerPoints >= 8 || this.baccarat.bankerPoints >= 8) {
+      this.handleGameRoundEnd();
+    } else {
+      // player needs third card?
+      if (needThirdCardPlayerRule(this.baccarat.playerPoints)) {
+        this.handleThirdCard("player");
+        if (
+          // banker according to banker rule
+          needThirdCardBankersRule(
+            this.baccarat.bankerPoints,
+            this.baccarat.playerCards[2].face
+          )
+        ) {
+          this.handleThirdCard("banker");
+        }
+      } else if (needThirdCardPlayerRule(this.baccarat.bankerPoints)) {
+        // player didn't get third card
+        // banker according to players rule
+        this.handleThirdCard("banker");
+      }
+      this.handleGameRoundEnd();
+    }
+  }
+
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
 
@@ -128,96 +197,10 @@ export class MainStore {
             case GameStage.InitialBet:
               break;
             case GameStage.InitialCards:
-              this.baccarat.givePlayerACard();
-              this.baccarat.givePlayerACard();
-              this.baccarat.giveBankerACard();
-              this.baccarat.giveBankerACard();
-              // FLIP CARDS
-              this.baccarat.playerCards.forEach((card) => {
-                // eslint-disable-next-line no-param-reassign
-                card.flipped = true;
-              });
-              this.baccarat.bankerCards.forEach((card) => {
-                // eslint-disable-next-line no-param-reassign
-                card.flipped = true;
-              });
-              setTimeout(() => {
-                this.game.setGameStage(GameStage.CheckForThirdCard);
-              }, 2000);
+              this.handleInitialCardsStage();
               break;
             case GameStage.CheckForThirdCard:
-              // if 8 or 9 points check winner
-              if (
-                this.baccarat.playerPoints === 8 ||
-                this.baccarat.playerPoints === 9 ||
-                this.baccarat.bankerPoints === 8 ||
-                this.baccarat.bankerPoints === 9
-              ) {
-                setTimeout(() => {
-                  this.setWinner();
-                }, 2000);
-                setTimeout(() => {
-                  if (this.player.playerMoney < 1) {
-                    this.endGameReset();
-                  } else {
-                    this.betweenRoundsReset();
-                  }
-                  this.game.setGameStage(GameStage.InitialBet);
-                }, 4000);
-              }
-              // otherwise
-              else {
-                // player needs third card?
-                if (needThirdCardPlayerRule(this.baccarat.playerPoints)) {
-                  this.baccarat.givePlayerACard();
-                  const timer = setTimeout(() => {
-                    if (this.baccarat.playerCards[2]) {
-                      this.baccarat.playerCards[2].flipped = true;
-                    }
-                    clearTimeout(timer);
-                  }, 500);
-                  if (
-                    // banker according to banker rule
-                    needThirdCardBankersRule(
-                      this.baccarat.bankerPoints,
-                      this.baccarat.playerCards[2].face
-                    )
-                  ) {
-                    this.baccarat.giveBankerACard();
-                    const timer2 = setTimeout(() => {
-                      if (this.baccarat.bankerCards[2]) {
-                        this.baccarat.bankerCards[2].flipped = true;
-                      }
-                      clearTimeout(timer2);
-                    }, 500);
-                  }
-                } else if (
-                  needThirdCardPlayerRule(this.baccarat.bankerPoints)
-                ) {
-                  // player didn't get third card
-                  // banker third card according to players rule
-                  this.baccarat.giveBankerACard();
-                  const timer = setTimeout(() => {
-                    if (this.baccarat.bankerCards[2]) {
-                      this.baccarat.bankerCards[2].flipped = true;
-                    }
-                    clearTimeout(timer);
-                  }, 500);
-                }
-                // check for winner
-                setTimeout(() => {
-                  this.setWinner();
-                }, 2000);
-                // this.setWinner();
-                setTimeout(() => {
-                  if (this.player.playerMoney < 1) {
-                    this.endGameReset();
-                  } else {
-                    this.betweenRoundsReset();
-                  }
-                  this.game.setGameStage(GameStage.InitialBet);
-                }, 4000);
-              }
+              this.handleThirdCardStage();
               break;
             default:
               break;

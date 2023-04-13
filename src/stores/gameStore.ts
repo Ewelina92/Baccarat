@@ -64,31 +64,30 @@ export class GameStore {
   }
 
   resetBets() {
-    this.playerBet = 0;
-    this.tieBet = 0;
-    this.bankerBet = 0;
+    this.setPlayerBet(0);
+    this.setTieBet(0);
+    this.setBankerBet(0);
   }
 
   setWinner(winner: string) {
     this.winner = winner;
   }
 
-  resetWinner() {
-    this.winner = "";
-  }
-
   nextRound() {
     this.gameRound += 1;
   }
 
-  resetGame() {
+  fullReset() {
     this.setGameStage(GameStage.InitialBet);
     this.gameRound = 0;
-    // this.bet = 0;
     this.resetBets();
-    this.playerBet = 0;
-    this.tieBet = 0;
-    this.bankerBet = 0;
-    this.resetWinner();
+    this.setWinner("");
+  }
+
+  betweenRoundsReset() {
+    this.setGameStage(GameStage.InitialBet);
+    this.resetBets();
+    this.setWinner("");
+    this.nextRound();
   }
 }

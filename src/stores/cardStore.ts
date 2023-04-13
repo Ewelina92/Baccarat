@@ -1,4 +1,4 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { Card } from "../types";
 import { getPoints, getShuffledShoe } from "../utils";
 
@@ -14,10 +14,6 @@ export class CardStore {
   }
 
   drawCard() {
-    // eslint-disable-next-line no-console
-    console.log(toJS(this.cards[0]));
-    // eslint-disable-next-line no-console
-    console.log(this.cards.length);
     return this.cards.shift();
   }
 
@@ -49,6 +45,20 @@ export class CardStore {
 
   resetBankerCards() {
     this.bankerCards = [];
+  }
+
+  flipPlayerCards() {
+    this.playerCards.forEach((card) => {
+      // eslint-disable-next-line no-param-reassign
+      card.flipped = true;
+    });
+  }
+
+  flipBankerCards() {
+    this.bankerCards.forEach((card) => {
+      // eslint-disable-next-line no-param-reassign
+      card.flipped = true;
+    });
   }
 
   nextRoundIsPossible(): boolean {
