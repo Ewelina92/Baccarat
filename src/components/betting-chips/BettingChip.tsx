@@ -24,29 +24,18 @@ export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
 
     switch (betOn) {
       case "player":
-        if (value <= player.playerMoney) {
-          bettingChipSound.play();
-          game.addToPlayerBet(value);
-          player.removePlayerMoney(value);
-        }
+        game.addToPlayerBet(value);
         break;
       case "tie":
-        if (value <= player.playerMoney) {
-          bettingChipSound.play();
-          game.addToTieBet(value);
-          player.removePlayerMoney(value);
-        }
+        game.addToTieBet(value);
         break;
       case "bank":
-        if (value <= player.playerMoney) {
-          bettingChipSound.play();
-          game.addToBankerBet(value);
-          player.removePlayerMoney(value);
-        }
+        game.addToBankerBet(value);
         break;
       default:
         return;
     }
+    bettingChipSound.play();
     player.removePlayerMoney(value);
   };
 
