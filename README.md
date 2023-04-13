@@ -10,9 +10,17 @@ Run `npm start` to start the project.
 
 # How to play
 
-Fill in the required information at the welcome screen (name, initial bet) and click play game. Here you also find the game-rules.
+Fill in the required information at the welcome screen (name and how much money you start to play with) and click play game. Here you also find the game-rules.
 
-After each round, you get the choice to continute to the next round (assuming there are cards left in the shoe) or to end the game.
+Place your bets. By clicking the undo-button you undo your last bet, and by clicking the double-button you double all your bets.
+
+When you're done placing your bets for the current round, you click deal. 
+
+The round is now gonna play out.
+
+To play another round, you place your bets and again click the deal-button.
+
+If you run out of money, the game will end. If you don't want to continue playing, just close the browser/tab.
 
 Good luck and have fun!
 
