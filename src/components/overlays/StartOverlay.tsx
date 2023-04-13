@@ -3,14 +3,18 @@ import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./StartOverlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
+import sound from "../betting-chips/place-bets-please.mp3";
+import { useAudio } from "../../hooks/useAudio";
 
 export const StartOverlay = observer(() => {
   const { game, player } = useMainStore();
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
+  const audio = useAudio(sound);
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value.trim());
     setName(event.target.value.trim());
   };
 
@@ -22,6 +26,7 @@ export const StartOverlay = observer(() => {
     if (!!name.length && money > 0) {
       game.nextRound();
       player.setInitialData(name, money);
+      audio.play();
     } else {
       setFormErrorMessage(
         "Please fill out your name and starting amount to begin."
