@@ -11,7 +11,7 @@ import {
   needThirdCardBankersRule
 } from "../utils";
 import { PlayerStore } from "./playerStore";
-import { BaccaratStore } from "./baccaratStore";
+import { CardStore } from "./cardStore";
 import { GameStage, GameStore } from "./gameStore";
 import { WinnerOptions } from "../types";
 import { Snapshot } from "./snapshotStore";
@@ -29,7 +29,7 @@ const MULTIPLIER_BANKER_WIN = 1.95;
 export class MainStore {
   player: PlayerStore = new PlayerStore();
 
-  baccarat: BaccaratStore = new BaccaratStore();
+  baccarat: CardStore = new CardStore();
 
   game: GameStore = new GameStore();
 

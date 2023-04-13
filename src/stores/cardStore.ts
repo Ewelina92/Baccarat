@@ -2,7 +2,7 @@ import { makeAutoObservable, toJS } from "mobx";
 import { Card } from "../types";
 import { getPoints, getShuffledShoe } from "../utils";
 
-export class BaccaratStore {
+export class CardStore {
   cards: Card[] = [];
 
   playerCards: Card[] = [];
