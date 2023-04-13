@@ -4,13 +4,14 @@ import { Portal } from "./Portal";
 import styles from "./StartOverlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
 import sound from "../betting-chips/place-bets-please.mp3";
+import { useAudio } from "../../hooks/useAudio";
 
 export const StartOverlay = observer(() => {
   const { game, player } = useMainStore();
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
-  const audio = new Audio(sound);
+  const audio = useAudio(sound);
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value.trim());
