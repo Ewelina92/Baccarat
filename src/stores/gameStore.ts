@@ -13,8 +13,6 @@ export class GameStore {
 
   gameRound = 0;
 
-  // bet = 0;
-
   playerBet = 0;
 
   tieBet = 0;
@@ -70,13 +68,6 @@ export class GameStore {
     this.tieBet = 0;
     this.bankerBet = 0;
   }
-  // setCurrentBet(bet: number) {
-  //   this.bet += bet;
-  // }
-
-  // setNewBet(bet: number) {
-  //   this.bet = bet;
-  // }
 
   setWinner(winner: string) {
     this.winner = winner;

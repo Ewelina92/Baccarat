@@ -1,4 +1,3 @@
-// .flip-container:hover .flipper,
 .flip-container.flip .flipper {
   transform: rotateY(180deg);
 }
@@ -31,13 +30,9 @@
 .back {
   background-image: url(./img/back.svg);
   background-size: 145px 200px;
-  /* transform: rotateY(180deg); */
 }
 
 .front {
-  /* background-size: 145px 200px; */
-  /* height: 200px;
-  width: 145px; */
   transform: rotateY(180deg);
 }
 
