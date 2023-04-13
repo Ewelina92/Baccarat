@@ -87,21 +87,13 @@ export class MainStore {
   }
 
   createSnapshot() {
-    const snapshot = new Snapshot(
-      this.game,
-      this.player,
-      this.game.playerBet,
-      this.game.tieBet,
-      this.game.bankerBet,
-      this.player.playerMoney
-    );
-
+    const snapshot = new Snapshot(this.game, this.player);
     this.snapshots.push(snapshot);
   }
 
   undoLastBet() {
     if (this.snapshots.length > 1) {
-      const snapshotToRestore = this.snapshots.at(-2);
+      const snapshotToRestore = this.snapshots[this.snapshots.length - 2];
       snapshotToRestore?.undo();
       this.snapshots.pop();
     }

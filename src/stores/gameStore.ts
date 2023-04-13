@@ -35,6 +35,18 @@ export class GameStore {
     this.gameStage = gameStage;
   }
 
+  setPlayerBet(amount: number) {
+    this.playerBet = amount;
+  }
+
+  setTieBet(amount: number) {
+    this.tieBet = amount;
+  }
+
+  setBankerBet(amount: number) {
+    this.bankerBet = amount;
+  }
+
   doubleAllBets() {
     this.playerBet *= 2;
     this.bankerBet *= 2;

@@ -15,27 +15,20 @@ export class Snapshot {
 
   playerMoney: number;
 
-  constructor(
-    game: GameStore,
-    player: PlayerStore,
-    playerBet: number,
-    tieBet: number,
-    bankerBet: number,
-    playerMoney: number
-  ) {
+  constructor(game: GameStore, player: PlayerStore) {
     makeAutoObservable(this, {}, { autoBind: true });
     this.game = game;
     this.player = player;
-    this.playerBet = playerBet;
-    this.tieBet = tieBet;
-    this.bankerBet = bankerBet;
-    this.playerMoney = playerMoney;
+    this.playerBet = game.playerBet;
+    this.tieBet = game.tieBet;
+    this.bankerBet = game.bankerBet;
+    this.playerMoney = player.playerMoney;
   }
 
   undo() {
-    this.game.playerBet = this.playerBet;
-    this.game.tieBet = this.tieBet;
-    this.game.bankerBet = this.bankerBet;
-    this.player.playerMoney = this.playerMoney;
+    this.game.setPlayerBet(this.playerBet);
+    this.game.setTieBet(this.tieBet);
+    this.game.setBankerBet(this.bankerBet);
+    this.player.setPlayerMoney(this.playerMoney);
   }
 }

@@ -26,21 +26,19 @@ export const BettingChip = observer(({ value, betOn }: BettingChipProps) => {
     switch (betOn) {
       case "player":
         game.addToPlayerBet(value);
-        createSnapshot();
         break;
       case "tie":
         game.addToTieBet(value);
-        createSnapshot();
         break;
       case "bank":
         game.addToBankerBet(value);
-        createSnapshot();
         break;
       default:
         return;
     }
     audio.play();
     player.removePlayerMoney(value);
+    createSnapshot();
   };
 
   return (
