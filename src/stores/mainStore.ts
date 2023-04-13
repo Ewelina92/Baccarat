@@ -128,7 +128,7 @@ export class MainStore {
       clearTimeout(winnerTimer);
     }, 2000);
     const timer = setTimeout(() => {
-      if (this.player.playerMoney < 1) {
+      if (this.player.playerMoney < 1 || !this.baccarat.nextRoundIsPossible) {
         this.endGameReset();
       } else {
         this.betweenRoundsReset();
@@ -143,7 +143,7 @@ export class MainStore {
       this.baccarat.givePlayerACard();
       const timer = setTimeout(() => {
         if (this.baccarat.playerCards[2]) {
-          this.baccarat.playerCards[2].flipped = true;
+          this.baccarat.flipThirdPlayerCard();
         }
         clearTimeout(timer);
       }, 500);
@@ -153,7 +153,7 @@ export class MainStore {
       this.baccarat.giveBankerACard();
       const timer = setTimeout(() => {
         if (this.baccarat.bankerCards[2]) {
-          this.baccarat.bankerCards[2].flipped = true;
+          this.baccarat.flipThirdBankerCard();
         }
         clearTimeout(timer);
       }, 500);

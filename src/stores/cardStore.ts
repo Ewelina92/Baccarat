@@ -61,6 +61,14 @@ export class CardStore {
     });
   }
 
+  flipThirdPlayerCard() {
+    this.playerCards[2].flipped = true;
+  }
+
+  flipThirdBankerCard() {
+    this.bankerCards[2].flipped = true;
+  }
+
   nextRoundIsPossible(): boolean {
     if (this.cards.length > 5) {
       return true;
