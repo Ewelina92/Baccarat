@@ -8,7 +8,7 @@ import sound from "./place-bets-please.mp3";
 const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
 
 export const BettingControls = observer(() => {
-  const { game } = useMainStore();
+  const { game, doubleBets, undoLastBet } = useMainStore();
   const [bettingChoice, setBettingChoice] = React.useState("");
   const audio = new Audio(sound);
 
@@ -24,7 +24,6 @@ export const BettingControls = observer(() => {
 
   const handleDeal = () => {
     game.setGameStage(GameStage.InitialCards);
-    game.setGameStage(GameStage.InitialCards);
   };
 
   return (
@@ -38,12 +37,26 @@ export const BettingControls = observer(() => {
       ))}
       <button
         type="button"
+        onClick={undoLastBet}
+        disabled={game.gameStage !== GameStage.InitialBet}
+      >
+        Undo
+      </button>
+      <button
+        type="button"
         onClick={handleDeal}
         disabled={
           game.gameStage !== GameStage.InitialBet || game.totalBet === 0
         }
       >
         Deal
+      </button>
+      <button
+        type="button"
+        onClick={doubleBets}
+        disabled={game.gameStage !== GameStage.InitialBet}
+      >
+        x2
       </button>
       <fieldset>
         <legend>What do you want to bet on?</legend>
