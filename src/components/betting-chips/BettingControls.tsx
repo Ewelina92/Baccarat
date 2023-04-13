@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
-import { BettingChip, BettingChipsValues, BetOnOptions } from "./BettingChip";
+import { BetOnOptions } from "./BettingChip";
 import sound from "./place-bets-please.mp3";
-
-const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
+import { BettingChips } from "./BettingChips";
 
 export const BettingControls = observer(() => {
   const { game, doubleBets, undoLastBet } = useMainStore();
@@ -28,13 +27,7 @@ export const BettingControls = observer(() => {
 
   return (
     <>
-      {bettingChipValues.map((value) => (
-        <BettingChip
-          key={value}
-          value={value}
-          betOn={bettingChoice as BetOnOptions}
-        />
-      ))}
+      <BettingChips bettingChoice={bettingChoice as BetOnOptions} />
       <button
         type="button"
         onClick={undoLastBet}
