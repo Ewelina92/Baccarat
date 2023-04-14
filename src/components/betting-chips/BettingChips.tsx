@@ -14,26 +14,6 @@ export type BettingChipsProps = {
 export const BettingChips = observer(() => {
   const { game, player } = useMainStore();
 
-  //   if (value > player.playerMoney) {
-  //     return;
-  //   }
-
-  //   switch (bettingChoice) {
-  //     case "player":
-  //       betOnPlayer(value);
-  //       break;
-  //     case "tie":
-  //       betOnTie(value);
-  //       break;
-  //     case "bank":
-  //       betOnBanker(value);
-  //       break;
-  //     default:
-  //       return;
-  //   }
-  //   audio.play();
-  // };
-
   const setBetValue = (value: number) => {
     game.setChosenBetValue(value);
   };
