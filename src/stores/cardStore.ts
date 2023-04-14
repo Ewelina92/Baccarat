@@ -1,8 +1,8 @@
-import { makeAutoObservable, toJS } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { Card } from "../types";
 import { getPoints, getShuffledShoe } from "../utils";
 
-export class BaccaratStore {
+export class CardStore {
   cards: Card[] = [];
 
   playerCards: Card[] = [];
@@ -14,10 +14,6 @@ export class BaccaratStore {
   }
 
   drawCard() {
-    // eslint-disable-next-line no-console
-    console.log(toJS(this.cards[0]));
-    // eslint-disable-next-line no-console
-    console.log(this.cards.length);
     return this.cards.shift();
   }
 
@@ -49,6 +45,28 @@ export class BaccaratStore {
 
   resetBankerCards() {
     this.bankerCards = [];
+  }
+
+  flipPlayerCards() {
+    this.playerCards.forEach((card) => {
+      // eslint-disable-next-line no-param-reassign
+      card.flipped = true;
+    });
+  }
+
+  flipBankerCards() {
+    this.bankerCards.forEach((card) => {
+      // eslint-disable-next-line no-param-reassign
+      card.flipped = true;
+    });
+  }
+
+  flipThirdPlayerCard() {
+    this.playerCards[2].flipped = true;
+  }
+
+  flipThirdBankerCard() {
+    this.bankerCards[2].flipped = true;
   }
 
   nextRoundIsPossible(): boolean {
