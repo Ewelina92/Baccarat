@@ -17,22 +17,20 @@ export const BettingChips = observer(({ bettingChoice }: BettingChipsProps) => {
   const { player, betOnPlayer, betOnTie, betOnBanker } = useMainStore();
   const audio = useAudio(sound);
 
-  const addToBet = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const { value } = event.target as HTMLButtonElement;
-
-    if (+value > player.playerMoney) {
+  const addToBet = (value: number) => {
+    if (value > player.playerMoney) {
       return;
     }
 
     switch (bettingChoice) {
       case "player":
-        betOnPlayer(+value);
+        betOnPlayer(value);
         break;
       case "tie":
-        betOnTie(+value);
+        betOnTie(value);
         break;
       case "bank":
-        betOnBanker(+value);
+        betOnBanker(value);
         break;
       default:
         return;
@@ -47,7 +45,7 @@ export const BettingChips = observer(({ bettingChoice }: BettingChipsProps) => {
           key={value}
           value={value}
           isHidden={player.playerMoney < +value}
-          onClick={addToBet}
+          placeBet={addToBet}
         />
       ))}
     </div>

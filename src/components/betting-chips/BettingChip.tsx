@@ -8,17 +8,27 @@ export type BetOnOptions = "player" | "tie" | "bank";
 export type BettingChipProps = {
   value: BettingChipsValues;
   isHidden: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  placeBet: (value: number) => void;
 };
 
-export const BettingChip = ({ value, isHidden, onClick }: BettingChipProps) => (
-  <button
-    className={styles.chip}
-    type="button"
-    value={value}
-    onClick={onClick}
-    hidden={isHidden}
-  >
-    {value}
-  </button>
-);
+export const BettingChip = ({
+  value,
+  isHidden,
+  placeBet
+}: BettingChipProps) => {
+  const handleOnClick = () => {
+    placeBet(value);
+  };
+
+  return (
+    <button
+      className={styles.chip}
+      type="button"
+      value={value}
+      onClick={handleOnClick}
+      hidden={isHidden}
+    >
+      {value}
+    </button>
+  );
+};
