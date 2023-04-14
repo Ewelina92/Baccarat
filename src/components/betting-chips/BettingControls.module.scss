@@ -1,1 +1,25 @@
-//
+.bettingField {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+
+    .player, .tie, .banker {
+        height: 10rem;
+        background: rgb(164, 54, 54);
+        border: 2px solid orange;
+    }
+
+    .player {
+        flex-basis: 40%;
+        border-width: 2px 0 2px 2px;
+    }
+
+    .tie {
+        flex-basis: 20%;
+    }
+
+    .banker {
+        flex-basis: 40%;
+        border-width: 2px 2px 2px 0;
+    }
+}
