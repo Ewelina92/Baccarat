@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { SyntheticEvent, useEffect } from "react";
 import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
-import { BetOnOptions } from "./BettingChip";
 import sound from "./place-bets-please.mp3";
+import chipSound from "./betting-chip-sound.mp3";
 import { BettingChips } from "./BettingChips";
+import { useAudio } from "../../hooks/useAudio";
+
+import styles from "./BettingControls.module.scss";
 
 export const BettingControls = observer(() => {
-  const { game, doubleBets, undoLastBet } = useMainStore();
-  const [bettingChoice, setBettingChoice] = React.useState("");
-  const audio = new Audio(sound);
+  const { game, doubleBets, undoLastBet, betOnPlayer, betOnTie, betOnBanker } =
+    useMainStore();
+  const audio = useAudio(sound);
+  const chipAudio = useAudio(chipSound);
 
   useEffect(() => {
     if (game.gameStage === GameStage.InitialBet && game.gameRound !== 0) {
@@ -17,17 +21,49 @@ export const BettingControls = observer(() => {
     }
   }, [game.gameStage]);
 
-  const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBettingChoice(e.target.value);
+  const betOnThePlayer = () => {
+    betOnPlayer(game.chosenBetValue);
+    chipAudio.play();
+  };
+  const betOnTheTie = () => {
+    betOnTie(game.chosenBetValue);
+    chipAudio.play();
+  };
+  const betOnTheBank = () => {
+    betOnBanker(game.chosenBetValue);
+    chipAudio.play();
   };
 
   const handleDeal = () => {
     game.setGameStage(GameStage.InitialCards);
   };
 
+  function allowDrop(ev: SyntheticEvent) {
+    ev.preventDefault();
+  }
+
   return (
     <>
-      <BettingChips bettingChoice={bettingChoice as BetOnOptions} />
+      <div className={styles.bettingField}>
+        <div
+          className={styles.player}
+          onDragOver={allowDrop}
+          onDrop={betOnThePlayer}
+        >
+          PLAYER
+        </div>
+        <div className={styles.tie} onDragOver={allowDrop} onDrop={betOnTheTie}>
+          TIE
+        </div>
+        <div
+          className={styles.banker}
+          onDragOver={allowDrop}
+          onDrop={betOnTheBank}
+        >
+          BANKER
+        </div>
+      </div>
+      <BettingChips />
       <button
         type="button"
         onClick={undoLastBet}
@@ -51,48 +87,6 @@ export const BettingControls = observer(() => {
       >
         x2
       </button>
-      <fieldset>
-        <legend>What do you want to bet on?</legend>
-
-        <div>
-          <label htmlFor="player">
-            <input
-              type="radio"
-              id="player"
-              name="bettingChoice"
-              value="player"
-              onChange={onOptionChange}
-            />
-            Player
-          </label>
-        </div>
-
-        <div>
-          <label htmlFor="tie">
-            <input
-              type="radio"
-              id="tie"
-              name="bettingChoice"
-              value="tie"
-              onChange={onOptionChange}
-            />
-            Tie
-          </label>
-        </div>
-
-        <div>
-          <label htmlFor="bank">
-            <input
-              type="radio"
-              id="bank"
-              name="bettingChoice"
-              value="bank"
-              onChange={onOptionChange}
-            />
-            Bank
-          </label>
-        </div>
-      </fieldset>
     </>
   );
 });

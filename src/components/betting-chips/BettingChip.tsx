@@ -16,7 +16,7 @@ export const BettingChip = ({
   isHidden,
   placeBet
 }: BettingChipProps) => {
-  const handleOnClick = () => {
+  const handleOnDragStart = () => {
     placeBet(value);
   };
 
@@ -25,8 +25,9 @@ export const BettingChip = ({
       className={styles.chip}
       type="button"
       value={value}
-      onClick={handleOnClick}
       hidden={isHidden}
+      draggable
+      onDragStart={handleOnDragStart}
     >
       {value}
     </button>

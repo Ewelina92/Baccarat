@@ -21,12 +21,18 @@ export class GameStore {
 
   winner = "";
 
+  chosenBetValue = 0;
+
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   get totalBet() {
     return this.playerBet + this.tieBet + this.bankerBet;
+  }
+
+  setChosenBetValue(value: number) {
+    this.chosenBetValue = value;
   }
 
   setGameStage(gameStage: GameStage) {

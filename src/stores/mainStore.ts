@@ -41,18 +41,21 @@ export class MainStore {
   betOnPlayer(amount: number) {
     this.game.addToPlayerBet(amount);
     this.player.removePlayerMoney(amount);
+    this.game.setChosenBetValue(0);
     this.createSnapshot();
   }
 
   betOnTie(amount: number) {
     this.game.addToTieBet(amount);
     this.player.removePlayerMoney(amount);
+    this.game.setChosenBetValue(0);
     this.createSnapshot();
   }
 
   betOnBanker(amount: number) {
     this.game.addToBankerBet(amount);
     this.player.removePlayerMoney(amount);
+    this.game.setChosenBetValue(0);
     this.createSnapshot();
   }
 
