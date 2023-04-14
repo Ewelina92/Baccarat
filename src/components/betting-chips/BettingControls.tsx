@@ -4,7 +4,9 @@ import cn from "classnames";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
 import sound from "./place-bets-please.mp3";
+import dealSound from "./deal-sound.mp3";
 import chipSound from "./betting-chip-sound.mp3";
+import buttonClickSound from "./button-click-sound.mp3";
 import { BettingChips } from "./BettingChips";
 import { useAudio } from "../../hooks/useAudio";
 
@@ -13,6 +15,7 @@ import styles from "./BettingControls.module.scss";
 export const BettingControls = observer(() => {
   const {
     game,
+    player,
     doubleBets,
     undoLastBet,
     betOnPlayer,
@@ -23,6 +26,8 @@ export const BettingControls = observer(() => {
   const [shouldSpin, setShouldSpin] = React.useState(false);
   const audio = useAudio(sound);
   const chipAudio = useAudio(chipSound);
+  const dealAudio = useAudio(dealSound);
+  const buttonClickAudio = useAudio(buttonClickSound);
 
   useEffect(() => {
     if (game.gameStage === GameStage.InitialBet && game.gameRound !== 0) {
@@ -45,15 +50,37 @@ export const BettingControls = observer(() => {
   };
 
   const handleDeal = () => {
+    dealAudio.play();
     setShouldSpin(true);
     setTimeout(() => {
       game.setGameStage(GameStage.InitialCards);
     }, 500);
   };
 
+  const handleUndoClick = () => {
+    buttonClickAudio.play();
+    undoLastBet();
+  };
+
+  const handleDoubleBetsClick = () => {
+    buttonClickAudio.play();
+    doubleBets();
+  };
+
   function allowDrop(ev: SyntheticEvent) {
     ev.preventDefault();
   }
+
+  const disableDoubleBetButton =
+    game.gameStage !== GameStage.InitialBet ||
+    game.totalBet === 0 ||
+    player.playerMoney < game.totalBet;
+
+  const disableUndoButton =
+    game.gameStage !== GameStage.InitialBet || snapshots.length < 2;
+
+  const disableDealButton =
+    game.gameStage !== GameStage.InitialBet || game.totalBet === 0;
 
   return (
     <>
@@ -93,10 +120,8 @@ export const BettingControls = observer(() => {
         <button
           className={cn(styles.btn, styles.small)}
           type="button"
-          onClick={undoLastBet}
-          disabled={
-            game.gameStage !== GameStage.InitialBet || snapshots.length < 2
-          }
+          onClick={handleUndoClick}
+          disabled={disableUndoButton}
         >
           <span className={styles.inside}>&#8634;</span>
         </button>
@@ -105,9 +130,7 @@ export const BettingControls = observer(() => {
           className={cn(styles.btn, styles.big, { [styles.spin]: shouldSpin })}
           type="button"
           onClick={handleDeal}
-          disabled={
-            game.gameStage !== GameStage.InitialBet || game.totalBet === 0
-          }
+          disabled={disableDealButton}
         >
           <span className={styles.inside}>
             <span className={styles.innermost}>Deal</span>
@@ -116,10 +139,8 @@ export const BettingControls = observer(() => {
         <button
           className={cn(styles.btn, styles.small)}
           type="button"
-          onClick={doubleBets}
-          disabled={
-            game.gameStage !== GameStage.InitialBet || game.totalBet === 0
-          }
+          onClick={handleDoubleBetsClick}
+          disabled={disableDoubleBetButton}
         >
           <span className={styles.inside}>x2</span>
         </button>

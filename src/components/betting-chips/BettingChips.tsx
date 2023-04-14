@@ -24,7 +24,7 @@ export const BettingChips = observer(() => {
         <BettingChip
           key={value}
           value={value}
-          isHidden={player.playerMoney < +value}
+          isHidden={player.playerMoney < value}
           placeBet={setBetValue}
         />
       ))}

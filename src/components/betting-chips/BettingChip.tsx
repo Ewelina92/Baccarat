@@ -1,5 +1,4 @@
 import React from "react";
-
 import styles from "./BettingChip.module.scss";
 
 export type BettingChipsValues = 1 | 5 | 25 | 50 | 100;

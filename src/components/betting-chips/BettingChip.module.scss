@@ -1,4 +1,5 @@
 .chip {
+  transform: perspective(10cm) rotateX(20deg);
   width: 4rem;
   height: 4rem;
   cursor: pointer;
@@ -12,35 +13,109 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
   overflow: hidden;
 
+  &[hidden] {
+    display: none;
+  }
+
   .inside {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    color: black;
+    background-color: #96a3ac;
+    color: white;
     text-shadow: 0px 0px 12px rgb(254 255 191 / 40%);
     font-size: 1.5rem;
+    font-weight: 900;
     width: 80%;
     height: 80%;
     border-radius: 100%;
     box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7);
+
   }
 }
 
 button[value="1"] {
-  background-color: white;
+  background: radial-gradient(
+    ellipse farthest-corner at right bottom,
+    #fff 0%,
+    #fbfafb 8%,
+    #f0eced 30%,
+    #fff 40%,
+    transparent 80%
+  ),
+  radial-gradient(
+    ellipse farthest-corner at left top,
+    #fff 0%,
+    #fbfafb 25%,
+    #f0eced 62.5%,
+    #fff 100%
+  );
 }
 
 button[value="5"] {
-  background-color: red;
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #ff0000 0%,
+      #e60000 8%,
+      #cc0000 30%,
+      #b30000 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #ff0000 0%,
+      #e60000  25%,
+      #cc0000 62.5%,
+      #b30000 100%
+    );
+
+    .inside {
+      background-color: #800202;
+    }
 }
 
 button[value="25"] {
-  background-color: green;
+  background: radial-gradient(
+    ellipse farthest-corner at right bottom,
+    #00e600 0%,
+    #00cc00 8%,
+    #00b300 30%,
+    #017d01 40%,
+    transparent 80%
+  ),
+  radial-gradient(
+    ellipse farthest-corner at left top,
+    #00e600 0%,
+    #00cc00  25%,
+    #00b300 62.5%,
+    #017d01 100%
+  );
+
+  .inside {
+    background-color: #016001;
+  }
 }
 
 button[value="50"] {
-  background-color: blue;
+  background: radial-gradient(
+    ellipse farthest-corner at right bottom,
+    #4f4fff 0%,
+    #3535ff 8%,
+    #1c1cff 30%,
+    #0202ff 40%,
+    transparent 80%
+  ),
+  radial-gradient(
+    ellipse farthest-corner at left top,
+    #4f4fff 0%,
+    #3535ff 25%,
+    #1c1cff 62.5%,
+    #0202ff 100%
+  );
+
+  .inside {
+    background-color: #0303c9;
+  }
 }
 
 button[value="100"] {
