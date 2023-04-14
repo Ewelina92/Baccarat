@@ -20,6 +20,13 @@ const MULTIPLIER_PLAYER_WIN = 2;
 const MULTIPLIER_TIE_WIN = 6;
 const MULTIPLIER_BANKER_WIN = 1.95;
 
+function delay(fn: () => void, time: number) {
+  const timer = setTimeout(() => {
+    fn();
+    clearTimeout(timer);
+  }, time);
+}
+
 export class MainStore {
   player: PlayerStore = new PlayerStore();
 
@@ -117,46 +124,41 @@ export class MainStore {
     this.baccarat.flipPlayerCards();
     this.baccarat.flipBankerCards();
 
-    const timer = setTimeout(() => {
+    delay(() => {
       this.game.setGameStage(GameStage.CheckForThirdCard);
-      clearTimeout(timer);
     }, 2000);
   }
 
   handleGameRoundEnd() {
-    const winnerTimer = setTimeout(() => {
+    delay(() => {
       this.setWinner();
-      clearTimeout(winnerTimer);
     }, 2000);
-    const timer = setTimeout(() => {
+    delay(() => {
       if (this.player.playerMoney < 1 || !this.baccarat.nextRoundIsPossible) {
         this.endGameReset();
       } else {
         this.betweenRoundsReset();
       }
       this.game.setGameStage(GameStage.InitialBet);
-      clearTimeout(timer);
     }, 4000);
   }
 
   handleThirdCard(receiver: "player" | "banker") {
     if (receiver === "player") {
       this.baccarat.givePlayerACard();
-      const timer = setTimeout(() => {
+      delay(() => {
         if (this.baccarat.playerCards[2]) {
           this.baccarat.flipThirdPlayerCard();
         }
-        clearTimeout(timer);
       }, 500);
     }
 
     if (receiver === "banker") {
       this.baccarat.giveBankerACard();
-      const timer = setTimeout(() => {
+      delay(() => {
         if (this.baccarat.bankerCards[2]) {
           this.baccarat.flipThirdBankerCard();
         }
-        clearTimeout(timer);
       }, 500);
     }
   }
