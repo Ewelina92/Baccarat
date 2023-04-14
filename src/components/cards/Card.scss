@@ -5,8 +5,8 @@
 .flip-container,
 .back,
 .front {
-  height: 200px;
-  width: 145px;
+  height: 12.5rem; //200px
+  width: 9rem; // 143px
 }
 
 .flipper {
@@ -29,7 +29,7 @@
 
 .back {
   background-image: url(./img/back.svg);
-  background-size: 145px 200px;
+  background-size: 9rem 12.5rem;
 }
 
 .front {
@@ -37,9 +37,9 @@
 }
 
 .size {
-  background-size: 145px 200px;
-  height: 200px;
-  width: 145px;
+  background-size: 9rem 12.5rem;
+  height: 12.5rem;
+  width: 9rem;
 }
 
 .front2C {

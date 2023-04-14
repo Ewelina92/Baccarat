@@ -1,5 +1,21 @@
 .chips {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem;
+
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(
+    349deg,
+    rgba(138, 110, 47, 1) 0%,
+    rgba(204, 156, 53, 1) 30%,
+    rgba(199, 151, 55, 1) 45%,
+    rgba(204, 156, 53, 1) 56%,
+    rgba(138, 110, 47, 1) 98%
+  );
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
 }

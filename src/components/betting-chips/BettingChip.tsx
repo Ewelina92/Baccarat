@@ -29,7 +29,7 @@ export const BettingChip = ({
       draggable
       onDragStart={handleOnDragStart}
     >
-      {value}
+      <span className={styles.inside}>{value}</span>
     </button>
   );
 };
