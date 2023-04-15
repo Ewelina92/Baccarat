@@ -143,7 +143,7 @@ export class MainStore {
         this.betweenRoundsReset();
       }
       this.game.setGameStage(GameStage.InitialBet);
-    }, 4000);
+    }, 6000);
   }
 
   handleThirdCard(receiver: "player" | "banker") {

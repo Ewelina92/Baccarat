@@ -94,14 +94,14 @@ export const BettingControls = observer(() => {
             <p className={styles.name}>PLAYER</p>
             <p className={styles.stake}>1:1</p>
           </div>
-          <p className={styles.bet}>Bet: {game.playerBet}</p>
+          <p className={styles.bet}>&euro; {game.playerBet}</p>
         </div>
         <div className={styles.tie} onDragOver={allowDrop} onDrop={betOnTheTie}>
           <div className={styles.fieldInfo}>
             <p className={styles.name}>TIE</p>
             <p className={styles.stake}>5:1</p>
           </div>
-          <p>Bet: {game.tieBet}</p>
+          <p>&euro; {game.tieBet}</p>
         </div>
         <div
           className={styles.banker}
@@ -112,7 +112,7 @@ export const BettingControls = observer(() => {
             <p className={styles.name}>BANKER</p>
             <p className={styles.stake}>0.95:1</p>
           </div>
-          <p>Bet: {game.bankerBet}</p>
+          <p>&euro; {game.bankerBet}</p>
         </div>
       </div>
       <BettingChips />

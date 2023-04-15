@@ -19,77 +19,85 @@ export const GameField = observer(() => {
   };
 
   return (
-    <div className={styles.gamefield}>
-      <div className={styles.red}>
-        <div className={styles.seventy}>
+    <>
+      {game.winner && (
+        <div className={styles.winnerC}>
+          <span className={styles.winner}>{game.winner}</span>
+        </div>
+      )}
+      <div className={styles.gamefield}>
+        <div className={styles.top}>
           <h1>Baccarat</h1>
           <div className={styles.info}>
-            <p>Player: {player.playerName.toLocaleUpperCase()}</p>
+            <p>{player.playerName.toLocaleUpperCase()} vs BANKER</p>
+            <p className={styles.status}>
+              {game.gameStage === GameStage.InitialBet ? (
+                <p>Place your bets please.</p>
+              ) : (
+                <p>Playing...</p>
+              )}{" "}
+            </p>
             <p>Game round: {game.gameRound}</p>
           </div>
-          <p className={styles.status}>Gamestatus... or winner {game.winner}</p>
-          <div className={styles.players}>
-            <div className={styles.playerField}>
-              {player.playerName}: {baccarat.playerPoints} <br />
-              <div className={styles.cards}>
-                <Card
-                  card={
-                    game.gameStage === GameStage.InitialBet
-                      ? fakeCard
-                      : baccarat.playerCards[0]
-                  }
-                />
-                <Card
-                  card={
-                    game.gameStage === GameStage.InitialBet
-                      ? fakeCard
-                      : baccarat.playerCards[1]
-                  }
-                />
-                {baccarat.playerCards[2] && (
-                  <Card card={baccarat.playerCards[2]} />
-                )}
-              </div>
-            </div>
-            <div className={styles.playerField}>
-              Banker: {baccarat.bankerPoints}
-              <br />
-              <div className={styles.cards}>
-                <Card
-                  card={
-                    game.gameStage === GameStage.InitialBet
-                      ? fakeCard
-                      : baccarat.bankerCards[0]
-                  }
-                />
-                <Card
-                  card={
-                    game.gameStage === GameStage.InitialBet
-                      ? fakeCard
-                      : baccarat.bankerCards[1]
-                  }
-                />
-                {baccarat.bankerCards[2] && (
-                  <Card card={baccarat.bankerCards[2]} />
-                )}
-              </div>
+          <div className={styles.playerField}>
+            <p>You have: {baccarat.playerPoints}</p>
+            <div className={styles.cards}>
+              <Card
+                card={
+                  game.gameStage === GameStage.InitialBet
+                    ? fakeCard
+                    : baccarat.playerCards[0]
+                }
+              />
+              <Card
+                card={
+                  game.gameStage === GameStage.InitialBet
+                    ? fakeCard
+                    : baccarat.playerCards[1]
+                }
+              />
+              {baccarat.playerCards[2] && (
+                <Card card={baccarat.playerCards[2]} />
+              )}
             </div>
           </div>
-          <br />
+          <div className={styles.bankerField}>
+            <p>Banker has: {baccarat.bankerPoints}</p>
+            <div className={styles.cards}>
+              <Card
+                card={
+                  game.gameStage === GameStage.InitialBet
+                    ? fakeCard
+                    : baccarat.bankerCards[0]
+                }
+              />
+              <Card
+                card={
+                  game.gameStage === GameStage.InitialBet
+                    ? fakeCard
+                    : baccarat.bankerCards[1]
+                }
+              />
+              {baccarat.bankerCards[2] && (
+                <Card card={baccarat.bankerCards[2]} />
+              )}
+            </div>
+          </div>
+        </div>
+        <div className={styles.bottomField}>
+          <BettingControls />
+          <div className={styles.bottom}>
+            <div className={styles.totalInfo}>
+              <p>BALANCE</p>
+              <p className={styles.balance}>&euro; {player.playerMoney}</p>
+            </div>
+            <div className={styles.totalInfo}>
+              <p>TOTAL BET</p>
+              <p className={styles.balance}>&euro; {game.totalBet}</p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <BettingControls />
-      <div className={styles.bottom}>
-        <div className={styles.totalInfo}>
-          <p>BALANCE</p>
-          <p className={styles.balance}>&euro; {player.playerMoney}</p>
-        </div>
-        <div className={styles.totalInfo}>
-          <p>TOTAL BET</p>
-          <p className={styles.balance}>&euro; {game.totalBet}</p>
-        </div>
-      </div>
-    </div>
+    </>
   );
 });
