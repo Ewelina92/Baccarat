@@ -71,14 +71,14 @@
 }
 
 .gamefield {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-rows: 50% 50%;
 
   .top {
     display: grid;
-    grid-template-rows: 0.5fr 0.5fr 2fr;
+    grid-template-rows: 0.4fr 0.2fr 2fr;
     grid-template-columns: 1fr 1fr;
     width: 70%;
     margin: 0 auto;
@@ -87,8 +87,8 @@
       grid-row: 1 / 1;
       grid-column: 1 / span 2;
       text-align: center;
-      margin-top: 0;
-      padding-top: 1rem;
+      margin: 0;
+      padding: 1rem 0 0.5rem 0;
       color: var(--yellow);
     }
 
@@ -106,8 +106,8 @@
 
     .status {
       align-self: center;
-      // text-align: center;
       padding: 1rem 1rem 2rem 1rem;
+      padding: 0;
       color: rgba(250, 250, 250, 0.8);
     }
 
@@ -159,7 +159,7 @@
   .bottomField {
     display: grid;
     grid-template-rows: 50% 0.8fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     background-color: var(--bg-brown);
   }
 
@@ -192,3 +192,77 @@
     }
   }
 }
+
+/* Using SCSS variables to store breakpoints */
+// $breakpoint-tablet: 880px;
+// @media (max-width: $breakpoint-tablet) {
+//   .gamefield {
+//     grid-template-rows: 60% 40%;
+  
+//     .top {
+//       grid-template-rows: 0.2fr 0.2fr 1fr 1fr;
+//       width: 90%;
+  
+//       h1 {
+//         grid-row: 1 / 1;
+//       }
+  
+//       .info {
+//         grid-row: 2 / 2;
+//       }
+
+//       .playerField {
+//         grid-row: 3 / 3;
+//         grid-column: 1 / span 2;
+//         text-align: start;
+  
+//         p {
+//           margin: 1rem 0;
+//         }
+  
+//         .cards {
+//           display: flex;
+//           flex-direction: row;
+//           justify-content: flex-start;
+//           gap: 0.5rem;
+  
+//           :nth-child(3) {
+//             transform: rotate(90deg);
+//             margin-left: 1.6rem;
+//           }
+//         }
+//       }
+  
+//       .bankerField {
+//         grid-row: 4 / 4;
+//         grid-column: 1 / span 2;
+  
+//         p {
+//           margin: 1rem 0;
+//         }
+  
+//         .cards {
+//           display: flex;
+//           justify-content: flex-start;
+//           gap: 0.5rem;
+  
+//           :nth-child(3) {
+//             transform: rotate(90deg);
+//             margin-left: 1.6rem;
+//           }
+//         }
+//       }
+//     }
+  
+//     .bottomField {
+//       display: grid;
+//       grid-template-rows: 50% 0.8fr 1fr;
+//       grid-template-columns: 2fr 1fr 1fr;
+//       background-color: var(--bg-brown);
+//     }
+  
+//     .bottom {
+//       flex-direction: column;
+//     }
+//   }
+// }
