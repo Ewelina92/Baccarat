@@ -2,11 +2,18 @@
   transform: rotateY(180deg);
 }
 
-.flip-container,
+.flip-container {
+  flex-basis: 30%;
+  height: 100%;
+}
+
 .back,
-.front {
-  height: 12.5rem; //200px
-  width: 9rem; // 143px
+.front,
+.front div {
+  height: 100%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .flipper {
@@ -29,17 +36,13 @@
 
 .back {
   background-image: url(./img/back.svg);
-  background-size: 9rem 12.5rem;
 }
 
 .front {
   transform: rotateY(180deg);
-}
-
-.size {
-  background-size: 9rem 12.5rem;
-  height: 12.5rem;
-  width: 9rem;
+  div {
+    height: 100%;
+  }
 }
 
 .front2C {

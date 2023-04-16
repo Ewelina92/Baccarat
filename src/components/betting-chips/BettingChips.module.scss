@@ -23,3 +23,12 @@
   border-right: 0;
   border-bottom: 0;
 }
+
+$short-screen: 550px;
+$narrow-screen: 650px;
+@media (max-width: $narrow-screen), (max-height: $short-screen) {
+  .chips {
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}

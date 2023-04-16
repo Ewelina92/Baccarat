@@ -80,7 +80,7 @@
     display: grid;
     grid-template-rows: 0.4fr 0.2fr 2fr;
     grid-template-columns: 1fr 1fr;
-    width: 70%;
+    width: 85%;
     margin: 0 auto;
 
     h1 {
@@ -114,8 +114,10 @@
     .playerField {
       grid-row: 3 / 3;
       grid-column: 1 / 1;
-      padding: 0.5rem;
+      padding: 0.6rem;
       text-align: end;
+      display: flex;
+      flex-direction: column;
 
       p {
         margin: 1rem 0;
@@ -126,18 +128,16 @@
         flex-direction: row-reverse;
         justify-content: flex-start;
         gap: 0.5rem;
-
-        :nth-child(3) {
-          transform: rotate(90deg);
-          margin-right: 1.6rem;
-        }
+        height: 100%;
       }
     }
 
     .bankerField {
       grid-row: 3 / 3;
       grid-column: 2 / 2;
-      padding: 0.5rem;
+      padding: 0.6rem;
+      display: flex;
+      flex-direction: column;
 
       p {
         margin: 1rem 0;
@@ -147,18 +147,14 @@
         display: flex;
         justify-content: flex-start;
         gap: 0.5rem;
-
-        :nth-child(3) {
-          transform: rotate(90deg);
-          margin-left: 1.6rem;
-        }
+        height: 100%;
       }
     }
   }
 
   .bottomField {
     display: grid;
-    grid-template-rows: 50% 0.8fr 1fr;
+    grid-template-rows: 2fr 0.8fr 1fr;
     grid-template-columns: 2fr 1fr 1fr;
     background-color: var(--bg-brown);
   }
@@ -167,6 +163,7 @@
     grid-row: 3 / span 2;
     grid-column: 1 / 1;
     padding: 1rem;
+    width: 70%;
     display: flex;
     justify-content: flex-start;
     align-self: flex-end;
@@ -177,10 +174,10 @@
       flex-direction: column;
       border: 1px solid rgba(138, 110, 47, 1);
       box-shadow: 1px 1px 4px rgba(138, 110, 47, 0.5);
-      width: 10rem;
       padding: 0.5rem 1rem;
       border-radius: 2rem;
       text-align: center;
+      justify-content: center;
 
       p {
         margin: 0;
@@ -193,76 +190,112 @@
   }
 }
 
-/* Using SCSS variables to store breakpoints */
-// $breakpoint-tablet: 880px;
-// @media (max-width: $breakpoint-tablet) {
-//   .gamefield {
-//     grid-template-rows: 60% 40%;
-  
-//     .top {
-//       grid-template-rows: 0.2fr 0.2fr 1fr 1fr;
-//       width: 90%;
-  
-//       h1 {
-//         grid-row: 1 / 1;
-//       }
-  
-//       .info {
-//         grid-row: 2 / 2;
-//       }
+$breakpoint-tablet: 830px;
+$min-tablet-height: 650px;
+@media (max-width: $breakpoint-tablet) and (min-height: $min-tablet-height) {
+  .gamefield {
+    grid-template-rows: 60% 40%;
 
-//       .playerField {
-//         grid-row: 3 / 3;
-//         grid-column: 1 / span 2;
-//         text-align: start;
-  
-//         p {
-//           margin: 1rem 0;
-//         }
-  
-//         .cards {
-//           display: flex;
-//           flex-direction: row;
-//           justify-content: flex-start;
-//           gap: 0.5rem;
-  
-//           :nth-child(3) {
-//             transform: rotate(90deg);
-//             margin-left: 1.6rem;
-//           }
-//         }
-//       }
-  
-//       .bankerField {
-//         grid-row: 4 / 4;
-//         grid-column: 1 / span 2;
-  
-//         p {
-//           margin: 1rem 0;
-//         }
-  
-//         .cards {
-//           display: flex;
-//           justify-content: flex-start;
-//           gap: 0.5rem;
-  
-//           :nth-child(3) {
-//             transform: rotate(90deg);
-//             margin-left: 1.6rem;
-//           }
-//         }
-//       }
-//     }
-  
-//     .bottomField {
-//       display: grid;
-//       grid-template-rows: 50% 0.8fr 1fr;
-//       grid-template-columns: 2fr 1fr 1fr;
-//       background-color: var(--bg-brown);
-//     }
-  
-//     .bottom {
-//       flex-direction: column;
-//     }
-//   }
-// }
+    .top {
+      width: 100%;
+      grid-template-rows: 0.2fr 0.2fr 1fr 1fr;
+
+      h1 {
+        grid-row: 1 / 1;
+      }
+
+      .info {
+        grid-row: 2 / 2;
+      }
+
+      .playerField {
+        grid-row: 3 / 3;
+        grid-column: 1 / span 2;
+        text-align: start;
+        width: 70%;
+        margin: 0 auto;
+
+        p {
+          margin: 1rem 0;
+        }
+
+        .cards {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          gap: 0.5rem;
+
+          :nth-child(3) {
+            transform: rotate(90deg);
+            margin-left: 1.6rem;
+          }
+        }
+      }
+
+      .bankerField {
+        grid-row: 4 / 4;
+        grid-column: 1 / span 2;
+        width: 70%;
+        margin: 0 auto;
+
+        p {
+          margin: 1rem 0;
+        }
+
+        .cards {
+          display: flex;
+          justify-content: flex-start;
+          gap: 0.5rem;
+
+          :nth-child(3) {
+            transform: rotate(90deg);
+            margin-left: 1.6rem;
+          }
+        }
+      }
+    }
+
+    .bottomField {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      background-color: var(--bg-brown);
+    }
+  }
+}
+
+$short-screen: 550px;
+$narrow-screen: 650px;
+@media (max-width: $narrow-screen), (max-height: $short-screen) {
+  .gamefield {
+    grid-template-rows: 60% 40%;
+    .top {
+      .playerField,
+      .bankerField {
+        width: 90%;
+      }
+    }
+    .bottom {
+      grid-column: 1 / span 3;
+      width: 100%;
+      justify-content: space-between;
+
+      .totalInfo {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+
+$tiny-screen: 450px;
+@media (max-height: $narrow-screen) {
+  .gamefield {
+    grid-template-rows: 40% 60%;
+    .top {
+      grid-template-rows: 0 0.2fr 1fr;
+      h1 {
+        display: none;
+      }
+    }
+  }
+}
