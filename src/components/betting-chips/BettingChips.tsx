@@ -4,6 +4,7 @@ import { BetOnOptions, BettingChip, BettingChipsValues } from "./BettingChip";
 
 import styles from "./BettingChips.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
+import { GameStage } from "../../stores/gameStore";
 
 const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
 
@@ -25,6 +26,7 @@ export const BettingChips = observer(() => {
           key={value}
           value={value}
           isHidden={player.playerMoney < value}
+          isDisabled={game.gameStage !== GameStage.InitialBet}
           placeBet={setBetValue}
         />
       ))}

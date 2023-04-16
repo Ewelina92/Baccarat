@@ -156,7 +156,8 @@
     display: grid;
     grid-template-rows: 2fr 0.8fr 1fr;
     grid-template-columns: 2fr 1fr 1fr;
-    background-color: var(--bg-brown);
+    background: var(--bg-brown);
+    background: var(--bg-brown-gradient);
   }
 
   .bottom {

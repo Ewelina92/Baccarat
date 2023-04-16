@@ -7,12 +7,14 @@ export type BetOnOptions = "player" | "tie" | "bank";
 export type BettingChipProps = {
   value: BettingChipsValues;
   isHidden: boolean;
+  isDisabled: boolean;
   placeBet: (value: number) => void;
 };
 
 export const BettingChip = ({
   value,
   isHidden,
+  isDisabled,
   placeBet
 }: BettingChipProps) => {
   const handleOnDragStart = () => {
@@ -25,7 +27,8 @@ export const BettingChip = ({
       type="button"
       value={value}
       hidden={isHidden}
-      draggable
+      disabled={isDisabled}
+      draggable={!isDisabled}
       onDragStart={handleOnDragStart}
     >
       <span className={styles.inside}>{value}</span>

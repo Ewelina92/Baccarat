@@ -17,6 +17,10 @@
     display: none;
   }
 
+  &:disabled {
+    filter: brightness(60%);
+  }
+
   .inside {
     display: flex;
     align-items: center;
