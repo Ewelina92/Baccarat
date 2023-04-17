@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
+import sound from "./win-sound.mp3";
 
 import { Card } from "../cards/Card";
 import styles from "./GameField.module.scss";
 import { BettingControls } from "../betting-chips/BettingControls";
 import { GameStage } from "../../stores/gameStore";
 import { CardSuit } from "../../types";
+import { useAudio } from "../../hooks/useAudio";
 
 export const GameField = observer(() => {
-  const { game, player, baccarat, soundVolume, toggleSound } = useMainStore();
+  const { game, player, baccarat, soundVolume, toggleSound, didWin } =
+    useMainStore();
+  const winSound = useAudio(sound, { volume: soundVolume });
 
   const fakeCard = {
     face: "fake",
@@ -17,6 +21,12 @@ export const GameField = observer(() => {
     value: 0,
     flipped: false
   };
+
+  useEffect(() => {
+    if (didWin) {
+      winSound.play();
+    }
+  }, [didWin]);
 
   return (
     <>

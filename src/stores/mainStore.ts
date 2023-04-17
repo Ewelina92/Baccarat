@@ -40,6 +40,12 @@ export class MainStore {
 
   soundVolume = 1;
 
+  didWin = false;
+
+  setDidWin(state: boolean) {
+    this.didWin = state;
+  }
+
   toggleSound() {
     if (this.soundVolume === 1) {
       this.soundVolume = 0;
@@ -83,6 +89,7 @@ export class MainStore {
     this.baccarat.setCards();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
+    this.setDidWin(false);
     this.snapshots = [];
   }
 
@@ -90,6 +97,7 @@ export class MainStore {
     this.game.betweenRoundsReset();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
+    this.setDidWin(false);
     this.snapshots = [];
     this.createSnapshot();
   }
@@ -102,12 +110,21 @@ export class MainStore {
     this.game.setWinner(winner);
     switch (winner) {
       case WinnerOptions.Player:
+        if (this.game.playerBet > 0) {
+          this.setDidWin(true);
+        }
         this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
         break;
       case WinnerOptions.Tie:
+        if (this.game.tieBet > 0) {
+          this.setDidWin(true);
+        }
         this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
         break;
       case WinnerOptions.Banker:
+        if (this.game.bankerBet > 0) {
+          this.setDidWin(true);
+        }
         this.player.addPlayerMoney(this.game.bankerBet * MULTIPLIER_BANKER_WIN);
         break;
       default:
