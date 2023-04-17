@@ -3,10 +3,10 @@ import { observer } from "mobx-react";
 import cn from "classnames";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
-import sound from "./place-bets-please.mp3";
-import dealSound from "./deal-sound.mp3";
-import chipSound from "./betting-chip-sound.mp3";
-import buttonClickSound from "./button-click-sound.mp3";
+import startSound from "../../sounds/place-bets-please.mp3";
+import dealSound from "../../sounds/deal-sound.mp3";
+import chipSound from "../../sounds/betting-chip-sound.mp3";
+import buttonClickSound from "../../sounds/button-click-sound.mp3";
 import { BettingChips } from "./BettingChips";
 import { useAudio } from "../../hooks/useAudio";
 
@@ -25,14 +25,14 @@ export const BettingControls = observer(() => {
     snapshots
   } = useMainStore();
   const [shouldSpin, setShouldSpin] = React.useState(false);
-  const audio = useAudio(sound, { volume: soundVolume });
-  const chipAudio = useAudio(chipSound, { volume: soundVolume });
-  const dealAudio = useAudio(dealSound, { volume: soundVolume });
-  const buttonClickAudio = useAudio(buttonClickSound, { volume: soundVolume });
+  const startAudio = useAudio(startSound, { volume: +soundVolume });
+  const chipAudio = useAudio(chipSound, { volume: +soundVolume });
+  const dealAudio = useAudio(dealSound, { volume: +soundVolume });
+  const buttonClickAudio = useAudio(buttonClickSound, { volume: +soundVolume });
 
   useEffect(() => {
     if (game.gameStage === GameStage.InitialBet && game.gameRound !== 0) {
-      audio.play();
+      startAudio.play();
       setShouldSpin(false);
     }
   }, [game.gameStage]);

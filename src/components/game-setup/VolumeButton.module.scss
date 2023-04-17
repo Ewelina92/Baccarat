@@ -1,0 +1,13 @@
+.sound {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border: none;
+  color: rgb(250, 250, 250, 0.8);
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}

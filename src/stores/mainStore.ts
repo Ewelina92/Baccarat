@@ -38,7 +38,7 @@ export class MainStore {
 
   snapshots: Snapshot[] = [];
 
-  soundVolume = 1;
+  soundVolume = "";
 
   didWin = false;
 
@@ -47,10 +47,20 @@ export class MainStore {
   }
 
   toggleSound() {
-    if (this.soundVolume === 1) {
-      this.soundVolume = 0;
+    if (this.soundVolume === "1") {
+      localStorage.setItem("volumeForBaccarat", "0");
     } else {
-      this.soundVolume = 1;
+      localStorage.setItem("volumeForBaccarat", "1");
+    }
+    this.getSoundPreference();
+  }
+
+  getSoundPreference() {
+    const volume = localStorage.getItem("volumeForBaccarat");
+    if (volume === "0" || volume === "1") {
+      this.soundVolume = volume;
+    } else {
+      this.soundVolume = "1";
     }
   }
 
@@ -221,6 +231,7 @@ export class MainStore {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
+    this.getSoundPreference();
 
     this.disposeReaction = reaction(
       () => this.game.gameStage,

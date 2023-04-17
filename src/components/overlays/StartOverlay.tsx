@@ -3,8 +3,9 @@ import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./StartOverlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
-import sound from "../betting-chips/place-bets-please.mp3";
+import startSound from "../../sounds/place-bets-please.mp3";
 import { useAudio } from "../../hooks/useAudio";
+import { VolumeButton } from "../game-setup/VolumeButton";
 
 export const StartOverlay = observer(() => {
   const { game, player, createSnapshot, soundVolume, toggleSound } =
@@ -12,7 +13,7 @@ export const StartOverlay = observer(() => {
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
-  const audio = useAudio(sound, { volume: soundVolume });
+  const audio = useAudio(startSound, { volume: +soundVolume });
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value.trim());
@@ -38,13 +39,7 @@ export const StartOverlay = observer(() => {
   return (
     <Portal>
       <div className={styles.overlay}>
-        <button type="button" className={styles.sound} onClick={toggleSound}>
-          {soundVolume === 1 ? (
-            <span className="material-symbols-outlined">volume_up</span>
-          ) : (
-            <span className="material-symbols-outlined">volume_off</span>
-          )}
-        </button>
+        <VolumeButton />
         <h1>Welcome to Baccarat</h1>
         <form>
           {formErrorMessage}

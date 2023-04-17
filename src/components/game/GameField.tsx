@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
-import sound from "./win-sound.mp3";
+import winSound from "../../sounds/win-sound.mp3";
 
 import { Card } from "../cards/Card";
 import styles from "./GameField.module.scss";
@@ -9,11 +9,12 @@ import { BettingControls } from "../betting-chips/BettingControls";
 import { GameStage } from "../../stores/gameStore";
 import { CardSuit } from "../../types";
 import { useAudio } from "../../hooks/useAudio";
+import { VolumeButton } from "../game-setup/VolumeButton";
 
 export const GameField = observer(() => {
   const { game, player, baccarat, soundVolume, toggleSound, didWin } =
     useMainStore();
-  const winSound = useAudio(sound, { volume: soundVolume });
+  const winAudio = useAudio(winSound, { volume: +soundVolume });
 
   const fakeCard = {
     face: "fake",
@@ -24,19 +25,13 @@ export const GameField = observer(() => {
 
   useEffect(() => {
     if (didWin) {
-      winSound.play();
+      winAudio.play();
     }
   }, [didWin]);
 
   return (
     <>
-      <button type="button" className={styles.sound} onClick={toggleSound}>
-        {soundVolume === 1 ? (
-          <span className="material-symbols-outlined">volume_up</span>
-        ) : (
-          <span className="material-symbols-outlined">volume_off</span>
-        )}
-      </button>
+      <VolumeButton />
       {game.winner && (
         <div className={styles.winnerC}>
           <span className={styles.winner}>{game.winner}</span>
