@@ -1,0 +1,10 @@
+.cards {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.reverse {
+   flex-direction: row-reverse; 
+}

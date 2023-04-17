@@ -8,31 +8,23 @@ import { useAudio } from "../../hooks/useAudio";
 import { VolumeButton } from "../game-setup/VolumeButton";
 
 export const StartOverlay = observer(() => {
-  const { game, player, createSnapshot, soundVolume, toggleSound } =
-    useMainStore();
-  const [name, setName] = React.useState("");
+  const { game, player, createSnapshot, soundVolume } = useMainStore();
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
   const audio = useAudio(startSound, { volume: +soundVolume });
-
-  const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value.trim());
-  };
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMoney(event.target.valueAsNumber);
   };
 
   const startGame = () => {
-    if (!!name.length && money > 0) {
+    if (money > 0 && money <= 1000) {
       game.nextRound();
-      player.setInitialData(name, money);
+      player.setInitialMoney(money);
       createSnapshot();
       audio.play();
     } else {
-      setFormErrorMessage(
-        "Please fill out your name and starting amount to begin."
-      );
+      setFormErrorMessage("Please add starting amount to begin.");
     }
   };
 
@@ -44,24 +36,14 @@ export const StartOverlay = observer(() => {
         <form>
           {formErrorMessage}
           <div className={styles.formentry}>
-            <label htmlFor="player-name">
-              What&#39;s your name?
-              <input
-                id="player-name"
-                type="text"
-                onChange={handleName}
-                placeholder="Your name"
-              />
-            </label>
-          </div>
-          <div className={styles.formentry}>
             <label htmlFor="money">
-              How much money are you bringing?
+              Starting balance:{" "}
+              <span className={styles.balance}>(&euro;1-1000)</span>
               <input
                 id="money"
                 type="number"
                 min={0}
-                max={10000}
+                max={1000}
                 onChange={handleMoney}
                 placeholder="&euro; 0"
               />
@@ -72,7 +54,7 @@ export const StartOverlay = observer(() => {
           </button>
         </form>
         <div className={styles.rules}>
-          <h3>Rules</h3>
+          <h3>How to play</h3>
           <p>
             We are gonna play the &#34;Punto banco&#34; version of Baccarat with
             six card-decks.

@@ -3,25 +3,16 @@ import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
 import winSound from "../../sounds/win-sound.mp3";
 
-import { Card } from "../cards/Card";
 import styles from "./GameField.module.scss";
 import { BettingControls } from "../betting-chips/BettingControls";
 import { GameStage } from "../../stores/gameStore";
-import { CardSuit } from "../../types";
 import { useAudio } from "../../hooks/useAudio";
 import { VolumeButton } from "../game-setup/VolumeButton";
+import { Cards } from "../cards/Cards";
 
 export const GameField = observer(() => {
-  const { game, player, baccarat, soundVolume, toggleSound, didWin } =
-    useMainStore();
+  const { game, player, baccarat, soundVolume, didWin } = useMainStore();
   const winAudio = useAudio(winSound, { volume: +soundVolume });
-
-  const fakeCard = {
-    face: "fake",
-    suit: CardSuit.Clover,
-    value: 0,
-    flipped: false
-  };
 
   useEffect(() => {
     if (didWin) {
@@ -41,59 +32,20 @@ export const GameField = observer(() => {
         <div className={styles.top}>
           <h1>Baccarat</h1>
           <div className={styles.info}>
-            <p>{player.playerName.toLocaleUpperCase()} vs BANKER</p>
             <p className={styles.status}>
-              {game.gameStage === GameStage.InitialBet ? (
-                <p>Place your bets please.</p>
-              ) : (
-                <p>Playing...</p>
-              )}{" "}
+              {game.gameStage === GameStage.InitialBet
+                ? "Place your bets"
+                : "Playing"}{" "}
             </p>
             <p>Game round: {game.gameRound}</p>
           </div>
           <div className={styles.playerField}>
             <p>You have: {baccarat.playerPoints}</p>
-            <div className={styles.cards}>
-              <Card
-                card={
-                  game.gameStage === GameStage.InitialBet
-                    ? fakeCard
-                    : baccarat.playerCards[0]
-                }
-              />
-              <Card
-                card={
-                  game.gameStage === GameStage.InitialBet
-                    ? fakeCard
-                    : baccarat.playerCards[1]
-                }
-              />
-              {baccarat.playerCards[2] && (
-                <Card card={baccarat.playerCards[2]} />
-              )}
-            </div>
+            <Cards cards={baccarat.playerCards} revertDirection />
           </div>
           <div className={styles.bankerField}>
             <p>Banker has: {baccarat.bankerPoints}</p>
-            <div className={styles.cards}>
-              <Card
-                card={
-                  game.gameStage === GameStage.InitialBet
-                    ? fakeCard
-                    : baccarat.bankerCards[0]
-                }
-              />
-              <Card
-                card={
-                  game.gameStage === GameStage.InitialBet
-                    ? fakeCard
-                    : baccarat.bankerCards[1]
-                }
-              />
-              {baccarat.bankerCards[2] && (
-                <Card card={baccarat.bankerCards[2]} />
-              )}
-            </div>
+            <Cards cards={baccarat.bankerCards} revertDirection={false} />
           </div>
         </div>
         <div className={styles.bottomField}>
