@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .winnerC {
   position: absolute;
   left: 0;
@@ -173,9 +175,7 @@
   }
 }
 
-$breakpoint-tablet: 830px;
-$min-tablet-height: 650px;
-@media (max-width: $breakpoint-tablet) and (min-height: $min-tablet-height) {
+@include screen-size(tablet) {
   .gamefield {
     grid-template-rows: 60% 40%;
 
@@ -246,9 +246,7 @@ $min-tablet-height: 650px;
   }
 }
 
-$short-screen: 550px;
-$narrow-screen: 650px;
-@media (max-width: $narrow-screen), (max-height: $short-screen) {
+@include screen-size(narrow-short-screen) {
   .gamefield {
     grid-template-rows: 60% 40%;
     .top {
@@ -270,8 +268,7 @@ $narrow-screen: 650px;
   }
 }
 
-$tiny-screen: 450px;
-@media (max-height: $narrow-screen) {
+@include screen-size(narrow-screen) {
   .gamefield {
     grid-template-rows: 40% 60%;
     .top {

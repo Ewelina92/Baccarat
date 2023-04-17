@@ -1,3 +1,5 @@
+@import '../../mixins';
+
 .chip {
   transform: perspective(10cm) rotateX(20deg);
   width: 4rem;
@@ -148,9 +150,7 @@ button[value="100"] {
   }
 }
 
-$narrow-screen: 650px;
-$short-screen: 550px;
-@media (max-width: $narrow-screen), (max-height: $short-screen) {
+@include screen-size(narrow-short-screen) {
   .chip {
     width: 3rem;
     height: 3rem;
