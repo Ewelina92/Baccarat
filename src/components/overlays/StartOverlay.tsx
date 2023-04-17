@@ -68,7 +68,7 @@ export const StartOverlay = observer(() => {
                 min={0}
                 max={10000}
                 onChange={handleMoney}
-                placeholder="0"
+                placeholder="&euro; 0"
               />
             </label>
           </div>
