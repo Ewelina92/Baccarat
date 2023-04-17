@@ -27,10 +27,20 @@ export const Cards = observer(({ revertDirection, cards }: CardsProps) => {
   return (
     <div className={cn(styles.cards, { [styles.reverse]: revertDirection })}>
       <Card
-        card={game.gameStage === GameStage.InitialBet ? fakeCard : firstCard}
+        card={
+          game.gameStage === GameStage.InitialBet ||
+          game.gameStage === GameStage.Start
+            ? fakeCard
+            : firstCard
+        }
       />
       <Card
-        card={game.gameStage === GameStage.InitialBet ? fakeCard : secondCard}
+        card={
+          game.gameStage === GameStage.InitialBet ||
+          game.gameStage === GameStage.Start
+            ? fakeCard
+            : secondCard
+        }
       />
       {thirdCard && <Card card={thirdCard} />}
     </div>

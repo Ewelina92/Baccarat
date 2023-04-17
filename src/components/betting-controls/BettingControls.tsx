@@ -31,7 +31,7 @@ export const BettingControls = observer(() => {
   const buttonClickAudio = useAudio(buttonClickSound, { volume: +soundVolume });
 
   useEffect(() => {
-    if (game.gameStage === GameStage.InitialBet && game.gameRound !== 0) {
+    if (game.gameStage === GameStage.InitialBet) {
       startAudio.play();
       setShouldSpin(false);
     }

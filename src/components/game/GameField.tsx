@@ -4,7 +4,7 @@ import { useMainStore } from "../../hooks/useMainStore";
 import winSound from "../../sounds/win-sound.mp3";
 
 import styles from "./GameField.module.scss";
-import { BettingControls } from "../betting-chips/BettingControls";
+import { BettingControls } from "../betting-controls/BettingControls";
 import { GameStage } from "../../stores/gameStore";
 import { useAudio } from "../../hooks/useAudio";
 import { VolumeButton } from "../game-setup/VolumeButton";
@@ -20,6 +20,16 @@ export const GameField = observer(() => {
     }
   }, [didWin]);
 
+  const hours = Math.floor(game.time / 3600);
+  const minutes = Math.floor(game.time / 60) % 60;
+  const seconds = game.time % 60;
+
+  const hoursAsString = hours.toString().padStart(2, "0");
+  const minutesAsString = minutes.toString().padStart(2, "0");
+  const secondsAsString = seconds.toString().padStart(2, "0");
+
+  const timeAsString = `${hoursAsString}:${minutesAsString}:${secondsAsString}`;
+
   return (
     <>
       <VolumeButton />
@@ -28,6 +38,7 @@ export const GameField = observer(() => {
           <span className={styles.winner}>{game.winner}</span>
         </div>
       )}
+      <p className={styles.time}>{timeAsString}</p>
       <div className={styles.gamefield}>
         <div className={styles.top}>
           <h1>Baccarat</h1>
@@ -37,7 +48,6 @@ export const GameField = observer(() => {
                 ? "Place your bets"
                 : "Playing"}{" "}
             </p>
-            <p>Game round: {game.gameRound}</p>
           </div>
           <div className={styles.playerField}>
             <p>You have: {baccarat.playerPoints}</p>

@@ -93,6 +93,13 @@ export class MainStore {
     }
   }
 
+  startGame(initialBalance: number) {
+    this.game.setGameStage(GameStage.InitialBet);
+    this.game.startTimer();
+    this.player.setInitialMoney(initialBalance);
+    this.createSnapshot();
+  }
+
   endGameReset() {
     this.game.fullReset();
     this.player.resetPlayer();
@@ -179,7 +186,6 @@ export class MainStore {
       } else {
         this.betweenRoundsReset();
       }
-      this.game.setGameStage(GameStage.InitialBet);
     }, 6000);
   }
 

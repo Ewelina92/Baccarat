@@ -3,26 +3,20 @@ import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./StartOverlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
-import startSound from "../../sounds/place-bets-please.mp3";
-import { useAudio } from "../../hooks/useAudio";
 import { VolumeButton } from "../game-setup/VolumeButton";
 
 export const StartOverlay = observer(() => {
-  const { game, player, createSnapshot, soundVolume } = useMainStore();
+  const { startGame } = useMainStore();
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
-  const audio = useAudio(startSound, { volume: +soundVolume });
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMoney(event.target.valueAsNumber);
   };
 
-  const startGame = () => {
+  const handleStartGameClick = () => {
     if (money > 0 && money <= 1000) {
-      game.nextRound();
-      player.setInitialMoney(money);
-      createSnapshot();
-      audio.play();
+      startGame(money);
     } else {
       setFormErrorMessage("Please add starting amount to begin.");
     }
@@ -49,7 +43,7 @@ export const StartOverlay = observer(() => {
               />
             </label>
           </div>
-          <button type="button" onClick={startGame}>
+          <button type="button" onClick={handleStartGameClick}>
             Start New Game
           </button>
         </form>
