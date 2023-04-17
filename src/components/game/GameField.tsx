@@ -9,7 +9,7 @@ import { GameStage } from "../../stores/gameStore";
 import { CardSuit } from "../../types";
 
 export const GameField = observer(() => {
-  const { game, player, baccarat } = useMainStore();
+  const { game, player, baccarat, soundVolume, toggleSound } = useMainStore();
 
   const fakeCard = {
     face: "fake",
@@ -20,6 +20,13 @@ export const GameField = observer(() => {
 
   return (
     <>
+      <button type="button" className={styles.sound} onClick={toggleSound}>
+        {soundVolume === 1 ? (
+          <span className="material-symbols-outlined">volume_up</span>
+        ) : (
+          <span className="material-symbols-outlined">volume_off</span>
+        )}
+      </button>
       {game.winner && (
         <div className={styles.winnerC}>
           <span className={styles.winner}>{game.winner}</span>

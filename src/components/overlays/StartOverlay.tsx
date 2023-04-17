@@ -7,11 +7,11 @@ import sound from "../betting-chips/place-bets-please.mp3";
 import { useAudio } from "../../hooks/useAudio";
 
 export const StartOverlay = observer(() => {
-  const { game, player, createSnapshot } = useMainStore();
+  const { game, player, createSnapshot, soundVolume } = useMainStore();
   const [name, setName] = React.useState("");
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
-  const audio = useAudio(sound);
+  const audio = useAudio(sound, { volume: soundVolume });
 
   const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value.trim());

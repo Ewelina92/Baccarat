@@ -38,6 +38,16 @@ export class MainStore {
 
   snapshots: Snapshot[] = [];
 
+  soundVolume = 1;
+
+  toggleSound() {
+    if (this.soundVolume === 1) {
+      this.soundVolume = 0;
+    } else {
+      this.soundVolume = 1;
+    }
+  }
+
   betOnPlayer(amount: number) {
     this.game.addToPlayerBet(amount);
     this.player.removePlayerMoney(amount);
