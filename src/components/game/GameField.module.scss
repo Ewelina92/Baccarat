@@ -1,6 +1,6 @@
 @import '../../mixins';
 
-.winnerC {
+.winnerContainer {
   position: absolute;
   left: 0;
   right: 0;
@@ -76,8 +76,8 @@
   position: absolute;
   margin: 0;
   padding: 0;
-  top: 0;
-  right: 0;
+  top: var(--safe-top);
+  right: var(--safe-right);
 }
 
 .gamefield {
@@ -90,7 +90,7 @@
     display: grid;
     grid-template-rows: 0.4fr 0.2fr 2fr;
     grid-template-columns: 1fr 1fr;
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
 
     h1 {
@@ -244,6 +244,22 @@
       background-color: var(--bg-brown);
     }
   }
+}
+
+@include screen-size(wide-screen) {
+  .gamefield {
+    .top {
+     width: 80%;
+      }
+    }
+}
+
+@include screen-size(extra-wide-screen) {
+  .gamefield {
+    .top {
+     width: 70%;
+      }
+    }
 }
 
 @include screen-size(narrow-short-screen) {

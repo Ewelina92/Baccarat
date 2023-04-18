@@ -34,7 +34,7 @@ export const GameField = observer(() => {
     <>
       <VolumeButton />
       {game.winner && (
-        <div className={styles.winnerC}>
+        <div className={styles.winnerContainer}>
           <span className={styles.winner}>{game.winner}</span>
         </div>
       )}

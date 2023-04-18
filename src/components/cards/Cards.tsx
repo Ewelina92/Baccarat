@@ -10,7 +10,7 @@ import styles from "./Cards.module.scss";
 
 export type CardsProps = {
   cards: CardType[];
-  revertDirection?: boolean;
+  revertDirection: boolean;
 };
 
 export const Cards = observer(({ revertDirection, cards }: CardsProps) => {
