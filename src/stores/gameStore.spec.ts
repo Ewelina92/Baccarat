@@ -116,3 +116,22 @@ describe("winner method should work", () => {
     expect(gameStore.winner).toEqual("player");
   });
 });
+
+describe("reset methods should work", () => {
+  const gameStore = new GameStore();
+
+  it("should fully reset", () => {
+    gameStore.gameStage = GameStage.InitialCards;
+    gameStore.fullReset();
+
+    expect(gameStore.gameStage).toEqual(GameStage.Start);
+  });
+
+  it("should partially reset", () => {
+    gameStore.setPlayerBet(100);
+    gameStore.betweenRoundsReset();
+
+    expect(gameStore.gameStage).toEqual(GameStage.InitialBet);
+    expect(gameStore.playerBet).toEqual(0);
+  });
+});
