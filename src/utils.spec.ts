@@ -1,4 +1,4 @@
-import { Card, CardSuit } from "./types";
+import { Card, CardSuit, HandOptions } from "./types";
 import {
   createCardDeck48Cards,
   createShoe,
@@ -62,7 +62,7 @@ describe("judge winner correctly", () => {
     const bankPoints = 5;
     const winner = checkWinner(playerPoints, bankPoints);
 
-    expect(winner).toEqual("player");
+    expect(winner).toEqual(HandOptions.Player);
   });
 
   it("should return bank as winner", () => {
@@ -70,7 +70,7 @@ describe("judge winner correctly", () => {
     const bankPoints = 5;
     const winner = checkWinner(playerPoints, bankPoints);
 
-    expect(winner).toEqual("bank");
+    expect(winner).toEqual(HandOptions.Banker);
   });
 
   it("should detect a tie and return tie", () => {
@@ -78,7 +78,7 @@ describe("judge winner correctly", () => {
     const bankPoints = 1;
     const winner = checkWinner(playerPoints, bankPoints);
 
-    expect(winner).toEqual("tie");
+    expect(winner).toEqual(HandOptions.Tie);
   });
 });
 
