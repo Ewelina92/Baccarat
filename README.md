@@ -10,19 +10,23 @@ Run `npm start` to start the project.
 
 # How to play
 
-Fill in the required information at the welcome screen (name and how much money you start to play with) and click play game. Here you also find the game-rules.
+Fill in starting balance and click play game.
 
-Place your bets. By clicking the undo-button you undo your last bet, and by clicking the double-button you double all your bets.
+Place your bets.
+This can be done by dragging a betting chip over the hand that you want to bet on.
+By clicking the undo-button you undo your last bet, and by clicking the double-button you double all your bets.
 
-When you're done placing your bets for the current round, you click deal. 
+When you're done placing your bets, click deal. 
 
 The round is now gonna play out.
 
-To play another round, you place your bets and again click the deal-button.
+To play another round, place your bets and again click the deal-button.
 
-If you run out of money, the game will end. If you don't want to continue playing, just close the browser/tab.
+If you run out of money (or you run out of cards, you're playing with six card-decks consisting of 48 cards), the game will end. If you don't want to continue playing, just close the browser/tab.
 
-Good luck and have fun!
+You can mute/un-mute sounds by clicking the mute-button in the top left corner.
+
+Enjoy!
 
 ### Credits
 SVG:s from [Copyright free SVG and print ready playing cards - by Adrian Kennard (RevK®)](https://www.me.uk/cards/) (22 March 2023)
@@ -31,6 +35,8 @@ Betting chip sound [Sound Effect from Pixabay](https://pixabay.com/sound-effects
 
 Place your bets please
 [Sound Effect from Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=28110) (7 April 2023)
+
+Winning sound [Sound Effect from Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6313) (17 April 2023)
 
 
 <!-- # Getting Started with Create React App
