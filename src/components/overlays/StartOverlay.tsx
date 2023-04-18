@@ -3,73 +3,52 @@ import { observer } from "mobx-react";
 import { Portal } from "./Portal";
 import styles from "./StartOverlay.module.scss";
 import { useMainStore } from "../../hooks/useMainStore";
-import sound from "../betting-chips/place-bets-please.mp3";
-import { useAudio } from "../../hooks/useAudio";
+import { VolumeButton } from "../game-setup/VolumeButton";
 
 export const StartOverlay = observer(() => {
-  const { game, player, createSnapshot } = useMainStore();
-  const [name, setName] = React.useState("");
+  const { startGame } = useMainStore();
   const [money, setMoney] = React.useState(0);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
-  const audio = useAudio(sound);
-
-  const handleName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value.trim());
-  };
 
   const handleMoney = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMoney(event.target.valueAsNumber);
   };
 
-  const startGame = () => {
-    if (!!name.length && money > 0) {
-      game.nextRound();
-      player.setInitialData(name, money);
-      createSnapshot();
-      audio.play();
+  const handleStartGameClick = () => {
+    if (money > 0 && money <= 1000) {
+      startGame(money);
     } else {
-      setFormErrorMessage(
-        "Please fill out your name and starting amount to begin."
-      );
+      setFormErrorMessage("Please add starting amount to begin.");
     }
   };
 
   return (
     <Portal>
       <div className={styles.overlay}>
+        <VolumeButton />
         <h1>Welcome to Baccarat</h1>
         <form>
           {formErrorMessage}
           <div className={styles.formentry}>
-            <label htmlFor="player-name">
-              What&#39;s your name?
-              <input
-                id="player-name"
-                type="text"
-                onChange={handleName}
-                placeholder="Your name"
-              />
-            </label>
-          </div>
-          <div className={styles.formentry}>
             <label htmlFor="money">
-              How much money are you bringing?
+              Starting balance:{" "}
+              <span className={styles.balance}>(&euro;1-1000)</span>
               <input
                 id="money"
                 type="number"
                 min={0}
-                max={10000}
+                max={1000}
                 onChange={handleMoney}
-                placeholder="0"
+                placeholder="&euro; 0"
               />
             </label>
           </div>
-          <button type="button" onClick={startGame}>
+          <button type="button" onClick={handleStartGameClick}>
             Start New Game
           </button>
         </form>
         <div className={styles.rules}>
-          <h3>Rules</h3>
+          <h3>How to play</h3>
           <p>
             We are gonna play the &#34;Punto banco&#34; version of Baccarat with
             six card-decks.

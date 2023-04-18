@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 export enum GameStage {
+  Start,
   InitialBet,
   InitialCards,
   CheckForThirdCard,
@@ -9,7 +10,7 @@ export enum GameStage {
 }
 
 export class GameStore {
-  gameStage: GameStage = GameStage.InitialBet;
+  gameStage: GameStage = GameStage.Start;
 
   gameRound = 0;
 
@@ -23,12 +24,40 @@ export class GameStore {
 
   chosenBetValue = 0;
 
+  time = 0;
+
+  timer: number | undefined = undefined;
+
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
   get totalBet() {
     return this.playerBet + this.tieBet + this.bankerBet;
+  }
+
+  setGameRound(round: number) {
+    this.gameRound = round;
+  }
+
+  setTime(time: number) {
+    this.time = time;
+  }
+
+  addToTime(amount: number) {
+    this.time += amount;
+  }
+
+  startTimer() {
+    const timer = window.setInterval(() => {
+      this.addToTime(1);
+    }, 1000);
+    this.timer = timer;
+  }
+
+  stopTimer() {
+    clearInterval(this.timer);
+    this.setTime(0);
   }
 
   setChosenBetValue(value: number) {
@@ -79,21 +108,17 @@ export class GameStore {
     this.winner = winner;
   }
 
-  nextRound() {
-    this.gameRound += 1;
-  }
-
   fullReset() {
-    this.setGameStage(GameStage.InitialBet);
-    this.gameRound = 0;
+    this.setGameStage(GameStage.Start);
     this.resetBets();
     this.setWinner("");
+    this.setGameRound(0);
+    this.stopTimer();
   }
 
   betweenRoundsReset() {
     this.setGameStage(GameStage.InitialBet);
     this.resetBets();
     this.setWinner("");
-    this.nextRound();
   }
 }

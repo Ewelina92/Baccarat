@@ -5,7 +5,7 @@ import { GameSetup } from "./components/game-setup/GameSetup";
 
 const App = () => (
   <MainStoreContext.Provider value={mainStore}>
-    <div className="App">
+    <div className="app">
       <GameSetup />
     </div>
   </MainStoreContext.Provider>

@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameField } from "../game/GameField";
 import { StartOverlay } from "../overlays/StartOverlay";
+import { GameStage } from "../../stores/gameStore";
 
 export const GameSetup = observer(() => {
   const { game } = useMainStore();
@@ -10,7 +11,7 @@ export const GameSetup = observer(() => {
   return (
     <>
       <GameField />
-      {game.gameRound === 0 && <StartOverlay />}
+      {game.gameStage === GameStage.Start && <StartOverlay />}
     </>
   );
 });

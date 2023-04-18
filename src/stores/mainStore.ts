@@ -38,6 +38,32 @@ export class MainStore {
 
   snapshots: Snapshot[] = [];
 
+  soundVolume = "";
+
+  didWin = false;
+
+  setDidWin(state: boolean) {
+    this.didWin = state;
+  }
+
+  toggleSound() {
+    if (this.soundVolume === "1") {
+      localStorage.setItem("volumeForBaccarat", "0");
+    } else {
+      localStorage.setItem("volumeForBaccarat", "1");
+    }
+    this.getSoundPreference();
+  }
+
+  getSoundPreference() {
+    const volume = localStorage.getItem("volumeForBaccarat");
+    if (volume === "0" || volume === "1") {
+      this.soundVolume = volume;
+    } else {
+      this.soundVolume = "1";
+    }
+  }
+
   betOnPlayer(amount: number) {
     this.game.addToPlayerBet(amount);
     this.player.removePlayerMoney(amount);
@@ -67,12 +93,20 @@ export class MainStore {
     }
   }
 
+  startGame(initialBalance: number) {
+    this.game.setGameStage(GameStage.InitialBet);
+    this.game.startTimer();
+    this.player.setInitialMoney(initialBalance);
+    this.createSnapshot();
+  }
+
   endGameReset() {
     this.game.fullReset();
     this.player.resetPlayer();
     this.baccarat.setCards();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
+    this.setDidWin(false);
     this.snapshots = [];
   }
 
@@ -80,6 +114,7 @@ export class MainStore {
     this.game.betweenRoundsReset();
     this.baccarat.resetPlayerCards();
     this.baccarat.resetBankerCards();
+    this.setDidWin(false);
     this.snapshots = [];
     this.createSnapshot();
   }
@@ -92,12 +127,21 @@ export class MainStore {
     this.game.setWinner(winner);
     switch (winner) {
       case WinnerOptions.Player:
+        if (this.game.playerBet > 0) {
+          this.setDidWin(true);
+        }
         this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
         break;
       case WinnerOptions.Tie:
+        if (this.game.tieBet > 0) {
+          this.setDidWin(true);
+        }
         this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
         break;
       case WinnerOptions.Banker:
+        if (this.game.bankerBet > 0) {
+          this.setDidWin(true);
+        }
         this.player.addPlayerMoney(this.game.bankerBet * MULTIPLIER_BANKER_WIN);
         break;
       default:
@@ -142,8 +186,7 @@ export class MainStore {
       } else {
         this.betweenRoundsReset();
       }
-      this.game.setGameStage(GameStage.InitialBet);
-    }, 4000);
+    }, 6000);
   }
 
   handleThirdCard(receiver: "player" | "banker") {
@@ -194,6 +237,7 @@ export class MainStore {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
+    this.getSoundPreference();
 
     this.disposeReaction = reaction(
       () => this.game.gameStage,

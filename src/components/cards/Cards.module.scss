@@ -1,0 +1,30 @@
+@import "../../mixins";
+
+.cards {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+@include screen-size(narrow-short-screen) {
+  .reverse {
+    flex-direction: row;
+  }
+}
+
+@include screen-size(narrow-screen) {
+  .reverse {
+    flex-direction: row;
+  }
+}
+
+@include screen-size(tablet) {
+  .reverse {
+    flex-direction: row;
+  }
+}

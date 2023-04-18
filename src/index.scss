@@ -1,23 +1,41 @@
 @import-normalize; /* bring in normalize.css styles */
 
+:root {
+  --bg-red: #6d011c;
+  --bg-red-gradient: radial-gradient(circle, rgba(93,1,24,1) 15%, rgba(109,1,28,1) 45%, rgba(93,1,24,1) 98%);
+  --bg-brown: #350b0b;
+  --bg-brown-gradient: radial-gradient(circle, rgba(59,15,15,1) 15%, rgba(53,11,11,1) 45%, rgba(59,15,15,1) 96%);
+  --font-color: #fafafa;
+  --betting-font-color: rgba(250, 250, 250, 0.8);
+  --yellow: #ffd700;
+  --main-font: "Merriweather", serif;
+  --secondary-font: "Roboto", sans-serif;
+
+  --safe-top: calc(0.6rem + env(safe-area-inset-top, 1rem));
+  --safe-bottom: calc(0.6rem + env(safe-area-inset-bottom, 1rem));
+  --safe-left: calc(0.6rem + env(safe-area-inset-left, 1rem));
+  --safe-right: calc(0.6rem + env(safe-area-inset-right, 1rem));
+}
+
 * {
   box-sizing: border-box;
 }
 
-html {
-  height: 100vh;
-}
-
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html {
+  height: 100vh;
+  background: var(--bg-red);
+  background: var(--bg-red-gradient);
+  color: var(--font-color);
+  font-family: var(--main-font);
+  
+  button {
+    border: none;
+    outline: none;
+  }
 }
+

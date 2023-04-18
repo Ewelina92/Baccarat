@@ -1,0 +1,37 @@
+$extra-wide-screen: 1700px;
+$wide-screen: 1600px;
+$narrow-screen: 650px;
+$short-screen: 550px;
+$breakpoint-tablet: 830px;
+$min-tablet-height: 650px;
+
+@mixin screen-size ($breakpoint) {
+  @if $breakpoint == extra-wide-screen {    
+    @media (min-width: $extra-wide-screen) {
+      @content;
+    }
+  }
+  @if $breakpoint == wide-screen {    
+    @media (min-width: $wide-screen) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint == narrow-short-screen {    
+  @media (max-width: $narrow-screen), (max-height: $short-screen) {
+    @content;
+  }
+}
+
+@if $breakpoint == narrow-screen {
+  @media (max-height: $narrow-screen) {
+    @content;
+  }
+}
+
+@if $breakpoint == tablet {
+  @media (max-width: $breakpoint-tablet) and (min-height: $min-tablet-height) {
+    @content;
+  }
+}
+}

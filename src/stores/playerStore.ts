@@ -1,29 +1,22 @@
 import { makeAutoObservable } from "mobx";
 
 export class PlayerStore {
-  playerName = "";
-
   playerMoney = 0;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  setPlayerName(name: string) {
-    this.playerName = name;
-  }
-
   setPlayerMoney(amount: number) {
     this.playerMoney = amount;
   }
 
-  addPlayerMoney(amount: number) {
-    this.playerMoney += amount;
+  setInitialMoney(amount: number) {
+    this.setPlayerMoney(amount);
   }
 
-  setInitialData(name: string, amount: number) {
-    this.setPlayerName(name);
-    this.setPlayerMoney(amount);
+  addPlayerMoney(amount: number) {
+    this.playerMoney += amount;
   }
 
   removePlayerMoney(amount: number) {
@@ -31,7 +24,6 @@ export class PlayerStore {
   }
 
   resetPlayer() {
-    this.setPlayerName("");
     this.setPlayerMoney(0);
   }
 }
