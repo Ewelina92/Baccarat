@@ -12,8 +12,6 @@ export enum GameStage {
 export class GameStore {
   gameStage: GameStage = GameStage.Start;
 
-  gameRound = 0;
-
   playerBet = 0;
 
   tieBet = 0;
@@ -34,10 +32,6 @@ export class GameStore {
 
   get totalBet() {
     return this.playerBet + this.tieBet + this.bankerBet;
-  }
-
-  setGameRound(round: number) {
-    this.gameRound = round;
   }
 
   setTime(time: number) {
@@ -112,7 +106,6 @@ export class GameStore {
     this.setGameStage(GameStage.Start);
     this.resetBets();
     this.setWinner("");
-    this.setGameRound(0);
     this.stopTimer();
   }
 
