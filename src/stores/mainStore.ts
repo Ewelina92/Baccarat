@@ -43,10 +43,11 @@ export class MainStore {
   toggleSound() {
     if (this.soundVolume === "1") {
       localStorage.setItem("volumeForBaccarat", "0");
+      this.soundVolume = "0";
     } else {
       localStorage.setItem("volumeForBaccarat", "1");
+      this.soundVolume = "1";
     }
-    this.getSoundPreference();
   }
 
   getSoundPreference() {
