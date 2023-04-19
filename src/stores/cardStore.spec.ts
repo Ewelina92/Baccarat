@@ -49,6 +49,26 @@ describe("draw and give cards", () => {
     expect(cardStore.bankerCards).toHaveLength(1);
   });
 
+  it("should not give banker a card", () => {
+    cardStore.cards = [];
+    cardStore.bankerCards = [];
+    expect(cardStore.cards).toHaveLength(0);
+    expect(cardStore.bankerCards).toHaveLength(0);
+
+    cardStore.giveBankerACard();
+    expect(cardStore.bankerCards).toHaveLength(0);
+  });
+
+  it("should not player banker a card", () => {
+    cardStore.cards = [];
+    cardStore.playerCards = [];
+    expect(cardStore.cards).toHaveLength(0);
+    expect(cardStore.playerCards).toHaveLength(0);
+
+    cardStore.givePlayerACard();
+    expect(cardStore.playerCards).toHaveLength(0);
+  });
+
   it("should not draw a card", () => {
     cardStore.cards = [];
     expect(cardStore.cards).toHaveLength(0);
@@ -99,39 +119,39 @@ describe("flip cards", () => {
   cardStore.bankerCards.push(fakeCards[2]);
 
   it("should flip player's cards", () => {
-    expect(cardStore.playerCards[0].flipped).toEqual(false);
-    expect(cardStore.playerCards[1].flipped).toEqual(false);
+    expect(cardStore.playerCards[0].flipped).toBe(false);
+    expect(cardStore.playerCards[1].flipped).toBe(false);
 
     cardStore.flipPlayerCards();
 
-    expect(cardStore.playerCards[0].flipped).toEqual(true);
-    expect(cardStore.playerCards[1].flipped).toEqual(true);
+    expect(cardStore.playerCards[0].flipped).toBe(true);
+    expect(cardStore.playerCards[1].flipped).toBe(true);
   });
 
   it("should flip bankers's cards", () => {
-    expect(cardStore.bankerCards[0].flipped).toEqual(false);
-    expect(cardStore.bankerCards[1].flipped).toEqual(false);
+    expect(cardStore.bankerCards[0].flipped).toBe(false);
+    expect(cardStore.bankerCards[1].flipped).toBe(false);
 
     cardStore.flipBankerCards();
 
-    expect(cardStore.bankerCards[0].flipped).toEqual(true);
-    expect(cardStore.bankerCards[1].flipped).toEqual(true);
+    expect(cardStore.bankerCards[0].flipped).toBe(true);
+    expect(cardStore.bankerCards[1].flipped).toBe(true);
   });
 
   it("should flip players's third card", () => {
     cardStore.playerCards.push(fakeCards[3]);
-    expect(cardStore.playerCards[2].flipped).toEqual(false);
+    expect(cardStore.playerCards[2].flipped).toBe(false);
 
     cardStore.flipThirdPlayerCard();
-    expect(cardStore.playerCards[2].flipped).toEqual(true);
+    expect(cardStore.playerCards[2].flipped).toBe(true);
   });
 
   it("should flip banker's third card", () => {
     cardStore.bankerCards.push(fakeCards[3]);
-    expect(cardStore.bankerCards[2].flipped).toEqual(false);
+    expect(cardStore.bankerCards[2].flipped).toBe(false);
 
     cardStore.flipThirdBankerCard();
-    expect(cardStore.bankerCards[2].flipped).toEqual(true);
+    expect(cardStore.bankerCards[2].flipped).toBe(true);
   });
 });
 

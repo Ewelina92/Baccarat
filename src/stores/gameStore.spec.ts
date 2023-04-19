@@ -1,7 +1,8 @@
+import { configure } from "mobx";
 import { GameStage, GameStore } from "./gameStore";
 
-describe("create a playerStore", () => {
-  it("should return playerMoney 0", () => {
+describe("create a GameStore", () => {
+  it("should return GameStore with initial settings", () => {
     const gameStore = new GameStore();
 
     expect(gameStore.gameStage).toBe(GameStage.Start);
@@ -25,6 +26,8 @@ describe("set gameStage", () => {
 });
 
 describe("time methods", () => {
+  // allow jest to spy on mobX action
+  configure({ safeDescriptors: false });
   const gameStore = new GameStore();
 
   it("should set time correctly", () => {
@@ -43,9 +46,18 @@ describe("time methods", () => {
     jest.useFakeTimers();
     jest.spyOn(global, "setInterval");
 
+    const addToTimeSpy = jest.spyOn(gameStore, "addToTime");
+
     gameStore.startTimer();
     expect(setInterval).toHaveBeenCalledTimes(1);
     expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
+
+    // Advance the timer by 1 second
+    jest.advanceTimersByTime(1000);
+
+    // Check that addToTime has been called with 1 as the argument
+    expect(addToTimeSpy).toHaveBeenCalledTimes(1);
+    expect(addToTimeSpy).toHaveBeenCalledWith(1);
 
     gameStore.stopTimer();
     expect(gameStore.time).toBe(0);
