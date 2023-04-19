@@ -48,6 +48,14 @@ describe("draw and give cards", () => {
     cardStore.giveBankerACard();
     expect(cardStore.bankerCards).toHaveLength(1);
   });
+
+  it("should not draw a card", () => {
+    cardStore.cards = [];
+    expect(cardStore.cards).toHaveLength(0);
+    const drawnCard = cardStore.drawCard();
+
+    expect(drawnCard).toBeUndefined();
+  });
 });
 
 describe("reset cards", () => {

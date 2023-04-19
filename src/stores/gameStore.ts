@@ -4,9 +4,7 @@ export enum GameStage {
   Start,
   InitialBet,
   InitialCards,
-  CheckForThirdCard,
-  Continue,
-  End
+  CheckForThirdCard
 }
 
 export class GameStore {

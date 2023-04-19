@@ -16,16 +16,19 @@ describe("money changes", () => {
   });
 
   it("should reset amount of money back to 0", () => {
+    expect(player.playerMoney).toBe(1);
     player.resetPlayer();
     expect(player.playerMoney).toBe(0);
   });
 
   it("should increment amount of money by 2", () => {
+    expect(player.playerMoney).toBe(0);
     player.addPlayerMoney(2);
     expect(player.playerMoney).toBe(2);
   });
 
   it("should decrement amount of money by 2", () => {
+    expect(player.playerMoney).toBe(2);
     player.removePlayerMoney(2);
     expect(player.playerMoney).toBe(0);
   });

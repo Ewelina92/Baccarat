@@ -1,41 +1,42 @@
 import { GameStage, GameStore } from "./gameStore";
 
-describe("create a playerStore with default settings", () => {
+describe("create a playerStore", () => {
   it("should return playerMoney 0", () => {
     const gameStore = new GameStore();
 
-    expect(gameStore.gameStage).toEqual(GameStage.Start);
-    expect(gameStore.playerBet).toEqual(0);
-    expect(gameStore.tieBet).toEqual(0);
-    expect(gameStore.bankerBet).toEqual(0);
-    expect(gameStore.winner).toEqual("");
-    expect(gameStore.chosenBetValue).toEqual(0);
-    expect(gameStore.time).toEqual(0);
-    expect(gameStore.timer).toEqual(undefined);
+    expect(gameStore.gameStage).toBe(GameStage.Start);
+    expect(gameStore.playerBet).toBe(0);
+    expect(gameStore.tieBet).toBe(0);
+    expect(gameStore.bankerBet).toBe(0);
+    expect(gameStore.winner).toBe("");
+    expect(gameStore.chosenBetValue).toBe(0);
+    expect(gameStore.time).toBe(0);
+    expect(gameStore.timer).toBe(undefined);
   });
 });
 
-describe("gameStage methods should work", () => {
+describe("set gameStage", () => {
   it("should set gameStage correctly", () => {
     const gameStore = new GameStore();
     gameStore.setGameStage(GameStage.InitialBet);
 
-    expect(gameStore.gameStage).toEqual(GameStage.InitialBet);
+    expect(gameStore.gameStage).toBe(GameStage.InitialBet);
   });
 });
 
-describe("time methods should work", () => {
+describe("time methods", () => {
   const gameStore = new GameStore();
-  it("should set time correctly", () => {
-    gameStore.setTime(60);
 
-    expect(gameStore.time).toEqual(60);
+  it("should set time correctly", () => {
+    expect(gameStore.time).toBe(0);
+    gameStore.setTime(60);
+    expect(gameStore.time).toBe(60);
   });
 
   it("should add to time correctly", () => {
+    expect(gameStore.time).toBe(60);
     gameStore.addToTime(1);
-
-    expect(gameStore.time).toEqual(61);
+    expect(gameStore.time).toBe(61);
   });
 
   it("should start and stop timer correctly", () => {
@@ -47,91 +48,114 @@ describe("time methods should work", () => {
     expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 1000);
 
     gameStore.stopTimer();
-    expect(gameStore.time).toEqual(0);
+    expect(gameStore.time).toBe(0);
+    jest.useRealTimers();
   });
 });
 
-describe("betting methods should work", () => {
+describe("betting", () => {
   const gameStore = new GameStore();
 
   it("should set player bet to 1", () => {
+    expect(gameStore.playerBet).toBe(0);
     gameStore.setPlayerBet(1);
-    expect(gameStore.playerBet).toEqual(1);
+    expect(gameStore.playerBet).toBe(1);
   });
 
   it("should set tie bet to 1", () => {
+    expect(gameStore.tieBet).toBe(0);
     gameStore.setTieBet(1);
-    expect(gameStore.playerBet).toEqual(1);
+    expect(gameStore.tieBet).toBe(1);
   });
 
   it("should set banker bet to 1", () => {
+    expect(gameStore.bankerBet).toBe(0);
     gameStore.setBankerBet(1);
-    expect(gameStore.playerBet).toEqual(1);
+    expect(gameStore.bankerBet).toBe(1);
   });
 
   it("should increase player bet by 1", () => {
+    expect(gameStore.playerBet).toBe(1);
     gameStore.addToPlayerBet(1);
-    expect(gameStore.playerBet).toEqual(2);
+    expect(gameStore.playerBet).toBe(2);
   });
 
   it("should increase tie bet by 1", () => {
+    expect(gameStore.tieBet).toBe(1);
     gameStore.addToTieBet(1);
-    expect(gameStore.playerBet).toEqual(2);
+    expect(gameStore.tieBet).toBe(2);
   });
 
   it("should increase banker bet by 1", () => {
+    expect(gameStore.bankerBet).toBe(1);
     gameStore.addToBankerBet(1);
-    expect(gameStore.playerBet).toEqual(2);
+    expect(gameStore.bankerBet).toBe(2);
   });
 
   it("should double all bets", () => {
+    expect(gameStore.playerBet).toBe(2);
+    expect(gameStore.tieBet).toBe(2);
+    expect(gameStore.bankerBet).toBe(2);
+
     gameStore.doubleAllBets();
-    expect(gameStore.playerBet).toEqual(4);
-    expect(gameStore.tieBet).toEqual(4);
-    expect(gameStore.bankerBet).toEqual(4);
+
+    expect(gameStore.playerBet).toBe(4);
+    expect(gameStore.tieBet).toBe(4);
+    expect(gameStore.bankerBet).toBe(4);
   });
 
   it("should return total bet", () => {
-    expect(gameStore.totalBet).toEqual(12); // 4 * 3
+    expect(gameStore.playerBet).toBe(4);
+    expect(gameStore.tieBet).toBe(4);
+    expect(gameStore.bankerBet).toBe(4);
+    expect(gameStore.totalBet).toBe(12); // 4 * 3
   });
 
   it("should reset all bets", () => {
+    expect(gameStore.playerBet).toBe(4);
+    expect(gameStore.tieBet).toBe(4);
+    expect(gameStore.bankerBet).toBe(4);
+
     gameStore.resetBets();
-    expect(gameStore.playerBet).toEqual(0);
-    expect(gameStore.tieBet).toEqual(0);
-    expect(gameStore.bankerBet).toEqual(0);
+
+    expect(gameStore.playerBet).toBe(0);
+    expect(gameStore.tieBet).toBe(0);
+    expect(gameStore.bankerBet).toBe(0);
   });
 
   it("should set bet value correctly", () => {
+    expect(gameStore.chosenBetValue).toBe(0);
     gameStore.setChosenBetValue(5);
-    expect(gameStore.chosenBetValue).toEqual(5);
+    expect(gameStore.chosenBetValue).toBe(5);
   });
 });
 
-describe("winner method should work", () => {
+describe("set winner", () => {
   it("should set winner correctly", () => {
     const gameStore = new GameStore();
     gameStore.setWinner("player");
 
-    expect(gameStore.winner).toEqual("player");
+    expect(gameStore.winner).toBe("player");
   });
 });
 
-describe("reset methods should work", () => {
+describe("reset", () => {
   const gameStore = new GameStore();
 
   it("should fully reset", () => {
     gameStore.gameStage = GameStage.InitialCards;
-    gameStore.fullReset();
+    expect(gameStore.gameStage).toBe(GameStage.InitialCards);
 
-    expect(gameStore.gameStage).toEqual(GameStage.Start);
+    gameStore.fullReset();
+    expect(gameStore.gameStage).toBe(GameStage.Start);
   });
 
   it("should partially reset", () => {
+    expect(gameStore.gameStage).toBe(GameStage.Start);
     gameStore.setPlayerBet(100);
     gameStore.betweenRoundsReset();
 
-    expect(gameStore.gameStage).toEqual(GameStage.InitialBet);
-    expect(gameStore.playerBet).toEqual(0);
+    expect(gameStore.gameStage).toBe(GameStage.InitialBet);
+    expect(gameStore.playerBet).toBe(0);
   });
 });
