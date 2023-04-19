@@ -23,12 +23,11 @@ describe("draw and give cards", () => {
   const cardStore = new CardStore();
 
   it("should draw a card", () => {
+    expect(cardStore.cards).toHaveLength(288);
     const drawnCard = cardStore.drawCard();
 
+    expect(drawnCard).not.toBeUndefined();
     expect(drawnCard).toHaveProperty("face");
-    expect(drawnCard).toHaveProperty("suit");
-    expect(drawnCard).toHaveProperty("value");
-    expect(drawnCard).toHaveProperty("flipped");
   });
 
   it("should give player a card", () => {
