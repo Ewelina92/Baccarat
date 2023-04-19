@@ -9,7 +9,7 @@ const fakeCards: Card[] = [
   { face: "4", suit: CardSuit.Heart, value: 4, flipped: false }
 ];
 
-describe("create a cardStore with default settings", () => {
+describe("create cardStore", () => {
   it("should return cardStore with initial settings", () => {
     const cardStore = new CardStore();
 
@@ -19,9 +19,10 @@ describe("create a cardStore with default settings", () => {
   });
 });
 
-describe("cardStore methods should work", () => {
+describe("draw and give cards", () => {
+  const cardStore = new CardStore();
+
   it("should draw a card", () => {
-    const cardStore = new CardStore();
     const drawnCard = cardStore.drawCard();
 
     expect(drawnCard).toHaveProperty("face");
@@ -31,51 +32,50 @@ describe("cardStore methods should work", () => {
   });
 
   it("should give player a card", () => {
-    const cardStore = new CardStore();
+    expect(cardStore.playerCards).toHaveLength(0);
     cardStore.givePlayerACard();
-
     expect(cardStore.playerCards).toHaveLength(1);
   });
 
   it("should give banker a card", () => {
-    const cardStore = new CardStore();
+    expect(cardStore.bankerCards).toHaveLength(0);
     cardStore.giveBankerACard();
-
     expect(cardStore.bankerCards).toHaveLength(1);
   });
+});
+
+describe("reset cards", () => {
+  const cardStore = new CardStore();
 
   it("should reset player cards", () => {
-    const cardStore = new CardStore();
-    cardStore.resetPlayerCards();
+    cardStore.givePlayerACard();
+    expect(cardStore.playerCards).toHaveLength(1);
 
+    cardStore.resetPlayerCards();
     expect(cardStore.playerCards).toHaveLength(0);
   });
 
   it("should reset banker cards", () => {
-    const cardStore = new CardStore();
-    cardStore.resetBankerCards();
+    cardStore.giveBankerACard();
+    expect(cardStore.bankerCards).toHaveLength(1);
 
+    cardStore.resetBankerCards();
     expect(cardStore.bankerCards).toHaveLength(0);
   });
 });
 
-describe("should count points correctly", () => {
+describe("count points", () => {
   const cardStore = new CardStore();
   cardStore.playerCards.push(fakeCards[0]); // 2
   cardStore.playerCards.push(fakeCards[1]); // 9
   cardStore.bankerCards.push(fakeCards[2]); // 0
   cardStore.bankerCards.push(fakeCards[3]); // 3
 
-  it("should count player's points correctly", () => {
-    expect(cardStore.playerPoints).toEqual(1);
-  });
-
-  it("should count banker's points correctly", () => {
-    expect(cardStore.bankerPoints).toEqual(3);
-  });
+  expect(cardStore.playerPoints).toEqual(1);
+  expect(cardStore.bankerPoints).toEqual(3);
 });
 
-describe("should flip cards correctly", () => {
+describe("flip cards", () => {
   const cardStore = new CardStore();
 
   cardStore.playerCards.push(fakeCards[1]);
@@ -107,6 +107,7 @@ describe("should flip cards correctly", () => {
   it("should flip players's third card", () => {
     cardStore.playerCards.push(fakeCards[3]);
     expect(cardStore.playerCards[2].flipped).toEqual(false);
+
     cardStore.flipThirdPlayerCard();
     expect(cardStore.playerCards[2].flipped).toEqual(true);
   });
@@ -114,12 +115,13 @@ describe("should flip cards correctly", () => {
   it("should flip banker's third card", () => {
     cardStore.bankerCards.push(fakeCards[3]);
     expect(cardStore.bankerCards[2].flipped).toEqual(false);
+
     cardStore.flipThirdBankerCard();
     expect(cardStore.bankerCards[2].flipped).toEqual(true);
   });
 });
 
-describe("should judge if next round is possible correctly", () => {
+describe("next round is possible", () => {
   it("should return true", () => {
     const cardStore = new CardStore();
 

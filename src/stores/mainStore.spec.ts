@@ -38,7 +38,7 @@ describe("sound method should work", () => {
 
 describe("betting should work", () => {
   const store = new MainStore();
-  store.player.setInitialMoney(100);
+  store.player.setPlayerMoney(100);
   it("bet on player", () => {
     store.betOnPlayer(1);
 

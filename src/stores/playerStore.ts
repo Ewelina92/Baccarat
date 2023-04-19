@@ -11,10 +11,6 @@ export class PlayerStore {
     this.playerMoney = amount;
   }
 
-  setInitialMoney(amount: number) {
-    this.setPlayerMoney(amount);
-  }
-
   addPlayerMoney(amount: number) {
     this.playerMoney += amount;
   }

@@ -91,7 +91,7 @@ export class MainStore {
   startGame(initialBalance: number) {
     this.game.setGameStage(GameStage.InitialBet);
     this.game.startTimer();
-    this.player.setInitialMoney(initialBalance);
+    this.player.setPlayerMoney(initialBalance);
     this.createSnapshot();
   }
 
