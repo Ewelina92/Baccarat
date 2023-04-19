@@ -11,6 +11,7 @@ import { BettingChips } from "./BettingChips";
 import { useAudio } from "../../hooks/useAudio";
 
 import styles from "./BettingControls.module.scss";
+import { delay } from "../../utils";
 
 export const BettingControls = observer(() => {
   const {
@@ -53,7 +54,7 @@ export const BettingControls = observer(() => {
   const handleDeal = () => {
     dealAudio.play();
     setShouldSpin(true);
-    setTimeout(() => {
+    delay(() => {
       game.setGameStage(GameStage.InitialCards);
     }, 500);
   };
