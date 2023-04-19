@@ -27,7 +27,14 @@ describe("draw and give cards", () => {
     const drawnCard = cardStore.drawCard();
 
     expect(drawnCard).not.toBeUndefined();
-    expect(drawnCard).toHaveProperty("face");
+    expect(drawnCard).toStrictEqual(
+      expect.objectContaining<Card>({
+        face: expect.any(String),
+        suit: expect.any(String),
+        value: expect.any(Number),
+        flipped: expect.any(Boolean)
+      })
+    );
   });
 
   it("should give player a card", () => {
