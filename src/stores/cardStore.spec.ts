@@ -124,13 +124,13 @@ describe("next round is possible", () => {
   it("should return true", () => {
     const cardStore = new CardStore();
 
-    expect(cardStore.nextRoundIsPossible()).toBeTruthy();
+    expect(cardStore.nextRoundIsPossible()).toBe(true);
   });
 
   it("should return false", () => {
     const cardStore = new CardStore();
     cardStore.cards = fakeCards;
 
-    expect(cardStore.nextRoundIsPossible()).toBeFalsy();
+    expect(cardStore.nextRoundIsPossible()).toBe(false);
   });
 });
