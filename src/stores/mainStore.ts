@@ -8,24 +8,18 @@ import {
 import {
   checkWinner,
   needThirdCardPlayerRule,
-  needThirdCardBankersRule
+  needThirdCardBankersRule,
+  delay
 } from "../utils";
 import { PlayerStore } from "./playerStore";
 import { CardStore } from "./cardStore";
 import { GameStage, GameStore } from "./gameStore";
-import { WinnerOptions } from "../types";
+import { HandOptions } from "../types";
 import { Snapshot } from "./snapshotStore";
 
 const MULTIPLIER_PLAYER_WIN = 2;
 const MULTIPLIER_TIE_WIN = 6;
 const MULTIPLIER_BANKER_WIN = 1.95;
-
-function delay(fn: () => void, time: number) {
-  const timer = setTimeout(() => {
-    fn();
-    clearTimeout(timer);
-  }, time);
-}
 
 export class MainStore {
   player: PlayerStore = new PlayerStore();
@@ -49,10 +43,11 @@ export class MainStore {
   toggleSound() {
     if (this.soundVolume === "1") {
       localStorage.setItem("volumeForBaccarat", "0");
+      this.soundVolume = "0";
     } else {
       localStorage.setItem("volumeForBaccarat", "1");
+      this.soundVolume = "1";
     }
-    this.getSoundPreference();
   }
 
   getSoundPreference() {
@@ -96,7 +91,7 @@ export class MainStore {
   startGame(initialBalance: number) {
     this.game.setGameStage(GameStage.InitialBet);
     this.game.startTimer();
-    this.player.setInitialMoney(initialBalance);
+    this.player.setPlayerMoney(initialBalance);
     this.createSnapshot();
   }
 
@@ -126,19 +121,19 @@ export class MainStore {
     );
     this.game.setWinner(winner);
     switch (winner) {
-      case WinnerOptions.Player:
+      case HandOptions.Player:
         if (this.game.playerBet > 0) {
           this.setDidWin(true);
         }
         this.player.addPlayerMoney(this.game.playerBet * MULTIPLIER_PLAYER_WIN);
         break;
-      case WinnerOptions.Tie:
+      case HandOptions.Tie:
         if (this.game.tieBet > 0) {
           this.setDidWin(true);
         }
         this.player.addPlayerMoney(this.game.tieBet * MULTIPLIER_TIE_WIN);
         break;
-      case WinnerOptions.Banker:
+      case HandOptions.Banker:
         if (this.game.bankerBet > 0) {
           this.setDidWin(true);
         }

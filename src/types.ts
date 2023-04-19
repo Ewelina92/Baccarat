@@ -1,4 +1,4 @@
-export enum WinnerOptions {
+export enum HandOptions {
   Player = "Player",
   Tie = "Tie",
   Banker = "Bank"
