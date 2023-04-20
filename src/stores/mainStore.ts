@@ -16,6 +16,7 @@ import { CardStore } from "./cardStore";
 import { GameStage, GameStore } from "./gameStore";
 import { HandOptions } from "../types";
 import { Snapshot } from "./snapshotStore";
+import { SoundStore } from "./soundStore";
 
 const MULTIPLIER_PLAYER_WIN = 2;
 const MULTIPLIER_TIE_WIN = 6;
@@ -28,35 +29,16 @@ export class MainStore {
 
   game: GameStore = new GameStore();
 
+  sound: SoundStore = new SoundStore();
+
   disposeReaction: IReactionDisposer;
 
   snapshots: Snapshot[] = [];
-
-  soundVolume = "";
 
   didWin = false;
 
   setDidWin(state: boolean) {
     this.didWin = state;
-  }
-
-  toggleSound() {
-    if (this.soundVolume === "1") {
-      localStorage.setItem("volumeForBaccarat", "0");
-      this.soundVolume = "0";
-    } else {
-      localStorage.setItem("volumeForBaccarat", "1");
-      this.soundVolume = "1";
-    }
-  }
-
-  getSoundPreference() {
-    const volume = localStorage.getItem("volumeForBaccarat");
-    if (volume === "0" || volume === "1") {
-      this.soundVolume = volume;
-    } else {
-      this.soundVolume = "1";
-    }
   }
 
   betOnPlayer(amount: number) {
@@ -232,7 +214,7 @@ export class MainStore {
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
-    this.getSoundPreference();
+    this.sound.getSoundPreference();
 
     this.disposeReaction = reaction(
       () => this.game.gameStage,

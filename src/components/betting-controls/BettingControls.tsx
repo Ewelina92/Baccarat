@@ -22,14 +22,16 @@ export const BettingControls = observer(() => {
     betOnPlayer,
     betOnTie,
     betOnBanker,
-    soundVolume,
+    sound,
     snapshots
   } = useMainStore();
   const [shouldSpin, setShouldSpin] = React.useState(false);
-  const startAudio = useAudio(startSound, { volume: +soundVolume });
-  const chipAudio = useAudio(chipSound, { volume: +soundVolume });
-  const dealAudio = useAudio(dealSound, { volume: +soundVolume });
-  const buttonClickAudio = useAudio(buttonClickSound, { volume: +soundVolume });
+  const startAudio = useAudio(startSound, { volume: +sound.soundVolume });
+  const chipAudio = useAudio(chipSound, { volume: +sound.soundVolume });
+  const dealAudio = useAudio(dealSound, { volume: +sound.soundVolume });
+  const buttonClickAudio = useAudio(buttonClickSound, {
+    volume: +sound.soundVolume
+  });
 
   useEffect(() => {
     if (game.gameStage === GameStage.InitialBet) {

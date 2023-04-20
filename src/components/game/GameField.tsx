@@ -11,8 +11,8 @@ import { VolumeButton } from "../game-setup/VolumeButton";
 import { Cards } from "../cards/Cards";
 
 export const GameField = observer(() => {
-  const { game, player, baccarat, soundVolume, didWin } = useMainStore();
-  const winAudio = useAudio(winSound, { volume: +soundVolume });
+  const { game, player, baccarat, sound, didWin } = useMainStore();
+  const winAudio = useAudio(winSound, { volume: +sound.soundVolume });
 
   useEffect(() => {
     if (didWin) {
