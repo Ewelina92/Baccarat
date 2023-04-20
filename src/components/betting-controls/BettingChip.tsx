@@ -1,35 +1,38 @@
 import React from "react";
+import cn from "classnames";
 import styles from "./BettingChip.module.scss";
 
 export type BettingChipsValues = 1 | 5 | 25 | 50 | 100;
-export type BetOnOptions = "player" | "tie" | "bank";
 
 export type BettingChipProps = {
   value: BettingChipsValues;
   isHidden: boolean;
   isDisabled: boolean;
-  placeBet: (value: number) => void;
+  isActive: boolean;
+  setBetValue: (value: number) => void;
 };
 
 export const BettingChip = ({
   value,
   isHidden,
   isDisabled,
-  placeBet
+  isActive,
+  setBetValue
 }: BettingChipProps) => {
-  const handleOnDragStart = () => {
-    placeBet(value);
+  const markAsChosen = () => {
+    setBetValue(value);
   };
 
   return (
     <button
-      className={styles.chip}
+      className={cn(styles.chip, { [styles.active]: isActive })}
       type="button"
       value={value}
       hidden={isHidden}
       disabled={isDisabled}
       draggable={!isDisabled}
-      onDragStart={handleOnDragStart}
+      onDragStart={markAsChosen}
+      onClick={markAsChosen}
     >
       <span className={styles.inside}>{value}</span>
     </button>

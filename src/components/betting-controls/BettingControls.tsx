@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { SyntheticEvent, useEffect } from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
@@ -93,6 +95,7 @@ export const BettingControls = observer(() => {
           className={styles.player}
           onDragOver={allowDrop}
           onDrop={betOnThePlayer}
+          onClick={betOnThePlayer}
         >
           <div className={styles.fieldInfo}>
             <p className={styles.name}>PLAYER</p>
@@ -100,7 +103,12 @@ export const BettingControls = observer(() => {
           </div>
           <p className={styles.bet}>&euro; {game.playerBet}</p>
         </div>
-        <div className={styles.tie} onDragOver={allowDrop} onDrop={betOnTheTie}>
+        <div
+          className={styles.tie}
+          onDragOver={allowDrop}
+          onDrop={betOnTheTie}
+          onClick={betOnTheTie}
+        >
           <div className={styles.fieldInfo}>
             <p className={styles.name}>TIE</p>
             <p className={styles.stake}>5:1</p>
@@ -111,6 +119,7 @@ export const BettingControls = observer(() => {
           className={styles.banker}
           onDragOver={allowDrop}
           onDrop={betOnTheBank}
+          onClick={betOnTheBank}
         >
           <div className={styles.fieldInfo}>
             <p className={styles.name}>BANKER</p>

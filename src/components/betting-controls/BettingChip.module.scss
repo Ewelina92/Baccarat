@@ -39,6 +39,10 @@
   }
 }
 
+.active {
+  box-shadow: 2px 2px 8px rgba(234, 180, 18, 0.786);
+}
+
 button[value="1"] {
   background: radial-gradient(
       ellipse farthest-corner at right bottom,

@@ -1,4 +1,3 @@
-import { configure } from "mobx";
 import { SoundStore } from "./soundStore";
 
 describe("create a SoundStore", () => {
