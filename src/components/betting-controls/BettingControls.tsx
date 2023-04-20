@@ -43,16 +43,22 @@ export const BettingControls = observer(() => {
   }, [game.gameStage]);
 
   const betOnThePlayer = () => {
-    betOnPlayer(game.chosenBetValue);
-    chipAudio.play();
+    if (game.chosenBetValue > 0) {
+      betOnPlayer(game.chosenBetValue);
+      chipAudio.play();
+    }
   };
   const betOnTheTie = () => {
-    betOnTie(game.chosenBetValue);
-    chipAudio.play();
+    if (game.chosenBetValue > 0) {
+      betOnTie(game.chosenBetValue);
+      chipAudio.play();
+    }
   };
   const betOnTheBank = () => {
-    betOnBanker(game.chosenBetValue);
-    chipAudio.play();
+    if (game.chosenBetValue > 0) {
+      betOnBanker(game.chosenBetValue);
+      chipAudio.play();
+    }
   };
 
   const handleDeal = () => {
