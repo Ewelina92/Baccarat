@@ -1,4 +1,4 @@
-@import '../../mixins';
+@import "../../mixins";
 
 .winnerContainer {
   position: absolute;
@@ -81,8 +81,8 @@
 }
 
 .gamefield {
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   display: grid;
   grid-template-rows: 50% 50%;
 
@@ -249,17 +249,17 @@
 @include screen-size(wide-screen) {
   .gamefield {
     .top {
-     width: 80%;
-      }
+      width: 80%;
     }
+  }
 }
 
 @include screen-size(extra-wide-screen) {
   .gamefield {
     .top {
-     width: 70%;
-      }
+      width: 70%;
     }
+  }
 }
 
 @include screen-size(narrow-short-screen) {
