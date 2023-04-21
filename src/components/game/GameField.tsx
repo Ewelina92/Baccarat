@@ -9,14 +9,15 @@ import { GameStage } from "../../stores/gameStore";
 import { useAudio } from "../../hooks/useAudio";
 import { VolumeButton } from "../game-setup/VolumeButton";
 import { Cards } from "../cards/Cards";
+import { playAudio } from "../../utils";
 
 export const GameField = observer(() => {
   const { game, player, baccarat, sound, didWin } = useMainStore();
-  const winAudio = useAudio(winSound, { volume: +sound.soundVolume });
+  const winAudio = useAudio(winSound);
 
   useEffect(() => {
     if (didWin) {
-      winAudio.play();
+      playAudio(winAudio, +sound.soundVolume);
     }
   }, [didWin]);
 

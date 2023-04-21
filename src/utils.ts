@@ -92,25 +92,15 @@ export const needThirdCardBankersRule = (
   }
 };
 
-export const delay = (fn: () => void, time: number) => {
+export const delay = (fn: () => void, time: number): void => {
   const timer = setTimeout(() => {
     fn();
     clearTimeout(timer);
   }, time);
 };
 
-export const preloadImage = (img_url: string) => {
-  const img = new Image();
-  img.src = img_url;
-  return img;
+export const playAudio = (audio: HTMLAudioElement, volume: number): void => {
+  if (volume === 1) {
+    audio.play();
+  }
 };
-
-export function preloadSVG(url: string) {
-  new Image().src = url;
-}
-
-export function preloadSVGs(svgContext: __WebpackModuleApi.RequireContext) {
-  svgContext.keys().forEach((key) => {
-    preloadSVG(svgContext(key));
-  });
-}

@@ -13,7 +13,7 @@ import { BettingChips } from "./BettingChips";
 import { useAudio } from "../../hooks/useAudio";
 
 import styles from "./BettingControls.module.scss";
-import { delay } from "../../utils";
+import { delay, playAudio } from "../../utils";
 
 export const BettingControls = observer(() => {
   const {
@@ -28,16 +28,14 @@ export const BettingControls = observer(() => {
     snapshots
   } = useMainStore();
   const [shouldSpin, setShouldSpin] = React.useState(false);
-  const startAudio = useAudio(startSound, { volume: +sound.soundVolume });
-  const chipAudio = useAudio(chipSound, { volume: +sound.soundVolume });
-  const dealAudio = useAudio(dealSound, { volume: +sound.soundVolume });
-  const buttonClickAudio = useAudio(buttonClickSound, {
-    volume: +sound.soundVolume
-  });
+  const startAudio = useAudio(startSound);
+  const chipAudio = useAudio(chipSound);
+  const dealAudio = useAudio(dealSound);
+  const buttonClickAudio = useAudio(buttonClickSound);
 
   useEffect(() => {
     if (game.gameStage === GameStage.InitialBet) {
-      startAudio.play();
+      playAudio(startAudio, +sound.soundVolume);
       setShouldSpin(false);
     }
   }, [game.gameStage]);
@@ -45,24 +43,24 @@ export const BettingControls = observer(() => {
   const betOnThePlayer = () => {
     if (game.chosenBetValue > 0) {
       betOnPlayer(game.chosenBetValue);
-      chipAudio.play();
+      playAudio(chipAudio, +sound.soundVolume);
     }
   };
   const betOnTheTie = () => {
     if (game.chosenBetValue > 0) {
       betOnTie(game.chosenBetValue);
-      chipAudio.play();
+      playAudio(chipAudio, +sound.soundVolume);
     }
   };
   const betOnTheBank = () => {
     if (game.chosenBetValue > 0) {
       betOnBanker(game.chosenBetValue);
-      chipAudio.play();
+      playAudio(chipAudio, +sound.soundVolume);
     }
   };
 
   const handleDeal = () => {
-    dealAudio.play();
+    playAudio(dealAudio, +sound.soundVolume);
     setShouldSpin(true);
     delay(() => {
       game.setGameStage(GameStage.InitialCards);
@@ -70,12 +68,12 @@ export const BettingControls = observer(() => {
   };
 
   const handleUndoClick = () => {
-    buttonClickAudio.play();
+    playAudio(buttonClickAudio, +sound.soundVolume);
     undoLastBet();
   };
 
   const handleDoubleBetsClick = () => {
-    buttonClickAudio.play();
+    playAudio(buttonClickAudio, +sound.soundVolume);
     doubleBets();
   };
 
