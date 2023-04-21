@@ -14,7 +14,8 @@ export const StartOverlay = observer(() => {
     setMoney(event.target.valueAsNumber);
   };
 
-  const handleStartGameClick = () => {
+  const handleStartGame = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (money > 0 && money <= 1000) {
       startGame(money);
     } else {
@@ -27,7 +28,7 @@ export const StartOverlay = observer(() => {
       <div className={styles.overlay}>
         <VolumeButton />
         <h1>Welcome to Baccarat</h1>
-        <form>
+        <form onSubmit={handleStartGame}>
           {formErrorMessage}
           <div className={styles.formentry}>
             <label htmlFor="money">
@@ -43,9 +44,7 @@ export const StartOverlay = observer(() => {
               />
             </label>
           </div>
-          <button type="button" onClick={handleStartGameClick}>
-            Start New Game
-          </button>
+          <button type="submit">Start New Game</button>
         </form>
         <div className={styles.rules}>
           <details>
