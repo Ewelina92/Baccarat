@@ -1,6 +1,6 @@
 import { Card, CardSuit, HandOptions } from "./types";
 import {
-  createCardDeck48Cards,
+  createCardDeck52Cards,
   createShoe,
   getPoints,
   checkWinner,
@@ -20,11 +20,11 @@ const cardDeckForTests2: Card[] = [
   { face: "ace", suit: CardSuit.Heart, value: 1, flipped: false }
 ];
 
-describe("create a card deck with 48 cards", () => {
-  it("should return a deck of 48 cards", () => {
-    const cardDeck = createCardDeck48Cards();
+describe("create a card deck with 52 cards", () => {
+  it("should return a deck of 52 cards", () => {
+    const cardDeck = createCardDeck52Cards();
 
-    expect(cardDeck).toHaveLength(48);
+    expect(cardDeck).toHaveLength(52);
   });
 });
 
@@ -42,17 +42,13 @@ describe("create a shoe with correct amount of given type of card deck", () => {
   });
 });
 
-describe("calculate points correctly", () => {
-  it("should return 2 points", () => {
+describe("calculate points", () => {
+  it("should calculate points correctly", () => {
     const points = getPoints(cardDeckForTests1);
+    const points2 = getPoints(cardDeckForTests2);
 
     expect(points).toEqual(2);
-  });
-
-  it("should return 4 points", () => {
-    const points = getPoints(cardDeckForTests2);
-
-    expect(points).toEqual(4);
+    expect(points2).toEqual(4);
   });
 });
 

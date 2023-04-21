@@ -1,7 +1,7 @@
 import { shuffle } from "lodash";
 import { Card, suits, cardFaces, HandOptions } from "./types";
 
-export const createCardDeck48Cards = (): Card[] => {
+export const createCardDeck52Cards = (): Card[] => {
   const cardDeck: Card[] = [];
 
   suits.forEach((suit) => {
@@ -26,7 +26,7 @@ export const createShoe = (
 export const createShuffledShoe = (cards: Card[]): Card[] => shuffle(cards);
 
 export const getShuffledShoe = (numberOfCardDecks: number): Card[] =>
-  createShuffledShoe(createShoe(numberOfCardDecks, createCardDeck48Cards()));
+  createShuffledShoe(createShoe(numberOfCardDecks, createCardDeck52Cards()));
 
 export const getPoints = (cards: Card[]): number => {
   let sum = 0;
@@ -102,4 +102,15 @@ export const delay = (fn: () => void, time: number) => {
 export const preloadImage = (img_url: string) => {
   const img = new Image();
   img.src = img_url;
+  return img;
 };
+
+export function preloadSVG(url: string) {
+  new Image().src = url;
+}
+
+export function preloadSVGs(svgContext: __WebpackModuleApi.RequireContext) {
+  svgContext.keys().forEach((key) => {
+    preloadSVG(svgContext(key));
+  });
+}

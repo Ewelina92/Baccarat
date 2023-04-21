@@ -22,7 +22,7 @@ The round is now gonna play out.
 
 To play another round, place your bets and again click the deal-button.
 
-If you run out of money (or you run out of cards, you're playing with six card-decks consisting of 48 cards), the game will end. If you don't want to continue playing, just close the browser/tab.
+If you run out of money (or you run out of cards, you're playing with six card-decks consisting of 52 cards), the game will end. If you don't want to continue playing, just close the browser/tab.
 
 You can mute/un-mute sounds by clicking the mute-button in the top left corner.
 
@@ -35,5 +35,8 @@ SVG:s from [Copyright free SVG and print ready playing cards - by Adrian Kennard
 Betting chip sound [Sound Effect from Pixabay](https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=89563) (7 April 2023)
 
 Place your bets please [Sound Effect from Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=28110) (7 April 2023)
+
+Deal sound [Sound Effect from Pixabay](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=6776) (7 April 2023)
+
 
 Winning sound [Sound Effect from Pixabay](https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6313) (17 April 2023)

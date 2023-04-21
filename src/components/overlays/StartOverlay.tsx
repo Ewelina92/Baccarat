@@ -68,8 +68,7 @@ export const StartOverlay = observer(() => {
               deal-button.
             </p>
             <p>
-              If you run out of money (or you run out of cards, you&#39;re
-              playing with six card-decks consisting of 48 cards), the game will
+              If you run out of money (or you run out of cards), the game will
               end. If you don&#39;t want to continue playing, just close the
               browser/tab.
             </p>

@@ -13,7 +13,7 @@ describe("create cardStore", () => {
   it("should return cardStore with initial settings", () => {
     const cardStore = new CardStore();
 
-    expect(cardStore.cards).toHaveLength(288);
+    expect(cardStore.cards).toHaveLength(312);
     expect(cardStore.playerCards).toHaveLength(0);
     expect(cardStore.bankerCards).toHaveLength(0);
   });
@@ -23,7 +23,7 @@ describe("draw and give cards", () => {
   const cardStore = new CardStore();
 
   it("should draw a card", () => {
-    expect(cardStore.cards).toHaveLength(288);
+    expect(cardStore.cards).toHaveLength(312);
     const drawnCard = cardStore.drawCard();
 
     expect(drawnCard).not.toBeUndefined();
