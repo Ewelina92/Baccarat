@@ -1,7 +1,7 @@
 import { shuffle } from "lodash";
 import { Card, suits, cardFaces, HandOptions } from "./types";
 
-export const createCardDeck48Cards = (): Card[] => {
+export const createCardDeck52Cards = (): Card[] => {
   const cardDeck: Card[] = [];
 
   suits.forEach((suit) => {
@@ -26,7 +26,7 @@ export const createShoe = (
 export const createShuffledShoe = (cards: Card[]): Card[] => shuffle(cards);
 
 export const getShuffledShoe = (numberOfCardDecks: number): Card[] =>
-  createShuffledShoe(createShoe(numberOfCardDecks, createCardDeck48Cards()));
+  createShuffledShoe(createShoe(numberOfCardDecks, createCardDeck52Cards()));
 
 export const getPoints = (cards: Card[]): number => {
   let sum = 0;
@@ -92,9 +92,15 @@ export const needThirdCardBankersRule = (
   }
 };
 
-export const delay = (fn: () => void, time: number) => {
+export const delay = (fn: () => void, time: number): void => {
   const timer = setTimeout(() => {
     fn();
     clearTimeout(timer);
   }, time);
+};
+
+export const playAudio = (audio: HTMLAudioElement, volume: number): void => {
+  if (volume === 1) {
+    audio.play();
+  }
 };

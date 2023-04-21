@@ -35,6 +35,7 @@ export const cardFaces = {
   "7": 7,
   "8": 8,
   "9": 9,
+  T: 0,
   J: 0,
   Q: 0,
   K: 0

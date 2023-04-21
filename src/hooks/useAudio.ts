@@ -1,11 +1,7 @@
 import React from "react";
 
-export const useAudio = (src: string, { volume = 1 }) => {
+export const useAudio = (src: string) => {
   const audio = React.useRef(new Audio(src));
-
-  React.useEffect(() => {
-    audio.current.volume = volume;
-  }, [volume]);
 
   return audio.current;
 };

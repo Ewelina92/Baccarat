@@ -2,8 +2,9 @@ import { configure } from "mobx";
 import { Card, CardSuit, HandOptions } from "../types";
 import { CardStore } from "./cardStore";
 import { GameStage, GameStore } from "./gameStore";
-import { MainStore, mainStore } from "./mainStore";
+import { MainStore } from "./mainStore";
 import { PlayerStore } from "./playerStore";
+import { SoundStore } from "./soundStore";
 
 const fakeCards: Card[] = [
   { face: "2", suit: CardSuit.Diamond, value: 2, flipped: false },
@@ -20,54 +21,9 @@ describe("create a MainStore", () => {
     expect(store.player).toBeInstanceOf(PlayerStore);
     expect(store.baccarat).toBeInstanceOf(CardStore);
     expect(store.game).toBeInstanceOf(GameStore);
+    expect(store.sound).toBeInstanceOf(SoundStore);
     expect(store.snapshots).toHaveLength(0);
-    expect(store.soundVolume).toBe("1");
     expect(store.didWin).toBe(false);
-  });
-});
-
-describe("sound", () => {
-  const store = new MainStore();
-
-  it('should set soundVolume to "1" if localStorage value is not "0" or "1"', () => {
-    // spy on localStorage
-    const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
-    getItemSpy.mockImplementation(() => "2");
-
-    store.getSoundPreference();
-
-    expect(store.soundVolume).toBe("1");
-    expect(getItemSpy).toHaveBeenCalled();
-    expect(getItemSpy).toHaveBeenCalledWith("volumeForBaccarat");
-
-    // Clean up
-    getItemSpy.mockRestore();
-  });
-
-  it("should set soundVolume to same value as localStorage returns", () => {
-    // spy on localStorage
-    const getItemSpy = jest.spyOn(Storage.prototype, "getItem");
-
-    getItemSpy.mockImplementation(() => "0");
-    store.getSoundPreference();
-    expect(store.soundVolume).toBe("0");
-
-    getItemSpy.mockImplementation(() => "1");
-    store.getSoundPreference();
-    expect(store.soundVolume).toBe("1");
-
-    // Clean up
-    getItemSpy.mockRestore();
-  });
-
-  it("toggle sound correctly", () => {
-    expect(store.soundVolume).toBe("1");
-
-    store.toggleSound();
-    expect(store.soundVolume).toBe("0");
-
-    store.toggleSound();
-    expect(store.soundVolume).toBe("1");
   });
 });
 

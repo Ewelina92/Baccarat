@@ -1,16 +1,4 @@
-// .sound {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   background: transparent;
-//   border: none;
-//   color: rgb(250, 250, 250, 0.8);
-//   cursor: pointer;
-
-//   &:focus {
-//     outline: none;
-//   }
-// }
+@import "../../mixins";
 
 .overlay {
   position: absolute;
@@ -22,10 +10,6 @@
   text-align: center;
   flex-wrap: wrap;
   z-index: 10000000;
-
-  h1 {
-    padding: 2rem 0;
-  }
 
   form {
     width: 70vw;
@@ -89,7 +73,26 @@
 
 .rules {
   margin: 0 auto;
+  padding: 2rem 0;
   width: 50vw;
   text-align: left;
   font-size: 1rem;
+
+  summary {
+    cursor: pointer;
+  }
+}
+
+@include screen-size(narrow-screen) {
+  .rules {
+    width: 80vw;
+    padding: 1rem 0;
+  }
+}
+
+@include screen-size(narrow-short-screen) {
+  .rules {
+    width: 80vw;
+    padding: 1rem 0;
+  }
 }
