@@ -21,15 +21,21 @@ export const GameField = observer(() => {
     }
   }, [didWin]);
 
-  const hours = Math.floor(game.time / 3600);
-  const minutes = Math.floor(game.time / 60) % 60;
-  const seconds = game.time % 60;
+  const formatTime = (time: number): string => {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor(time / 60) % 60;
+    const seconds = time % 60;
 
-  const hoursAsString = hours.toString().padStart(2, "0");
-  const minutesAsString = minutes.toString().padStart(2, "0");
-  const secondsAsString = seconds.toString().padStart(2, "0");
+    const hoursAsString = hours.toString().padStart(2, "0");
+    const minutesAsString = minutes.toString().padStart(2, "0");
+    const secondsAsString = seconds.toString().padStart(2, "0");
 
-  const timeAsString = `${hoursAsString}:${minutesAsString}:${secondsAsString}`;
+    return `${hoursAsString}:${minutesAsString}:${secondsAsString}`;
+  };
+
+  const timeAsString = formatTime(game.time);
+
+  const balanceWithMaxTwoDec = Math.round(player.playerMoney * 100) / 100;
 
   return (
     <>
@@ -64,7 +70,7 @@ export const GameField = observer(() => {
           <div className={styles.bottom}>
             <div className={styles.totalInfo}>
               <p>BALANCE</p>
-              <p className={styles.balance}>&euro; {player.playerMoney}</p>
+              <p className={styles.balance}>&euro; {balanceWithMaxTwoDec}</p>
             </div>
             <div className={styles.totalInfo}>
               <p>TOTAL BET</p>
