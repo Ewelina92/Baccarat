@@ -98,3 +98,8 @@ export const delay = (fn: () => void, time: number) => {
     clearTimeout(timer);
   }, time);
 };
+
+export const preloadImage = (img_url: string) => {
+  const img = new Image();
+  img.src = img_url;
+};
