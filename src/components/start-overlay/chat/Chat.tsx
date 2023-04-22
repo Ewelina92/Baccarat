@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { useOpenAI } from "./useOpenAI";
+import { useOpenAI } from "../../../hooks/useOpenAI";
 import styles from "./Chat.module.scss";
-import { useChat } from "./useChat";
+import { useChat } from "../../../hooks/useChat";
 
 export const Chat = () => {
   const { api, setApiKey, removeApi } = useOpenAI();
@@ -17,7 +17,7 @@ export const Chat = () => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [isLoading, messages]);
 
   const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -55,14 +55,14 @@ export const Chat = () => {
       <div className={styles.form}>
         <input
           type="text"
-          placeholder={!api ? "Enter API Key" : "Type your message"}
+          placeholder={!api ? "Enter OpenAI API Key" : "Type your message"}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleInputKeyDown}
           disabled={isLoading}
         />
         <button type="button" onClick={sendMessage} disabled={isLoading}>
-          {!api ? "Set API Key" : "Send"}
+          {!api ? "Set OpenAI API Key" : "Send"}
         </button>
       </div>
     </div>

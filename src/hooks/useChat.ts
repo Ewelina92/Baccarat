@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { OpenAIApi, ChatCompletionRequestMessage } from "openai";
-import { delay } from "../../../utils";
+import { delay } from "../utils";
 
 interface UseChatProps {
   setApiKey: (key: string) => void;
