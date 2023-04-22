@@ -6,7 +6,8 @@ import {
   checkWinner,
   needThirdCardPlayerRule,
   needThirdCardBankersRule,
-  playAudio
+  playAudio,
+  formatTime
 } from "./utils";
 
 const cardDeckForTests1: Card[] = [
@@ -159,5 +160,14 @@ describe("playAudio", () => {
   it("should not play audio when volume is not 1", () => {
     playAudio(audio, 0);
     expect(audio.play).not.toHaveBeenCalled();
+  });
+});
+
+describe("format time", () => {
+  const seconds = 100;
+
+  it("should format time in seconds correctly to a string", () => {
+    const formattedTime = formatTime(seconds);
+    expect(formattedTime).toBe("00:01:40");
   });
 });
