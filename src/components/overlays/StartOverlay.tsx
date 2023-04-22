@@ -1,6 +1,6 @@
 import React from "react";
 import { Portal } from "./Portal";
-import { VolumeButton } from "../game-setup/VolumeButton";
+import { VolumeButton } from "../game/VolumeButton";
 import { Instructions } from "./Instructions";
 import { StartForm } from "./StartForm";
 import styles from "./StartOverlay.module.scss";

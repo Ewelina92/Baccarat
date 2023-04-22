@@ -19,7 +19,7 @@
 
 @include screen-size(narrow-screen) {
   .reverse {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 }
 

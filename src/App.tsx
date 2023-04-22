@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { MainStoreContext, mainStore } from "./stores/mainStore";
-import { GameSetup } from "./components/game-setup/GameSetup";
+import { GameSetup } from "./components/GameSetup";
 import ErrorBoundary from "./ErrorBoundary";
 
 const App = () => (

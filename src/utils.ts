@@ -104,3 +104,15 @@ export const playAudio = (audio: HTMLAudioElement, volume: number): void => {
     audio.play();
   }
 };
+
+export const formatTime = (time: number): string => {
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor(time / 60) % 60;
+  const seconds = time % 60;
+
+  const hoursAsString = hours.toString().padStart(2, "0");
+  const minutesAsString = minutes.toString().padStart(2, "0");
+  const secondsAsString = seconds.toString().padStart(2, "0");
+
+  return `${hoursAsString}:${minutesAsString}:${secondsAsString}`;
+};
