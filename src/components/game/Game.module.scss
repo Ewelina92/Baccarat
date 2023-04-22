@@ -137,10 +137,18 @@
   }
 }
 
-@include screen-size(wide-screen) {
+@include screen-size(medium-screen) {
   .gamefield {
     .top {
       width: 80%;
+    }
+  }
+}
+
+@include screen-size(wide-screen) {
+  .gamefield {
+    .top {
+      width: 85%;
     }
   }
 }
@@ -152,6 +160,7 @@
     }
   }
 }
+
 
 @include screen-size(narrow-short-screen) {
   .gamefield {
