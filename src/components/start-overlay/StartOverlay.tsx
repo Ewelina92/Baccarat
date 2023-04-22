@@ -1,8 +1,8 @@
 import React from "react";
 import { Portal } from "./Portal";
-import { VolumeButton } from "../game/VolumeButton";
-import { Instructions } from "./Instructions";
-import { StartForm } from "./StartForm";
+import { VolumeButton } from "../volume-button/VolumeButton";
+import { Instructions } from "./instructions/Instructions";
+import { StartForm } from "./start-form/StartForm";
 import styles from "./StartOverlay.module.scss";
 
 export const StartOverlay = () => (

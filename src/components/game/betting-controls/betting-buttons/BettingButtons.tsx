@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
-import { GameStage } from "../../../stores/gameStore";
-import { useMainStore } from "../../../hooks/useMainStore";
-import { useAudio } from "../../../hooks/useAudio";
-import { delay, playAudio } from "../../../utils";
-import dealSound from "../../../sounds/deal-sound.mp3";
-import buttonClickSound from "../../../sounds/button-click-sound.mp3";
+import { GameStage } from "../../../../stores/gameStore";
+import { useMainStore } from "../../../../hooks/useMainStore";
+import { useAudio } from "../../../../hooks/useAudio";
+import { delay, playAudio } from "../../../../utils";
+import dealSound from "../../../../sounds/deal-sound.mp3";
+import buttonClickSound from "../../../../sounds/button-click-sound.mp3";
 import styles from "./BettingButtons.module.scss";
 
 export const BettingButtons = observer(() => {

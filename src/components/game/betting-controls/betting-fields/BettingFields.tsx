@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { BettingField } from "./BettingField";
-import { useMainStore } from "../../../hooks/useMainStore";
+import { useMainStore } from "../../../../hooks/useMainStore";
 import styles from "./BettingFields.module.scss";
 
 export const BettingFields = observer(() => {

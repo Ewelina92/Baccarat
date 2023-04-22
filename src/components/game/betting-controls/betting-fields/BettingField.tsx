@@ -1,10 +1,10 @@
 import React, { SyntheticEvent } from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
-import { useMainStore } from "../../../hooks/useMainStore";
-import { useAudio } from "../../../hooks/useAudio";
-import { playAudio } from "../../../utils";
-import chipSound from "../../../sounds/betting-chip-sound.mp3";
+import { useMainStore } from "../../../../hooks/useMainStore";
+import { useAudio } from "../../../../hooks/useAudio";
+import { playAudio } from "../../../../utils";
+import chipSound from "../../../../sounds/betting-chip-sound.mp3";
 import styles from "./BettingField.module.scss";
 
 type BettingFieldProps = {

@@ -1,8 +1,8 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { MainStoreContext, mainStore } from "../../stores/mainStore";
+import { MainStoreContext, mainStore } from "../../../stores/mainStore";
 import { BettingControls } from "./BettingControls";
-import { GameStage } from "../../stores/gameStore";
+import { GameStage } from "../../../stores/gameStore";
 
 describe("BettingControls", () => {
   it('plays deal sound when "Deal" button is clicked', () => {

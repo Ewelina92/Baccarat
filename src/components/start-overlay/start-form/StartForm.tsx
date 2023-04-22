@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { useMainStore } from "../../../hooks/useMainStore";
 import styles from "./StartForm.module.scss";
-import { useMainStore } from "../../hooks/useMainStore";
 
 export const StartForm = observer(() => {
   const { startGame } = useMainStore();
@@ -31,14 +31,14 @@ export const StartForm = observer(() => {
           <input
             id="money"
             type="number"
-            min={0}
+            min={1}
             max={1000}
             onChange={handleMoney}
             placeholder="&euro; 0"
           />
         </label>
       </div>
-      <button type="submit">Start New Game</button>
+      <button type="submit">PLAY</button>
     </form>
   );
 });

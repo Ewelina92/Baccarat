@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
 import "./Card.scss";
-import { Card as CardType } from "../../types";
+import { Card as CardType } from "../../../types";
 
 export type CardProps = {
   card: CardType;

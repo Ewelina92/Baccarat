@@ -1,10 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
-import { Card as CardType, CardSuit } from "../../types";
+import { Card as CardType, CardSuit } from "../../../types";
 import { Card } from "./Card";
-import { GameStage } from "../../stores/gameStore";
-import { useMainStore } from "../../hooks/useMainStore";
+import { GameStage } from "../../../stores/gameStore";
+import { useMainStore } from "../../../hooks/useMainStore";
 
 import styles from "./Cards.module.scss";
 

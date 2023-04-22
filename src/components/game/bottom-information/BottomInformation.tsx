@@ -1,8 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-
-import { useMainStore } from "../../hooks/useMainStore";
-
+import { useMainStore } from "../../../hooks/useMainStore";
 import styles from "./BottomInformation.module.scss";
 
 export const BottomInformation = observer(() => {

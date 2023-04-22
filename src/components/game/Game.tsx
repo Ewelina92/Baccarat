@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
-import { BettingControls } from "../betting-controls/BettingControls";
+import { BettingControls } from "./betting-controls/BettingControls";
 import { GameStage } from "../../stores/gameStore";
-import { VolumeButton } from "./VolumeButton";
-import { BottomInformation } from "./BottomInformation";
-import { Timer } from "./Timer";
+import { VolumeButton } from "../volume-button/VolumeButton";
+import { BottomInformation } from "./bottom-information/BottomInformation";
+import { Timer } from "./timer/Timer";
 import { useMainStore } from "../../hooks/useMainStore";
 import { useAudio } from "../../hooks/useAudio";
 import { playAudio } from "../../utils";
 import winSound from "../../sounds/win-sound.mp3";
 import styles from "./Game.module.scss";
-import { ParticipantField } from "./ParticipantField";
+import { ParticipantField } from "./participant-field/ParticipantField";
 
 export const Game = observer(() => {
   const { game, baccarat, sound, didWin } = useMainStore();
