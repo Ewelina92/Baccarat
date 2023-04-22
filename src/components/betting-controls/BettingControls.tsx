@@ -1,35 +1,24 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { SyntheticEvent, useEffect } from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
 import { useMainStore } from "../../hooks/useMainStore";
 import { GameStage } from "../../stores/gameStore";
 import startSound from "../../sounds/place-bets-please.mp3";
 import dealSound from "../../sounds/deal-sound.mp3";
-import chipSound from "../../sounds/betting-chip-sound.mp3";
 import buttonClickSound from "../../sounds/button-click-sound.mp3";
 import { BettingChips } from "./BettingChips";
 import { useAudio } from "../../hooks/useAudio";
 
 import styles from "./BettingControls.module.scss";
 import { delay, playAudio } from "../../utils";
+import { BettingField } from "./BettingField";
 
 export const BettingControls = observer(() => {
-  const {
-    game,
-    player,
-    doubleBets,
-    undoLastBet,
-    betOnPlayer,
-    betOnTie,
-    betOnBanker,
-    sound,
-    snapshots
-  } = useMainStore();
+  const { game, player, doubleBets, undoLastBet, sound, snapshots } =
+    useMainStore();
   const [shouldSpin, setShouldSpin] = React.useState(false);
   const startAudio = useAudio(startSound);
-  const chipAudio = useAudio(chipSound);
+
   const dealAudio = useAudio(dealSound);
   const buttonClickAudio = useAudio(buttonClickSound);
 
@@ -39,25 +28,6 @@ export const BettingControls = observer(() => {
       setShouldSpin(false);
     }
   }, [game.gameStage]);
-
-  const betOnThePlayer = () => {
-    if (game.chosenBetValue > 0) {
-      betOnPlayer(game.chosenBetValue);
-      playAudio(chipAudio, +sound.soundVolume);
-    }
-  };
-  const betOnTheTie = () => {
-    if (game.chosenBetValue > 0) {
-      betOnTie(game.chosenBetValue);
-      playAudio(chipAudio, +sound.soundVolume);
-    }
-  };
-  const betOnTheBank = () => {
-    if (game.chosenBetValue > 0) {
-      betOnBanker(game.chosenBetValue);
-      playAudio(chipAudio, +sound.soundVolume);
-    }
-  };
 
   const handleDeal = () => {
     playAudio(dealAudio, +sound.soundVolume);
@@ -77,10 +47,6 @@ export const BettingControls = observer(() => {
     doubleBets();
   };
 
-  function allowDrop(ev: SyntheticEvent) {
-    ev.preventDefault();
-  }
-
   const disableDoubleBetButton =
     game.gameStage !== GameStage.InitialBet ||
     game.totalBet === 0 ||
@@ -94,44 +60,7 @@ export const BettingControls = observer(() => {
 
   return (
     <>
-      <div className={styles.bettingField}>
-        <div
-          className={styles.player}
-          onDragOver={allowDrop}
-          onDrop={betOnThePlayer}
-          onClick={betOnThePlayer}
-        >
-          <div className={styles.fieldInfo}>
-            <p className={styles.name}>PLAYER</p>
-            <p className={styles.stake}>1:1</p>
-          </div>
-          <p className={styles.bet}>&euro; {game.playerBet}</p>
-        </div>
-        <div
-          className={styles.tie}
-          onDragOver={allowDrop}
-          onDrop={betOnTheTie}
-          onClick={betOnTheTie}
-        >
-          <div className={styles.fieldInfo}>
-            <p className={styles.name}>TIE</p>
-            <p className={styles.stake}>5:1</p>
-          </div>
-          <p>&euro; {game.tieBet}</p>
-        </div>
-        <div
-          className={styles.banker}
-          onDragOver={allowDrop}
-          onDrop={betOnTheBank}
-          onClick={betOnTheBank}
-        >
-          <div className={styles.fieldInfo}>
-            <p className={styles.name}>BANKER</p>
-            <p className={styles.stake}>0.95:1</p>
-          </div>
-          <p>&euro; {game.bankerBet}</p>
-        </div>
-      </div>
+      <BettingField />
       <BettingChips />
       <div className={styles.controls}>
         <button

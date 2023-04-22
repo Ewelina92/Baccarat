@@ -1,0 +1,27 @@
+@import "../../mixins";
+
+.instructions {
+  margin: 0 auto;
+  padding: 2rem 0;
+  width: 50vw;
+  text-align: left;
+  font-size: 1rem;
+
+  summary {
+    cursor: pointer;
+  }
+}
+
+@include screen-size(narrow-screen) {
+  .instructions {
+    width: 80vw;
+    padding: 1rem 0;
+  }
+}
+
+@include screen-size(narrow-short-screen) {
+  .instructions {
+    width: 80vw;
+    padding: 1rem 0;
+  }
+}

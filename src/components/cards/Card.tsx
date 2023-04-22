@@ -14,7 +14,7 @@ export const Card = observer(({ card }: CardProps): JSX.Element => {
     <div className={cn("flip-container", { flip: card.flipped })}>
       <div className="flipper">
         <div className="front">
-          <div className={`${cardCSS} size`} />
+          <div className={cn(cardCSS, "size")} />
         </div>
         <div className="back" />
       </div>
