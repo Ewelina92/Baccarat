@@ -34,14 +34,16 @@ export const Chat = () => {
     </div>
   );
 
+  const uid = () =>
+    Date.now().toString(36) + Math.random().toString(36).substring(2);
+
   return (
     <div className={styles.container}>
       {messages.length > 1 && (
         <div className={styles.chat} ref={chatRef}>
-          {messages.slice(1).map((message, index) => (
+          {messages.slice(1).map((message) => (
             <div
-              // eslint-disable-next-line react/no-array-index-key
-              key={`chat-message-${index}`}
+              key={`chat-message-${uid()}`}
               className={`${styles.message} ${
                 styles[`${message.role}Message`]
               }`}
