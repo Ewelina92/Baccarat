@@ -1,0 +1,11 @@
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  flex-wrap: wrap;
+  z-index: 10000000;
+}

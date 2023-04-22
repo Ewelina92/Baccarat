@@ -1,0 +1,34 @@
+@import '../../../../mixins';
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 0.8rem;
+  padding: 0.2rem 1rem 1rem 1rem;
+  grid-row: 2 / 2;
+  grid-column: 1 / span 3;
+
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-image-source: linear-gradient(
+    349deg,
+    rgba(138, 110, 47, 1) 0%,
+    rgba(204, 156, 53, 1) 30%,
+    rgba(199, 151, 55, 1) 45%,
+    rgba(204, 156, 53, 1) 56%,
+    rgba(138, 110, 47, 1) 98%
+  );
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+@include screen-size(narrow-short-screen) {
+  .chips {
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}

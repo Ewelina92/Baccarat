@@ -1,5 +1,6 @@
 $extra-wide-screen: 1700px;
 $wide-screen: 1600px;
+$medium-screen: 1200px;
 $narrow-screen: 650px;
 $short-screen: 550px;
 $breakpoint-tablet: 830px;
@@ -13,6 +14,12 @@ $min-tablet-height: 650px;
   }
   @if $breakpoint == wide-screen {    
     @media (min-width: $wide-screen) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == medium-screen {    
+    @media (min-width: $medium-screen) {
       @content;
     }
   }

@@ -1,0 +1,45 @@
+@import "../../../mixins";
+
+.field {
+  grid-row: 3 / 3;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  &.player {
+    text-align: end;
+    grid-column: 1 / 1;
+  }
+  &.banker {
+    grid-column: 2 / 2;
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+}
+
+@include screen-size(tablet) {
+  .field {
+    width: 70%;
+    margin: 0 auto;
+    &.player {
+      grid-column: 1 / span 2;
+      text-align: start;
+      grid-row: 3 / 3;
+    }
+    &.banker {
+      grid-column: 1 / span 2;
+      grid-row: 4 / 4;
+    }
+
+    p {
+      margin: 1rem 0;
+    }
+  }
+}
+
+@include screen-size(narrow-short-screen) {
+  .field {
+    width: 90%;
+  }
+}

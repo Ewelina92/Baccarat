@@ -1,0 +1,164 @@
+@import '../../../../mixins';
+
+.chip {
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 8px rgba(234, 232, 236, 0.2);
+  overflow: hidden;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &:disabled {
+    filter: brightness(60%);
+  }
+
+  .inside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #96a3ac;
+    color: white;
+    text-shadow: 0px 0px 12px rgb(254 255 191 / 40%);
+    font-size: 1.5rem;
+    font-weight: 900;
+    width: 80%;
+    height: 80%;
+    border-radius: 100%;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.active {
+  box-shadow: 0 0 10px rgb(211, 190, 2);
+}
+
+button[value="1"] {
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #fff 0%,
+      #fbfafb 8%,
+      #f0eced 30%,
+      #fff 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #fff 0%,
+      #fbfafb 25%,
+      #f0eced 62.5%,
+      #fff 100%
+    );
+
+  .inside {
+    background-color: #eae8ec;
+    color: #36323e;
+  }
+}
+
+button[value="5"] {
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #ff0000 0%,
+      #e60000 8%,
+      #cc0000 30%,
+      #b30000 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #ff0000 0%,
+      #e60000 25%,
+      #cc0000 62.5%,
+      #b30000 100%
+    );
+
+  .inside {
+    background-color: #800202;
+  }
+}
+
+button[value="25"] {
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #00e600 0%,
+      #00cc00 8%,
+      #00b300 30%,
+      #017d01 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #00e600 0%,
+      #00cc00 25%,
+      #00b300 62.5%,
+      #017d01 100%
+    );
+
+  .inside {
+    background-color: #016001;
+  }
+}
+
+button[value="50"] {
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #4f4fff 0%,
+      #3535ff 8%,
+      #1c1cff 30%,
+      #0202ff 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #4f4fff 0%,
+      #3535ff 25%,
+      #1c1cff 62.5%,
+      #0202ff 100%
+    );
+
+  .inside {
+    background-color: #0303c9;
+  }
+}
+
+button[value="100"] {
+  background: radial-gradient(
+      ellipse farthest-corner at right bottom,
+      #36323e 0%,
+      #2a2730 8%,
+      #1e1c22 30%,
+      #111014 40%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse farthest-corner at left top,
+      #36323e 0%,
+      #2a2730 25%,
+      #1e1c22 62.5%,
+      #111014 100%
+    );
+
+  .inside {
+    background-color: #111014;
+  }
+}
+
+@include screen-size(narrow-short-screen) {
+  .chip {
+    width: 3rem;
+    height: 3rem;
+    .inside {
+      font-size: 1rem;
+    }
+  }
+}
