@@ -1,7 +1,6 @@
 @import '../../../../mixins';
 
 .chip {
-  transform: perspective(10cm) rotateX(20deg);
   width: 4rem;
   height: 4rem;
   cursor: pointer;

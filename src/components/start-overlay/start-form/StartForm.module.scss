@@ -5,6 +5,14 @@ form {
   flex-direction: column;
   text-align: left;
 
+  .info {
+    text-align: center;
+  }
+
+  .error {
+    color: red;
+  }
+
   .formentry {
     padding-bottom: 3rem;
     display: flex;

@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import cn from "classnames";
 import { useMainStore } from "../../../hooks/useMainStore";
 import styles from "./StartForm.module.scss";
 
@@ -23,7 +24,9 @@ export const StartForm = observer(() => {
 
   return (
     <form onSubmit={handleStartGame}>
-      {formErrorMessage}
+      <p className={cn(styles.info, { [styles.error]: formErrorMessage })}>
+        {formErrorMessage || "Fill out how much money you want to play with"}
+      </p>
       <div className={styles.formentry}>
         <label htmlFor="money">
           Starting balance:{" "}
