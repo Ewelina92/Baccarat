@@ -1,10 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { BettingChip, BettingChipsValues } from "./BettingChip";
-
+import { GameStage } from "../../../stores/gameStore";
+import { useMainStore } from "../../../hooks/useMainStore";
 import styles from "./BettingChips.module.scss";
-import { useMainStore } from "../../hooks/useMainStore";
-import { GameStage } from "../../stores/gameStore";
 
 const bettingChipValues: BettingChipsValues[] = [1, 5, 25, 50, 100];
 

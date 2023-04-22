@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import cn from "classnames";
-import { useMainStore } from "../../hooks/useMainStore";
-import { GameStage } from "../../stores/gameStore";
-import dealSound from "../../sounds/deal-sound.mp3";
-import buttonClickSound from "../../sounds/button-click-sound.mp3";
-
-import { useAudio } from "../../hooks/useAudio";
-
+import { GameStage } from "../../../stores/gameStore";
+import { useMainStore } from "../../../hooks/useMainStore";
+import { useAudio } from "../../../hooks/useAudio";
+import { delay, playAudio } from "../../../utils";
+import dealSound from "../../../sounds/deal-sound.mp3";
+import buttonClickSound from "../../../sounds/button-click-sound.mp3";
 import styles from "./BettingButtons.module.scss";
-import { delay, playAudio } from "../../utils";
 
 export const BettingButtons = observer(() => {
   const [shouldSpin, setShouldSpin] = React.useState(false);

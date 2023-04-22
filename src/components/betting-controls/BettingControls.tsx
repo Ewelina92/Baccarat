@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
+import { BettingChips } from "./betting-chips/BettingChips";
+import { BettingFields } from "./betting-fields/BettingFields";
+import { BettingButtons } from "./betting-buttons/BettingButtons";
 import { GameStage } from "../../stores/gameStore";
-import startSound from "../../sounds/place-bets-please.mp3";
-import { BettingChips } from "./BettingChips";
-import { BettingFields } from "./BettingFields";
-import { BettingButtons } from "./BettingButtons";
 import { useMainStore } from "../../hooks/useMainStore";
 import { useAudio } from "../../hooks/useAudio";
-
 import { playAudio } from "../../utils";
+import startSound from "../../sounds/place-bets-please.mp3";
 
 export const BettingControls = observer(() => {
   const { game, sound } = useMainStore();
