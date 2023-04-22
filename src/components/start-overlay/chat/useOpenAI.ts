@@ -17,18 +17,28 @@ export const useOpenAI = () => {
     });
     const openai = new OpenAIApi(configuration);
 
+    if (openai) {
+      localStorage.setItem("baccaratOpenAIKey", key);
+    }
+
     setApi(openai);
   };
 
   useEffect(() => {
-    const apiKey = localStorage.getItem("apiKey");
+    const apiKey = localStorage.getItem("baccaratOpenAIKey");
     if (apiKey) {
       setApiKey(apiKey);
     }
   }, []);
 
+  const removeApi = () => {
+    localStorage.removeItem("baccaratOpenAIKey");
+    setApi(null);
+  };
+
   return {
     api,
-    setApiKey
+    setApiKey,
+    removeApi
   };
 };
