@@ -3,7 +3,8 @@ import { OpenAIApi } from "openai";
 import { CONTEXT, useChat } from "./useChat";
 
 describe("useChat", () => {
-  const mockApi: OpenAIApi = jest.fn() as any;
+  const mockApi: OpenAIApi =
+    jest.fn() as jest.Mocked<unknown> as jest.Mocked<OpenAIApi>;
 
   afterEach(() => {
     jest.clearAllMocks();

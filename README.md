@@ -1,16 +1,18 @@
 # Evolution TypeScript Bootcamp 2023 End project: Baccarat
 
-[Play here!](https://baccarat-project.surge.sh/)
+[Play here](https://baccarat-project.surge.sh/)
 
 This project was created using [Create React App](https://github.com/facebook/create-react-app).
 
 [MobX](https://mobx.js.org/README.html) is used for state management.
 
-# Start the project
+# Start the project locally
 
-Run `npm start` to start the project.
+Download the code, run `npm install` and then `npm start` to start the project.
 
 # How to play
+
+***Please note! To enable the use of the BaccaratAI-chat you will need to provide your own OpenAI apiKey in the chat as prompted. The key will then be saved in localStorage.***
 
 Fill in starting balance and click play game.
 
