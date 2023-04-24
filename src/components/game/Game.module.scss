@@ -161,7 +161,6 @@
   }
 }
 
-
 @include screen-size(narrow-short-screen) {
   .gamefield {
     grid-template-rows: 60% 40%;

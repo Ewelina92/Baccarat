@@ -6,39 +6,39 @@ $short-screen: 550px;
 $breakpoint-tablet: 830px;
 $min-tablet-height: 650px;
 
-@mixin screen-size ($breakpoint) {
-  @if $breakpoint == extra-wide-screen {    
+@mixin screen-size($breakpoint) {
+  @if $breakpoint == extra-wide-screen {
     @media (min-width: $extra-wide-screen) {
       @content;
     }
   }
-  @if $breakpoint == wide-screen {    
+  @if $breakpoint == wide-screen {
     @media (min-width: $wide-screen) {
       @content;
     }
   }
 
-  @if $breakpoint == medium-screen {    
+  @if $breakpoint == medium-screen {
     @media (min-width: $medium-screen) {
       @content;
     }
   }
-  
-  @if $breakpoint == narrow-short-screen {    
-  @media (max-width: $narrow-screen), (max-height: $short-screen) {
-    @content;
-  }
-}
 
-@if $breakpoint == narrow-screen {
-  @media (max-height: $narrow-screen) {
-    @content;
+  @if $breakpoint == narrow-short-screen {
+    @media (max-width: $narrow-screen), (max-height: $short-screen) {
+      @content;
+    }
   }
-}
 
-@if $breakpoint == tablet {
-  @media (max-width: $breakpoint-tablet) and (min-height: $min-tablet-height) {
-    @content;
+  @if $breakpoint == narrow-screen {
+    @media (max-height: $narrow-screen) {
+      @content;
+    }
   }
-}
+
+  @if $breakpoint == tablet {
+    @media (max-width: $breakpoint-tablet) and (min-height: $min-tablet-height) {
+      @content;
+    }
+  }
 }
